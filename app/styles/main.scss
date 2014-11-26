@@ -1,26 +1,53 @@
  // Bourbon & Neat
+@import "bourbon";
+@import "base/base";
 @import '../../bower_components/bourbon/dist/bourbon';
 @import '../../bower_components/neat/app/assets/stylesheets/neat';
 
+
 // Custom Styles
 body {
-  background: #fafafa;
+  background: white;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #333;
 }
 
-.hero-unit {
-  margin: 50px auto 0 auto;
-  width: 600px;
-  font-size: 18px;
-  font-weight: 200;
-  line-height: 30px;
-  background-color: #eee;
-  border-radius: 6px;
-  padding: 60px;
-  h1 {
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
+.container {
+  @include outer-container;
+  $mobile: new-breakpoint(max-width 500px 4);
+  max-width: 1500px;
+  width: 100%;
+  margin: 0px;
+
+nav {
+  @include span-columns(12);
+  height: 100px;
+  border: 1px solid black;
+  background-color: red;
+}
+
+.sidebar{
+  @include span-columns(2.5);
+  @include media($mobile) {
+    @include span-columns(3);
   }
+  height: 300px;
+  border: 1px solid black;
+  margin-top: 25px;
+  margin-left: 3%;
+  background-color: red;
+}
+
+.main {
+  @include span-columns(8.5);
+  @include media($mobile) {
+    @include span-columns(3);
+  }
+  height: 300px;
+  border: 1px solid black;
+  margin-top: 25px;
+  margin-left: 3%;
+  background-color: red;
+}
+
 }
