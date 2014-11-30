@@ -28,6 +28,7 @@
       <!-- main-  -->
       <div class="main">
         <div id="listInfo">
+        <div id="myKidsOnly"
       </div>
     </div>
 
@@ -55,6 +56,7 @@
           <form id="myKidInfo">
             <input id='kfirstName' type='text' placeholder='First Name'/>
             <input id='klastName' type='text' placeholder='Last Name'/>
+            <input id='birthdate' type='date' placeholder="Birthday"/>
             <input id='kAddress1' type='text' placeholder='Address'/>
             <input id='kAddress2' type='text' placeholder='Address'/>
             <input id='Emergency1' type='text' placeholder='Emergency Contact 1 Name'/>
@@ -71,9 +73,28 @@
               </select>
             <textarea id='notes' type='text' placeholder='General Notes'></textarea>
             <!--  <input id='uImage' type='image' placeholder='Image'/> -->
-              <button id="updateIt">Update</button>
+              <button id='addMyKid'>Add</button>
           </div>
      </script>
+
+     <!-- Template for Listing "My Kids" -->
+     <script type="text/template" id="listMyKids">
+      <li class="showMyKids" id="<%= objectId %>">
+        <a href="#/edit/<%= objectId %>"><div id="updateButton">Edit</div></a>
+          <div class="kidShare">
+            <h4><%= firstName %> <%= lastName %> </h4>
+              <li><%= birthdate %></li>
+              <li><%= address1 %></li>
+              <li><%= address2 %></li>
+              <li><%= ec1Name %></li>
+              <li><%= ec1Phone %></li>
+              <li><%= ec2Name %></li>
+              <li><%= ec2Phone %></li>
+              <li><%= doctor %></li>
+              <li><%= medical %></li>
+              <li><%= notes %></li>
+          </div>
+      </script>
 
     <script src="scripts/vendor.js"></script>
 

@@ -34,6 +34,7 @@ $( document ).ready(function(){
         image: $('#uImage').val(),
         firstName: $('#kfirstName').val(),
         lastName: $('#klastName').val(),
+        birthdate: $('birthdate').val(),
         address1: $('#kAddress1').val(),
         address2: $('#kAddress2').val(),
         ec1Name: $('#Emergency1').val(),

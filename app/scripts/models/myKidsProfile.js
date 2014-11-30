@@ -9,6 +9,7 @@ $( document ).ready(function(){
       image: '',
       firstName: '',
       lastName: '',
+      birthdate: '',
       address1: '',
       address2: '',
       ec1Name:'',

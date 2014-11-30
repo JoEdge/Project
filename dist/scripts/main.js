@@ -47,6 +47,7 @@ $( document ).ready(function(){
       image: '',
       firstName: '',
       lastName: '',
+      birthdate: '',
       address1: '',
       address2: '',
       ec1Name:'',
@@ -186,6 +187,7 @@ $( document ).ready(function(){
         image: $('#uImage').val(),
         firstName: $('#kfirstName').val(),
         lastName: $('#klastName').val(),
+        birthdate: $('birthdate').val(),
         address1: $('#kAddress1').val(),
         address2: $('#kAddress2').val(),
         ec1Name: $('#Emergency1').val(),
@@ -211,6 +213,61 @@ $( document ).ready(function(){
 
 }());
 
+(function () {
+  App.Views.MyKidsList = Parse.View.extend ({
+
+    tagName: 'ul',
+    className: 'myKidsList',
+
+    events: {
+      'click #addMyKid' : 'showMyKids'
+    },
+
+    template: _.template($('#listMyKids').html()),
+
+    initialize: function(options) {
+
+      this.options = options;
+
+      this.render();
+
+      this.collection.off();
+      this.collection.on('sync', this.render, this);
+
+      $('#myKidsOnly').html(this.$el);
+
+    },
+
+    render: function(){
+      var self= this;
+
+      //clears our element
+      this.$el.empty();
+
+      // Sorting On The Fly
+      if (this.options.sort != undefined) {
+        // Setting up a localized collection to sort by our sort param
+        var list_collection = this.collection.sortBy( function (model) {
+          return model.get(self.options.sort);
+        });
+        _.each(list_collection, function (s) {
+          self.$el.append(self.template(s.toJSON()));
+        })
+      } else {
+        // Sort from our default
+
+      this.collection.sort();
+      this.collection.each(function (s) {
+        self.$el.append(self.template(s.toJSON()));
+      });
+    }
+      return this;
+    },
+
+  });
+
+}());
+
 $( document ).ready(function(){
 
   App.Routers.approuter = Parse.Router.extend({
@@ -225,8 +282,9 @@ $( document ).ready(function(){
     },
 
     home: function() {
-      new App.Views.UserProfileView ({collection: App.all_users});
-      new App.Views.MyKidsView({collection: App.all_myKids});
+      new App.Views.UserProfileView ();
+      new App.Views.MyKidsView();
+      new App.Views.MyKidsList({collection: App.all_myKids});
     }
 
   });

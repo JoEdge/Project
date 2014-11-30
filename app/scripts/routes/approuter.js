@@ -12,8 +12,9 @@ $( document ).ready(function(){
     },
 
     home: function() {
-      new App.Views.UserProfileView ({collection: App.all_users});
-      new App.Views.MyKidsView({collection: App.all_myKids});
+      new App.Views.UserProfileView ();
+      new App.Views.MyKidsView();
+      new App.Views.MyKidsList({collection: App.all_myKids});
     }
 
   });
