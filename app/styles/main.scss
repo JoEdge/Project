@@ -27,15 +27,16 @@ nav {
 }
 
 .sidebar{
-  @include span-columns(2.5);
-  @include media($mobile) {
-    @include span-columns(3);
+  #updateInfo {
+    @include span-columns(2.5);
+    @include media($mobile) {
+      @include span-columns(3);
+    }
+    border: 1px solid black;
+    margin-top: 25px;
+    margin-left: 3%;
+    background-color: red;
   }
-  height: 300px;
-  border: 1px solid black;
-  margin-top: 25px;
-  margin-left: 3%;
-  background-color: red;
 }
 
 .main {
@@ -43,11 +44,20 @@ nav {
   @include media($mobile) {
     @include span-columns(3);
   }
-  height: 300px;
   border: 1px solid black;
   margin-top: 25px;
   margin-left: 3%;
   background-color: red;
-}
+  }
+
+  #listInfo {
+    @include span-columns(3.25);
+    @include media($mobile) {
+      @include span-columns(3);
+    }
+    border: 1px solid black;
+    margin-top: 25px;
+    margin-left: 3%;
+  }
 
 }

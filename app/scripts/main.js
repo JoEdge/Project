@@ -11,6 +11,16 @@ $( document ).ready(function(){
 
       App.router = new App.Routers.approuter();
 
+      Parse.history.start();
+
+    });
+
+    App.all_myKids = new App.Collections.MyKidsCollection();
+
+    App.all_myKids.fetch().done(function () {
+
+      App.router = new App.Routers.approuter();
+
     });
 
 

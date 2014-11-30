@@ -4,7 +4,6 @@ $( document ).ready(function(){
 
     initialize: function () {
 
-      Parse.history.start();
     },
 
     routes: {
@@ -14,7 +13,7 @@ $( document ).ready(function(){
 
     home: function() {
       new App.Views.UserProfileView ({collection: App.all_users});
-
+      new App.Views.MyKidsView({collection: App.all_myKids});
     }
 
   });
