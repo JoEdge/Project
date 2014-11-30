@@ -5,7 +5,7 @@
     className: 'myKidsList',
 
     events: {
-    
+
     },
 
     template: _.template($('#listMyKids').html()),
@@ -29,7 +29,6 @@
       //clears our element
       this.$el.empty();
 
-      // Sorting On The Fly
       if (this.options.sort != undefined) {
         // Setting up a localized collection to sort by our sort param
         var list_collection = this.collection.sortBy( function (model) {
