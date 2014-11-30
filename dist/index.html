@@ -16,15 +16,42 @@
   <body>
 
     <div class="container">
+      <!-- navigation bar -->
       <nav>
       </nav>
+
+      <!-- sidebar- messages, update user profile, update events,  update groups, usefull links -->
       <div class="sidebar">
+        <div id="updateInfo"></div>
       </div>
+
+      <!-- main-  -->
       <div class="main">
+        <div id="listInfo">
       </div>
     </div>
 
+    <!-- Templates for Views -->
+    <!-- Template for User Profile -->
+    <script type='text/template' id='userInfo'>
+      <h3>My Profile</h3>
+        <div class="myProfile" id="<%= objectId %>">
+          <form id="myInfo">
+          <input id='ufirstName' type='text' placeholder='First Name'/>
+          <input id='ulastName' type='text' placeholder='Last Name'/>
+          <input id='uAddress1' type='text' placeholder='Address'/>
+          <input id='uAddress2' type='text' placeholder='Address'/>
+          <input id='uPhone' type='text' placeholder='Phone'/>
+          <input id='uEmail' type='email' placeholder='Email'/>
+    <!--  <input id='uImage' type='image' placeholder='Image'/> -->
+            <button id="updateIt">Update</button>
+        </div>
+     </script>
+
     <script src="scripts/vendor.js"></script>
+
+    <!-- Path to Parse CDN -->
+    <script src="//www.parsecdn.com/js/parse-1.3.1.min.js"></script>
 
         <script src="scripts/main.js"></script>
 </body>
