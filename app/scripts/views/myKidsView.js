@@ -34,7 +34,7 @@ $( document ).ready(function(){
         image: $('#uImage').val(),
         firstName: $('#kfirstName').val(),
         lastName: $('#klastName').val(),
-        birthdate: $('birthdate').val(),
+        birthdate: $('#birthdate').val(),
         address1: $('#kAddress1').val(),
         address2: $('#kAddress2').val(),
         ec1Name: $('#Emergency1').val(),
@@ -42,7 +42,7 @@ $( document ).ready(function(){
         ec2Name: $('#Emergency2').val(),
         ec2Phone: $('#Emergency2Phone').val(),
         doctor: $('#doctor').val(),
-        medical: $('medical').val(),
+        medical: $('#medical').val(),
         notes: $('#notes').val(),
 
       });

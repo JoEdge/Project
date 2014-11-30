@@ -5,7 +5,7 @@
     className: 'myKidsList',
 
     events: {
-      'click #addMyKid' : 'showMyKids'
+    
     },
 
     template: _.template($('#listMyKids').html()),

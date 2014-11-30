@@ -11,7 +11,6 @@ $( document ).ready(function(){
 
       App.router = new App.Routers.approuter();
 
-      Parse.history.start();
 
     });
 
@@ -20,6 +19,8 @@ $( document ).ready(function(){
     App.all_myKids.fetch().done(function () {
 
       App.router = new App.Routers.approuter();
+
+      Parse.history.start();
 
     });
 
