@@ -48,6 +48,33 @@
         </div>
      </script>
 
+     <!-- Template for Kid Profile -->
+     <script type='text/template' id='kidInfo'>
+      <h3>My Kid Info</h3>
+        <div class="kidProfile" id="<%= objectId %>">
+          <form id="myKidInfo">
+            <input id='kfirstName' type='text' placeholder='First Name'/>
+            <input id='klastName' type='text' placeholder='Last Name'/>
+            <input id='kAddress1' type='text' placeholder='Address'/>
+            <input id='kAddress2' type='text' placeholder='Address'/>
+            <input id='Emergency1' type='text' placeholder='Emergency Contact 1 Name'/>
+            <input id='Emergency1Phone' type='text' placeholder='Emergency Contact 1 Phone'/>
+            <input id='Emergency2' type='text' placeholder='Emergency Contact 2 Name'/>
+            <input id='Emergency2Phone' type='text' placeholder='Emergency Contact 2 Phone'/>
+            <input id='doctor' type='text' placeholder='Primary Care Physician'/>
+              <select id="medical">
+                <option value= ''>Please Select Category</option>
+                <option value='allergy'>Allergy</option>
+                <option value='dietary'>Dietary Restriction</option>
+                <option value='mCondition'>Medical Condition</option>
+                <option value='medication'>Medications</option>
+              </select>
+            <textarea id='notes' type='text' placeholder='General Notes'></textarea>
+            <!--  <input id='uImage' type='image' placeholder='Image'/> -->
+              <button id="updateIt">Update</button>
+          </div>
+     </script>
+
     <script src="scripts/vendor.js"></script>
 
     <!-- Path to Parse CDN -->

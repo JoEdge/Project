@@ -36,10 +36,56 @@ $( document ).ready(function(){
 
 }());
 
+
+$( document ).ready(function(){
+
+  App.Models.MyKidsProfile = Parse.Object.extend({
+
+    className: 'kidProfile',
+
+    defaults: {
+      image: '',
+      firstName: '',
+      lastName: '',
+      address1: '',
+      address2: '',
+      ec1Name:'',
+      ec1Phone:'',
+      ec2Name: '',
+      ec2Phone: '',
+      doctor: '',
+      medical:'',
+      notes: '',
+    },
+
+    idAttribute: 'objectID',
+
+    initialize: function(){
+      console.log("my kids info");
+
+    }
+
+  });
+
+
+}());
+
 (function () {
 
   App.Collections.UserCollection = Parse.Collection.extend ({
     model: App.Models.UserProfile,
+    comparator: function (model) {
+      return (model.get('createdAt'));
+    },
+
+  });
+
+}());
+
+(function () {
+
+  App.Collections.MyKidsCollection = Parse.Collection.extend ({
+    model: App.Models.MyKidsProfile,
     comparator: function (model) {
       return (model.get('createdAt'));
     },
@@ -106,11 +152,71 @@ $( document ).ready(function(){
 
 $( document ).ready(function(){
 
+  App.Views.MyKidsView = Parse.View.extend ({
+
+    className: "MyKids",
+
+    events: {
+
+      "submit #myKidInfo" : "updateMyKids",
+
+    },
+
+    template: $("#kidInfo").html(),
+
+    initialize: function() {
+
+      this.render();
+
+      $('#listInfo').html(this.$el);
+    },
+
+    render: function() {
+
+      this.$el.html(this.template);
+    },
+
+    updateMyKids: function(e) {
+
+      e.preventDefault();
+
+      console.log("kid info");
+
+      var myKid = new App.Models.MyKidsProfile({
+        image: $('#uImage').val(),
+        firstName: $('#kfirstName').val(),
+        lastName: $('#klastName').val(),
+        address1: $('#kAddress1').val(),
+        address2: $('#kAddress2').val(),
+        ec1Name: $('#Emergency1').val(),
+        ec1Phone: $('#Emergency1Phone').val(),
+        ec2Name: $('#Emergency2').val(),
+        ec2Phone: $('#Emergency2Phone').val(),
+        doctor: $('#doctor').val(),
+        medical: $('medical').val(),
+        notes: $('#notes').val(),
+
+      });
+
+
+      myKid.save(null, {
+        success: function () {
+          App.all_myKids.add(myKid);
+        }
+      });
+
+    }
+
+  });
+
+}());
+
+$( document ).ready(function(){
+
   App.Routers.approuter = Parse.Router.extend({
 
     initialize: function () {
 
-      Parse.history.start();
     },
 
     routes: {
@@ -120,7 +226,7 @@ $( document ).ready(function(){
 
     home: function() {
       new App.Views.UserProfileView ({collection: App.all_users});
-
+      new App.Views.MyKidsView({collection: App.all_myKids});
     }
 
   });
@@ -137,6 +243,16 @@ $( document ).ready(function(){
     App.all_users = new App.Collections.UserCollection();
 
     App.all_users.fetch().done(function () {
+
+      App.router = new App.Routers.approuter();
+
+      Parse.history.start();
+
+    });
+
+    App.all_myKids = new App.Collections.MyKidsCollection();
+
+    App.all_myKids.fetch().done(function () {
 
       App.router = new App.Routers.approuter();
 
