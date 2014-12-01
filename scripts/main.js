@@ -219,10 +219,13 @@ $( document ).ready(function(){
         }
       });
 
+      //attempt get 1
+      console.log(myKid);
       var kidPhoto = myKid.get("image");
-      $("photo.jpg")[0].src = kidPhoto.url();
-
-      var image = myKid.get("image").url();
+      $('profilePic')[0].src = kidPhoto.url();
+      console.log(kidPhoto);
+      //attempt get 2
+      //var image = myKid.get("image").url();
 
     }
 
