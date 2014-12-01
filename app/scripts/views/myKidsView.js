@@ -66,6 +66,11 @@ $( document ).ready(function(){
         }
       });
 
+      var kidPhoto = myKid.get("image");
+      $("photo.jpg")[0].src = kidPhoto.url();
+
+      var image = myKid.get("image").url();
+
     }
 
   });
