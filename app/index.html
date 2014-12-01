@@ -50,9 +50,9 @@
     <!-- Templates for Views -->
 
     <!-- Login Script -->
-    <script type='text/template' id='usersignin'>
+    <script type='text/template' id='userLogin'>
       <h3>Login</h3>
-        <form id='login'>
+        <form id='loginForm'>
           <input id='username' placeholder='Please Enter User Name'/>
           <input id='password' type='password' placeholder='Please Enter Password'/>
             <button id"login">Log In</button>
@@ -61,10 +61,10 @@
     </script>
 
     <!-- Sign Up Script -->
-    <script type='text/template' id='adduser'>
+    <script type='text/template' id='userSignup'>
       <h3>Signup</h3>
-        <form id='newuser'>
-          <input id='newusername' placeholder = 'Enter an User ID'/>
+        <form id='userForm'>
+          <input id='newusername' placeholder = 'Enter a User Name'/>
           <input id='newpassword' type='password' placeholder = 'Enter a Password'/>
           <input id='confirmpword' type='password' placeholder = 'Confirm Password'/>
             <button>Create New User</button>
@@ -92,7 +92,7 @@
       <h3>My Kid Info</h3>
         <div class="kidProfile" id="<%= objectId %>">
           <form id="myKidInfo">
-            <input id='uImage' type='file' placeholder=''/>
+            <input id='kImage' type='file'/>
             <input id='kfirstName' type='text' placeholder='First Name'/>
             <input id='klastName' type='text' placeholder='Last Name'/>
             <input id='birthdate' type='date' placeholder="Birthday"/>
@@ -121,6 +121,7 @@
       <li class="showMyKids" id="<%= objectId %>">
           <div class="kidShare">
             <h4><%= firstName %> <%= lastName %> </h4>
+              <img src= "<%= image %>" />
               <li><%= birthdate %></li>
               <li><%= address1 %></li>
               <li><%= address2 %></li>

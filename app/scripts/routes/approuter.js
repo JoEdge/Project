@@ -22,10 +22,10 @@ $( document ).ready(function(){
     },
 
     profileInfo: function() {
+      $('.enterSite').hide();
       new App.Views.UserProfileView ();
       new App.Views.MyKidsView();
       new App.Views.MyKidsList({collection: App.all_myKids});
-      $('.enterSite').hide();
     }
 
   });

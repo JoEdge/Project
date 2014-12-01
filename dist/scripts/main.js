@@ -180,11 +180,22 @@ $( document ).ready(function(){
     updateMyKids: function(e) {
 
       e.preventDefault();
+      //on click event get a reference to the image file
+      var image2file = $("#kImage")[0];
+      if (image2file.files.length > 0) {
+        var file = image2file.files[0];
+        //electing to only allow .jpg files for images
+        var name = "photo.jpg";
 
-      console.log("kid info");
+        var imageFile = new Parse.File(name, file);
+        console.log(imageFile);
+      }
+      //save this new image file to Parse Cloud
+      imageFile.save().then(function() {
+      }, function(error) {
+      });
 
       var myKid = new App.Models.MyKidsProfile({
-        image: $('#uImage').val(),
         firstName: $('#kfirstName').val(),
         lastName: $('#klastName').val(),
         birthdate: $('#birthdate').val(),
@@ -200,6 +211,7 @@ $( document ).ready(function(){
 
       });
 
+      myKid.set("image", imageFile);
 
       myKid.save(null, {
         success: function () {
@@ -231,7 +243,7 @@ $( document ).ready(function(){
 
       this.render();
 
-      this.collection.off();
+      //this.collection.off();
       this.collection.on('sync', this.render, this);
 
       $('#myKidsOnly').html(this.$el);
@@ -291,10 +303,10 @@ $( document ).ready(function(){
     },
 
     profileInfo: function() {
+      $('.enterSite').hide();
       new App.Views.UserProfileView ();
       new App.Views.MyKidsView();
       new App.Views.MyKidsList({collection: App.all_myKids});
-      $('.enterSite').hide();
     }
 
   });

@@ -16,7 +16,7 @@
 
       this.render();
 
-      this.collection.off();
+      //this.collection.off();
       this.collection.on('sync', this.render, this);
 
       $('#myKidsOnly').html(this.$el);
