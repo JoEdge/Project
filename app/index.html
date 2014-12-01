@@ -76,13 +76,13 @@
       <h3>My Profile</h3>
         <div class="myProfile" id="<%= objectId %>">
           <form id="myInfo">
+          <input id='uImage' type='file' placeholder=''/>
           <input id='ufirstName' type='text' placeholder='First Name'/>
           <input id='ulastName' type='text' placeholder='Last Name'/>
           <input id='uAddress1' type='text' placeholder='Address'/>
           <input id='uAddress2' type='text' placeholder='Address'/>
           <input id='uPhone' type='text' placeholder='Phone'/>
           <input id='uEmail' type='email' placeholder='Email'/>
-    <!--  <input id='uImage' type='image' placeholder='Image'/> -->
             <button id="updateIt">Update</button>
         </div>
      </script>
@@ -92,6 +92,7 @@
       <h3>My Kid Info</h3>
         <div class="kidProfile" id="<%= objectId %>">
           <form id="myKidInfo">
+            <input id='uImage' type='file' placeholder=''/>
             <input id='kfirstName' type='text' placeholder='First Name'/>
             <input id='klastName' type='text' placeholder='Last Name'/>
             <input id='birthdate' type='date' placeholder="Birthday"/>
@@ -110,7 +111,6 @@
                 <option value='Medication'>Medications</option>
               </select>
             <textarea id='notes' type='text' placeholder='General Notes'></textarea>
-            <!--  <input id='uImage' type='image' placeholder='Image'/> -->
               <button id='addMyKid'>Add</button>
           </div>
      </script>
