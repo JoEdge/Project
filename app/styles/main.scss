@@ -26,6 +26,19 @@ nav {
   background-color: red;
 }//end nav
 
+.enterSite {
+  @include span-columns(4);
+  @include media($mobile) {
+    @include span-columns(3);
+  }//end media(mobile)
+  position: fixed;
+  margin-top: 300px;
+  margin-left: 35%;
+  height: 100px;
+  background-color: yellow;
+  z-index: 2;
+}//end enterSite
+
 .sidebar{
   #updateInfo {
     @include span-columns(2.5);
@@ -48,6 +61,7 @@ nav {
   margin-top: 25px;
   margin-left: 3%;
   background-color: red;
+  z-index: 1;
 
   #listInfo {
     @include span-columns(3);

@@ -18,11 +18,18 @@
     <div class="container">
       <!-- navigation bar -->
       <nav>
+        <a href="#/start"</a><button id="logOut">Logout</button></a>
+        <a href="#/profile" class="profileBtn"><button>Update My Profile</button></a>
       </nav>
 
       <!-- sidebar- messages, update user profile, update events,  update groups, usefull links -->
       <div class="sidebar">
         <div id="updateInfo"></div>
+      </div>
+
+      <div class="enterSite">
+        <div id="log_signup"></div>
+        <div id="profiler"></div>
       </div>
 
       <!-- main-  -->
@@ -33,6 +40,29 @@
     </div>
 
     <!-- Templates for Views -->
+
+    <!-- Login Script -->
+    <script type='text/template' id='usersignin'>
+      <h3>Login</h3>
+        <form id='login'>
+          <input id='username' placeholder='Please Enter User Name'/>
+          <input id='password' type='password' placeholder='Please Enter Password'/>
+            <button id"login">Log In</button>
+            <button id"logout">Log Out</button>
+        </form>
+    </script>
+
+    <!-- Sign Up Script -->
+    <script type='text/template' id='adduser'>
+      <h3>Signup</h3>
+        <form id='newuser'>
+          <input id='newusername' placeholder = 'Enter an User ID'/>
+          <input id='newpassword' type='password' placeholder = 'Enter a Password'/>
+          <input id='confirmpword' type='password' placeholder = 'Confirm Password'/>
+            <button>Create New User</button>
+        </form>
+    </script>
+
     <!-- Template for User Profile -->
     <script type='text/template' id='userInfo'>
       <h3>My Profile</h3>
