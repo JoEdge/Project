@@ -23,29 +23,20 @@
 
     },
 
+
     render: function(){
       var self= this;
 
       //clears our element
       this.$el.empty();
 
-      if (this.options.sort != undefined) {
-
-        var list_collection = this.collection.sortBy( function (model) {
-          return model.get(self.options.sort);
-        });
-        _.each(list_collection, function (s) {
-          self.$el.append(self.template(s.toJSON()));
-        })
-      } else {
-      
-      this.collection.sort();
-      this.collection.each(function (s) {
-        self.$el.append(self.template(s.toJSON()));
+      this.collection.each(function (myKid) {
+        var kidPhoto = myKid.get("image");      
+        $('#profilePic').src = kidPhoto.url();
+        self.$el.append(self.template(myKid.toJSON()));
       });
+
     }
-      return this;
-    },
 
   });
 

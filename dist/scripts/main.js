@@ -303,7 +303,6 @@ $( document ).ready(function(){
     },
 
     updateMyKids: function(e) {
-
       e.preventDefault();
       //on click event get a reference to the image file
       var image2file = $("#kImage")[0];
@@ -311,16 +310,18 @@ $( document ).ready(function(){
         var file = image2file.files[0];
         //electing to only allow .jpg files for images
         var name = "photo.jpg";
-
         var imageFile = new Parse.File(name, file);
         console.log(imageFile);
       }
+
+      imageFile.save()
       //save this new image file to Parse Cloud
       imageFile.save().then(function() {
       }, function(error) {
       });
 
       var myKid = new App.Models.MyKidsProfile({
+        image: imageFile,
         firstName: $('#kfirstName').val(),
         lastName: $('#klastName').val(),
         birthdate: $('#birthdate').val(),
@@ -336,24 +337,14 @@ $( document ).ready(function(){
 
       });
 
-      myKid.set("image", imageFile);
 
       myKid.save(null, {
         success: function () {
-          var kidPhoto = myKid.get("image");
-          $('#profilePic')[0].src = kidPhoto.url();
           App.all_myKids.add(myKid);
         }
       });
 
       //$('#profilePic-'+myKid.get('objectId'))[0].src = kidPhoto.url();
-    //   //attempt get 1
-    //   console.log(myKid);
-    //   var kidPhoto = myKid.get("image");
-    //   $('#profilePic')[0].src = kidPhoto._url;
-    // //  console.log(imageURL)
-    //   console.log(kidPhoto);
-    //   console.log(kidPhoto._url);
 
     }
 
@@ -386,29 +377,20 @@ $( document ).ready(function(){
 
     },
 
+
     render: function(){
       var self= this;
 
       //clears our element
       this.$el.empty();
 
-      if (this.options.sort != undefined) {
-
-        var list_collection = this.collection.sortBy( function (model) {
-          return model.get(self.options.sort);
-        });
-        _.each(list_collection, function (s) {
-          self.$el.append(self.template(s.toJSON()));
-        })
-      } else {
-      
-      this.collection.sort();
-      this.collection.each(function (s) {
-        self.$el.append(self.template(s.toJSON()));
+      this.collection.each(function (myKid) {
+        var kidPhoto = myKid.get("image");      
+        $('#profilePic').src = kidPhoto.url();
+        self.$el.append(self.template(myKid.toJSON()));
       });
+
     }
-      return this;
-    },
 
   });
 

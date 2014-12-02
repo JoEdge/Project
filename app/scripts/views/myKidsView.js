@@ -25,7 +25,6 @@ $( document ).ready(function(){
     },
 
     updateMyKids: function(e) {
-
       e.preventDefault();
       //on click event get a reference to the image file
       var image2file = $("#kImage")[0];
@@ -33,16 +32,18 @@ $( document ).ready(function(){
         var file = image2file.files[0];
         //electing to only allow .jpg files for images
         var name = "photo.jpg";
-
         var imageFile = new Parse.File(name, file);
         console.log(imageFile);
       }
+
+      imageFile.save()
       //save this new image file to Parse Cloud
       imageFile.save().then(function() {
       }, function(error) {
       });
 
       var myKid = new App.Models.MyKidsProfile({
+        image: imageFile,
         firstName: $('#kfirstName').val(),
         lastName: $('#klastName').val(),
         birthdate: $('#birthdate').val(),
@@ -58,24 +59,14 @@ $( document ).ready(function(){
 
       });
 
-      myKid.set("image", imageFile);
 
       myKid.save(null, {
         success: function () {
-          var kidPhoto = myKid.get("image");
-          $('#profilePic')[0].src = kidPhoto.url();
           App.all_myKids.add(myKid);
         }
       });
 
       //$('#profilePic-'+myKid.get('objectId'))[0].src = kidPhoto.url();
-    //   //attempt get 1
-    //   console.log(myKid);
-    //   var kidPhoto = myKid.get("image");
-    //   $('#profilePic')[0].src = kidPhoto._url;
-    // //  console.log(imageURL)
-    //   console.log(kidPhoto);
-    //   console.log(kidPhoto._url);
 
     }
 
