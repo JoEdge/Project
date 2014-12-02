@@ -35,10 +35,11 @@ $( document ).ready(function(){
         success: function(user){
           App.user = user;
           App.updateUser();
+          App.router.navigate('profile', { trigger: true });
         },
 
         error: function(user, error) {
-          alert("Error");
+          alert("Your username or password is incorrect.");
         }
 
       });

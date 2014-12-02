@@ -24,6 +24,16 @@ $( document ).ready(function(){
 
     });
 
+    // Log Out
+    $('#logOut').on('click', function (e) {
+      e.preventDefault();
+
+      Parse.User.logOut();
+      App.updateUser();
+      App.router.navigate('start', {trigger: true});
+    });
+
+
     // Update User
     App.updateUser = function (){
       App.user = Parse.User.current();
@@ -31,7 +41,7 @@ $( document ).ready(function(){
       if (App.user == null){
         currUsr = '';
         $('#logOut').text('Log In');
-        App.router.navigate('start', {trigger: true});
+        App.router.navigate('profile', {trigger: true});
       } else {
         currUsr = 'Welcome ' + App.user.attributes.username;
         $('#logOut').text('Log Out');

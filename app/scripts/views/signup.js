@@ -12,7 +12,7 @@
     initialize: function() {
       this.render();
 
-      $("#log_signup").html(this.$el);
+      $("#profiler").html(this.$el);
 
     },
 

@@ -108,7 +108,7 @@ $( document ).ready(function(){
     initialize: function() {
       this.render();
 
-      $("#log_signup").html(this.$el);
+      $("#profiler").html(this.$el);
 
     },
 
@@ -209,10 +209,11 @@ $( document ).ready(function(){
         success: function(user){
           App.user = user;
           App.updateUser();
+          App.router.navigate('profile', { trigger: true });
         },
 
         error: function(user, error) {
-          alert("Error");
+          alert("Your username or password is incorrect.");
         }
 
       });
@@ -427,8 +428,7 @@ $( document ).ready(function(){
 
     routes: {
       '' : 'home',
-      'signup': 'SignUp',
-      'start': 'LogIn',
+      'start': 'enterSite',
       'profile' : 'profileInfo',
 
     },
@@ -437,21 +437,16 @@ $( document ).ready(function(){
 
     },
 
-    SignUp: function() {
+    enterSite: function() {
       $('.enterSite').show();
       $('.main').hide();
       $('.sidebar').hide();
-      if(App.user) return App.router.navigate('/profile', {trigger: true});
+      if(App.user) return App.router.navigate('start', {trigger: true});
         new App.Views.SignUp();
-
-    },
-
-    LogIn: function() {
-      $('.enterSite').show();
-      $('.main').hide();
-      $('.sidebar').hide();
-      if(App.user) return App.router.navigate('/profile', {trigger: true});
         new App.Views.Login();
+      $('#logOut').click(function() {
+          location.reload();
+      });
 
     },
 
@@ -492,6 +487,16 @@ $( document ).ready(function(){
 
     });
 
+    // Log Out
+    $('#logOut').on('click', function (e) {
+      e.preventDefault();
+
+      Parse.User.logOut();
+      App.updateUser();
+      App.router.navigate('start', {trigger: true});
+    });
+
+
     // Update User
     App.updateUser = function (){
       App.user = Parse.User.current();
@@ -499,7 +504,7 @@ $( document ).ready(function(){
       if (App.user == null){
         currUsr = '';
         $('#logOut').text('Log In');
-        App.router.navigate('start', {trigger: true});
+        App.router.navigate('profile', {trigger: true});
       } else {
         currUsr = 'Welcome ' + App.user.attributes.username;
         $('#logOut').text('Log Out');
