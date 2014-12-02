@@ -341,16 +341,21 @@ $( document ).ready(function(){
       myKid.save(null, {
         success: function () {
           App.all_myKids.add(myKid);
+
+          var kidPhoto = myKid.get("image");
+          console.log(myKid);
+          $('#profilePic')[0].src = kidPhoto.url();
+
         }
       });
 
-      //attempt get 1
-      console.log(myKid);
-      var kidPhoto = myKid.get("image");
-      $('#profilePic')[0].src = kidPhoto.url();
-      console.log(kidPhoto);
-      //attempt get 2
-      //var image = myKid.get("image").url();
+    //   //attempt get 1
+    //   console.log(myKid);
+    //   var kidPhoto = myKid.get("image");
+    //   $('#profilePic')[0].src = kidPhoto._url;
+    // //  console.log(imageURL)
+    //   console.log(kidPhoto);
+    //   console.log(kidPhoto._url);
 
     }
 
