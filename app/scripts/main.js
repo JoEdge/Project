@@ -31,7 +31,7 @@ $( document ).ready(function(){
       if (App.user == null){
         currUsr = '';
         $('#logOut').text('Log In');
-        App.router.navigate('login', {trigger: true});
+        App.router.navigate('start', {trigger: true});
       } else {
         currUsr = 'Welcome ' + App.user.attributes.username;
         $('#logOut').text('Log Out');

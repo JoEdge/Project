@@ -7,7 +7,7 @@ $( document ).ready(function(){
 
     events: {
 
-      "click #loggedOut" : "logInUser",
+      "submit #loginForm" : "logInUser",
 
     },
 

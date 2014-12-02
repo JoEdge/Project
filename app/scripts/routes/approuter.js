@@ -9,7 +9,7 @@ $( document ).ready(function(){
     routes: {
       '' : 'home',
       'signup': 'SignUp',
-      'login': 'LogIn',
+      'start': 'LogIn',
       'profile' : 'profileInfo',
 
     },
@@ -22,7 +22,7 @@ $( document ).ready(function(){
       $('.enterSite').show();
       $('.main').hide();
       $('.sidebar').hide();
-      if(App.user) return App.router.navigate('', {trigger: true});
+      if(App.user) return App.router.navigate('/profile', {trigger: true});
         new App.Views.SignUp();
 
     },
@@ -31,7 +31,7 @@ $( document ).ready(function(){
       $('.enterSite').show();
       $('.main').hide();
       $('.sidebar').hide();
-      if(App.user) return App.router.navigate('', {trigger: true});
+      if(App.user) return App.router.navigate('/profile', {trigger: true});
         new App.Views.Login();
 
     },
