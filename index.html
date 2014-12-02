@@ -20,6 +20,7 @@
       <nav>
         <a href="#/start"</a><button id="logOut">Logout</button></a>
         <a href="#/profile" class="profileBtn"><button>Update My Profile</button></a>
+        <a href="#/"</a><button id="eventBtn">Events</button></a>
         <span id="loggedIn"></span>
       </nav>
 
@@ -69,7 +70,7 @@
         </form>
     </script>
 
-     <!-- Template for Kid Profile -->
+     <!-- Template for Add Kid Profile -->
      <script type='text/template' id='kidInfo'>
       <h3>My Kid Info</h3>
         <div class="kidProfile" id="<%= objectId %>">
@@ -120,15 +121,29 @@
        </div>
       </script>
 
-      <!-- Event Script -->
+      <!-- Template to Add Event  -->
       <script type='text/template' id='eventInfo'>
         <h3>Event</h3>
-          <form id='eventForm'>
-            <input id='eventName' type='text' placeholder='Event Name'/>
-            <input id='eventDate' type='date' placeholder="Date"/>
-            <input id='location' type='text' placeholder="Location"/>
-              <button id"createEvent">Enter</button>
-          </form>
+          <div class="eventProfile" id="<%= objectId %>">
+            <form id='eventForm'>
+              <input id='eventName' type='text' placeholder='Event Name'/>
+              <input id='eventDate' type='date' placeholder="Date"/>
+              <input id='location' type='text' placeholder="Location"/>
+                <button id"createEvent">Enter</button>
+            </form>
+          </div>
+      </script>
+
+      <!-- Template to List Event  -->
+      <script type='text/template' id='listMyEvents'>
+      <div class= "eventShown">
+        <li class="showEvent" id="<%= objectId %>">
+          <h4><%= eventName %></hr>
+          <p><%= eventDate %></p>
+          <p><%= location %></p>
+            <a href="#/edit/<%= objectId %>"> <button id"editEvent">Edit</button></a>
+        </li>
+      </div>
       </script>
 
     <script src="scripts/vendor.js"></script>
