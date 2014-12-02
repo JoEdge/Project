@@ -20,7 +20,8 @@
       <nav>
         <a href="#/start"</a><button id="logOut">Logout</button></a>
         <a href="#/profile" class="profileBtn"><button>Update My Profile</button></a>
-        <a href="#/"</a><button id="eventBtn">Events</button></a>
+        <a href="#/event"</a><button id="eventBtn">Events</button></a>
+        <a href="#/"</a><button id="homeBtn">Home</button></a>
         <span id="loggedIn"></span>
       </nav>
 
@@ -116,6 +117,7 @@
               <li><%= medical %></li>
               <li><%= notes %></li>
                 <a href="#/edit/<%= objectId %>"><button id="updateButton">Edit</button></a>
+                <button id="shareInfo">Share</button>
           </div>
        </li>
        </div>
@@ -134,7 +136,7 @@
           </div>
       </script>
 
-      <!-- Template to List Event  -->
+      <!-- Template to List My Events  -->
       <script type='text/template' id='listMyEvents'>
       <div class= "eventShown">
         <li class="showEvent" id="<%= objectId %>">
@@ -145,6 +147,17 @@
             <button id="eventDelete">Delete</button>
         </li>
       </div>
+      </script>
+
+      <!-- Template to List My Events  -->
+      <script type='text/template' id='allMyEvents'>
+        <div class= "allEventShown">
+          <li class="allEvents" id="<%= objectId %>">
+            <h4><%= eventName %></hr>
+            <p><%= eventDate %></p>
+            <p><%= location %></p>
+          </li>
+        </div>
       </script>
 
     <script src="scripts/vendor.js"></script>
