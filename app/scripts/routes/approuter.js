@@ -14,7 +14,8 @@ $( document ).ready(function(){
     },
 
     home: function() {
-
+      $('.enterSite').hide();
+      new App.Views.AddEventView();
     },
 
     enterSite: function() {

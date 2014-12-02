@@ -128,6 +128,17 @@
        </div>
       </script>
 
+      <!-- Event Script -->
+      <script type='text/template' id='eventInfo'>
+        <h3>Event</h3>
+          <form id='eventForm'>
+            <input id='eventName' type='text' placeholder='Event Name'/>
+            <input id='eventDate' type='date' placeholder="Date"/>
+            <input id='location' type='text' placeholder="Location"/>
+              <button id"createEvent">Enter</button>
+          </form>
+      </script>
+
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
@@ -142,11 +153,14 @@
         <!-- build:js scripts/main.js -->
         <script src="scripts/setup.js"></script>
         <script src="scripts/models/myKidsProfile.js"></script>
+        <script src="scripts/models/events.js"></script>
         <script src="scripts/collections/myKidsCollection.js"></script>
+        <script src="scripts/collections/eventCollection.js"></script>
         <script src="scripts/views/signup.js"></script>
         <script src="scripts/views/login.js"></script>
         <script src="scripts/views/myKidsView.js"></script>
         <script src="scripts/views/myKidsList.js"></script>
+        <script src="scripts/views/addEvent.js"></script>
         <script src="scripts/routes/approuter.js"></script>
         <script src="scripts/main.js"></script>
         <!-- endbuild -->

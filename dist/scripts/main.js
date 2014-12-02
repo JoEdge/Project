@@ -41,10 +41,49 @@ $( document ).ready(function(){
 
 }());
 
+$( document ).ready(function(){
+
+  App.Models.Events = Parse.Object.extend({
+
+    className: 'Events',
+
+    defaults: {
+
+      eventName: '',
+      eventDate: '',
+      location: '',
+      kids: '',
+
+    },
+
+    idAttribute: 'objectID',
+
+    initialize: function(){
+      console.log("my events");
+
+    }
+
+  });
+
+
+}());
+
 (function () {
 
   App.Collections.MyKidsCollection = Parse.Collection.extend ({
     model: App.Models.MyKidsProfile,
+    comparator: function (model) {
+      return (model.get('createdAt'));
+    },
+
+  });
+
+}());
+
+(function () {
+
+  App.Collections.EventCollection = Parse.Collection.extend ({
+    model: App.Models.Events,
     comparator: function (model) {
       return (model.get('createdAt'));
     },
@@ -314,6 +353,56 @@ $( document ).ready(function(){
 
 $( document ).ready(function(){
 
+  App.Views.AddEventView = Parse.View.extend ({
+
+    className: "Events",
+
+    events: {
+
+      "submit #eventForm" : "addMyEvent",
+
+    },//end events
+
+    template: $("#eventInfo").html(),
+
+    initialize: function() {
+
+      this.render();
+
+      $('#updateInfo').html(this.$el);
+    },//end initialize
+
+    render: function() {
+
+      this.$el.html(this.template);
+    },//end render
+
+    addMyEvent: function(e) {
+      e.preventDefault();
+
+      var myEvent = new App.Models.Events ({
+        eventName: $('#eventName').val(),
+        eventDate: $('#eventDate').val(),
+        location: $('#location').val(),
+
+      });//end var myEvent
+
+
+      myEvent.save(null, {
+        success: function () {
+          App.all_events.add(myEvent);
+        }//end success
+
+      });//end myEvent.save
+
+    }//end addMyEvent
+
+  });//end App.Views
+
+}());
+
+$( document ).ready(function(){
+
   App.Routers.approuter = Parse.Router.extend({
 
     initialize: function () {
@@ -328,7 +417,8 @@ $( document ).ready(function(){
     },
 
     home: function() {
-
+      $('.enterSite').hide();
+      new App.Views.AddEventView();
     },
 
     enterSite: function() {
@@ -368,6 +458,14 @@ $( document ).ready(function(){
     //   App.router = new App.Routers.approuter();
     //
     // });//end of fetch all_users
+
+    App.all_events = new App.Collections.EventCollection();
+
+    App.all_events.fetch().done(function () {
+
+      App.router = new App.Routers.approuter();
+
+    });//end of fetch all_events
 
     App.all_myKids = new App.Collections.MyKidsCollection();
 

@@ -13,6 +13,14 @@ $( document ).ready(function(){
     //
     // });//end of fetch all_users
 
+    App.all_events = new App.Collections.EventCollection();
+
+    App.all_events.fetch().done(function () {
+
+      App.router = new App.Routers.approuter();
+
+    });//end of fetch all_events
+
     App.all_myKids = new App.Collections.MyKidsCollection();
 
     App.all_myKids.fetch().done(function () {
