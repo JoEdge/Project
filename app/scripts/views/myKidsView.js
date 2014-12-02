@@ -8,7 +8,7 @@ $( document ).ready(function(){
 
       "submit #myKidInfo" : "updateMyKids",
 
-    },
+    },//end events
 
     template: $("#kidInfo").html(),
 
@@ -16,13 +16,13 @@ $( document ).ready(function(){
 
       this.render();
 
-      $('#listInfo').html(this.$el);
-    },
+      $('#updateInfo').html(this.$el);
+    },//end initialize
 
     render: function() {
 
       this.$el.html(this.template);
-    },
+    },//end render
 
     updateMyKids: function(e) {
       e.preventDefault();
@@ -65,8 +65,6 @@ $( document ).ready(function(){
           App.all_myKids.add(myKid);
         }
       });
-
-      //$('#profilePic-'+myKid.get('objectId'))[0].src = kidPhoto.url();
 
     }
 

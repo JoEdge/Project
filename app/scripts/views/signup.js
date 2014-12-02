@@ -28,8 +28,14 @@
       var username = $('#newusername').val();
       var password = $('#newpassword').val();
       var ckpassword = $('#confirmpword').val();
-      console.log(username);
-      console.log(password);
+      var email = $('#uEmail').val();
+      var firstName = $('#ufirstName').val();
+      var lastName = $('#ulastName').val();
+      var address1 = $('#uAddress1').val();
+      var address2 = $('#uAddress2').val();
+      var phone = $('#uPhone').val();
+      var image = $('#uimage').val();
+
 
       //Check if passwords match and add new user if true
       if ( password === ckpassword ){
@@ -37,6 +43,15 @@
         var user = new Parse.User();
         user.set('username', username);
         user.set('password', password);
+        user.set('email', email);
+        user.set('firstName', firstName);
+        user.set('lastName', lastName);
+        user.set('address1', address1);
+        user.set('address2', address2);
+        user.set('password', password);
+        user.set('phone', phone);
+        user.set('image', image);
+
 
         user.signUp (null, {
           success: function(user) {

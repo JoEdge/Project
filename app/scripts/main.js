@@ -5,13 +5,13 @@ Parse.initialize("rSMFx7NCERf7fOIu7UBDFhrVWQBNXQJLGkzGu0ML", "YNVYJv0m0llTc3tpH3
 
 $( document ).ready(function(){
 
-    App.all_users = new App.Collections.UserCollection();
-
-    App.all_users.fetch().done(function () {
-
-      App.router = new App.Routers.approuter();
-
-    });//end of fetch all_users
+    // App.all_users = new App.Collections.UserCollection();
+    //
+    // App.all_users.fetch().done(function () {
+    //
+    //   App.router = new App.Routers.approuter();
+    //
+    // });//end of fetch all_users
 
     App.all_myKids = new App.Collections.MyKidsCollection();
 
@@ -44,10 +44,10 @@ $( document ).ready(function(){
       } else {
         currUsr = 'Welcome ' + App.user.attributes.username;
         $('#logOut').text('Log Out');
+        $('#loggedIn').html(currUsr);
         App.router.navigate('profile', {trigger: true});
       }//end of else statement
 
-      $('#loggedIn').html(currUsr);
     };//end of App.updateUser function
 
     App.updateUser();

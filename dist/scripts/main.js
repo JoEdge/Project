@@ -6,35 +6,6 @@ App.Collections = {};
 App.Views = {};
 App.Routers = {};
 
-$( document ).ready(function(){
-
-  App.Models.UserProfile = Parse.Object.extend({
-
-    className: 'userProfile',
-
-    defaults: {
-      image: '',
-      firstName: '',
-      lastName: '',
-      address1: '',
-      address2: '',
-      phone:'',
-      email:'',
-      kids: '',
-    },
-
-    idAttribute: 'objectID',
-
-    initialize: function(){
-      //console.log("I am the user");
-
-    }
-
-  });
-
-
-}());
-
 
 $( document ).ready(function(){
 
@@ -67,18 +38,6 @@ $( document ).ready(function(){
 
   });
 
-
-}());
-
-(function () {
-
-  App.Collections.UserCollection = Parse.Collection.extend ({
-    model: App.Models.UserProfile,
-    comparator: function (model) {
-      return (model.get('createdAt'));
-    },
-
-  });
 
 }());
 
@@ -124,8 +83,14 @@ $( document ).ready(function(){
       var username = $('#newusername').val();
       var password = $('#newpassword').val();
       var ckpassword = $('#confirmpword').val();
-      console.log(username);
-      console.log(password);
+      var email = $('#uEmail').val();
+      var firstName = $('#ufirstName').val();
+      var lastName = $('#ulastName').val();
+      var address1 = $('#uAddress1').val();
+      var address2 = $('#uAddress2').val();
+      var phone = $('#uPhone').val();
+      var image = $('#uimage').val();
+
 
       //Check if passwords match and add new user if true
       if ( password === ckpassword ){
@@ -133,6 +98,15 @@ $( document ).ready(function(){
         var user = new Parse.User();
         user.set('username', username);
         user.set('password', password);
+        user.set('email', email);
+        user.set('firstName', firstName);
+        user.set('lastName', lastName);
+        user.set('address1', address1);
+        user.set('address2', address2);
+        user.set('password', password);
+        user.set('phone', phone);
+        user.set('image', image);
+
 
         user.signUp (null, {
           success: function(user) {
@@ -222,62 +196,6 @@ $( document ).ready(function(){
 
 $( document ).ready(function(){
 
-  App.Views.UserProfileView = Parse.View.extend ({
-
-    className: "Profile",
-
-    events: {
-
-      "submit #myInfo" : "updateProfile",
-
-    },
-
-    template: $("#userInfo").html(),
-
-    initialize: function() {
-
-      this.render();
-
-      $('#updateInfo').html(this.$el);
-    },
-
-    render: function() {
-
-      this.$el.html(this.template);
-    },
-
-    updateProfile: function(e) {
-
-      e.preventDefault();
-
-      console.log("user info");
-
-      var user = new App.Models.UserProfile({
-        image: $('#uImage').val(),
-        firstName: $('#ufirstName').val(),
-        lastName: $('#ulastName').val(),
-        address1: $('#uAddress1').val(),
-        address2: $('#uAddress2').val(),
-        phone: $('#uPhone').val(),
-        email: $().val('#uEmail'),
-
-      });
-
-
-      user.save(null, {
-        success: function () {
-          App.all_users.add(user);
-        }
-      });
-
-    }
-
-  });
-
-}());
-
-$( document ).ready(function(){
-
   App.Views.MyKidsView = Parse.View.extend ({
 
     className: "MyKids",
@@ -286,7 +204,7 @@ $( document ).ready(function(){
 
       "submit #myKidInfo" : "updateMyKids",
 
-    },
+    },//end events
 
     template: $("#kidInfo").html(),
 
@@ -294,13 +212,13 @@ $( document ).ready(function(){
 
       this.render();
 
-      $('#listInfo').html(this.$el);
-    },
+      $('#updateInfo').html(this.$el);
+    },//end initialize
 
     render: function() {
 
       this.$el.html(this.template);
-    },
+    },//end render
 
     updateMyKids: function(e) {
       e.preventDefault();
@@ -343,8 +261,6 @@ $( document ).ready(function(){
           App.all_myKids.add(myKid);
         }
       });
-
-      //$('#profilePic-'+myKid.get('objectId'))[0].src = kidPhoto.url();
 
     }
 
@@ -430,7 +346,6 @@ $( document ).ready(function(){
 
     profileInfo: function() {
       $('.enterSite').hide();
-      new App.Views.UserProfileView ();
       new App.Views.MyKidsView();
       new App.Views.MyKidsList({collection: App.all_myKids});
     }
@@ -446,13 +361,13 @@ Parse.initialize("rSMFx7NCERf7fOIu7UBDFhrVWQBNXQJLGkzGu0ML", "YNVYJv0m0llTc3tpH3
 
 $( document ).ready(function(){
 
-    App.all_users = new App.Collections.UserCollection();
-
-    App.all_users.fetch().done(function () {
-
-      App.router = new App.Routers.approuter();
-
-    });//end of fetch all_users
+    // App.all_users = new App.Collections.UserCollection();
+    //
+    // App.all_users.fetch().done(function () {
+    //
+    //   App.router = new App.Routers.approuter();
+    //
+    // });//end of fetch all_users
 
     App.all_myKids = new App.Collections.MyKidsCollection();
 
@@ -485,10 +400,10 @@ $( document ).ready(function(){
       } else {
         currUsr = 'Welcome ' + App.user.attributes.username;
         $('#logOut').text('Log Out');
+        $('#loggedIn').html(currUsr);
         App.router.navigate('profile', {trigger: true});
       }//end of else statement
 
-      $('#loggedIn').html(currUsr);
     };//end of App.updateUser function
 
     App.updateUser();

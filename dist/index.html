@@ -35,7 +35,6 @@
 
       <!-- main-  -->
       <div class="main">
-        <div id="listInfo"></div>
         <div id="myKidsOnly"></div>
       </div>
     </div>
@@ -46,7 +45,7 @@
     <script type='text/template' id='userLogin'>
       <h3>Login</h3>
         <form id='loginForm'>
-          <input id='username' placeholder='Please Enter User Name'/>
+          <input id='username' type='text' placeholder='Please Enter User Name'/>
           <input id='password' type='password' placeholder='Please Enter Password'/>
             <button id"login">Enter</button>
         </form>
@@ -56,28 +55,19 @@
     <script type='text/template' id='userSignup'>
       <h3>Signup</h3>
         <form id='userForm'>
-          <input id='newusername' placeholder = 'Enter a User Name'/>
+          <input id='newusername' type='text' placeholder = 'Enter a User Name'/>
           <input id='newpassword' type='password' placeholder = 'Enter a Password'/>
           <input id='confirmpword' type='password' placeholder = 'Confirm Password'/>
-            <button>Create New User</button>
-        </form>
-    </script>
-
-    <!-- Template for User Profile -->
-    <script type='text/template' id='userInfo'>
-      <h3>My Profile</h3>
-        <div class="myProfile" id="<%= objectId %>">
-          <form id="myInfo">
-          <input id='uImage' type='file' placeholder=''/>
+          <input id='uEmail' type='email' placeholder='Email'/>
           <input id='ufirstName' type='text' placeholder='First Name'/>
           <input id='ulastName' type='text' placeholder='Last Name'/>
           <input id='uAddress1' type='text' placeholder='Address'/>
           <input id='uAddress2' type='text' placeholder='Address'/>
           <input id='uPhone' type='text' placeholder='Phone'/>
-          <input id='uEmail' type='email' placeholder='Email'/>
-            <button id="updateIt">Update</button>
-        </div>
-     </script>
+          <input id='uImage' type='file' placeholder=''/>
+            <button>Create New User</button>
+        </form>
+    </script>
 
      <!-- Template for Kid Profile -->
      <script type='text/template' id='kidInfo'>
