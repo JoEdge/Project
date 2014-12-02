@@ -109,8 +109,22 @@ nav {
       width: 45%;
       margin-right: 3%;
       margin-bottom: 10px;
-      border: 1px solid black;    
+      border: 1px solid black;
     }//end eventShown
+
+    .allEventShown {
+      @include span-columns(4);
+      @include omega(2n);
+      @include media($mobile) {
+        @include span-columns(3);
+      }//end media(mobile)
+      float: left;
+      width: 45%;
+      margin-right: 3%;
+      margin-bottom: 10px;
+      border: 1px solid black;
+    }//end allEventShown
+
   }//end myKidsOnly
 }//end main
 }//end container

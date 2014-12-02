@@ -443,6 +443,48 @@ $( document ).ready(function(){
 
 }());
 
+(function () {
+  App.Views.AllEvents = Parse.View.extend ({
+
+    tagName: 'ul',
+    className: 'AllEvents',
+
+    events: {
+
+    },
+
+    template: _.template($('#allMyEvents').html()),
+
+    initialize: function(options) {
+
+      this.options = options;
+
+      this.render();
+
+      //this.collection.off();
+      this.collection.on('sync', this.render, this);
+
+      $('#myKidsOnly').html(this.$el);
+
+    },
+
+
+    render: function(){
+      var self= this;
+
+      //clears our element
+      this.$el.empty();
+
+      this.collection.each(function (s) {
+        self.$el.append(self.template(s.toJSON()));
+      });
+
+    }
+
+  });
+
+}());
+
 $( document ).ready(function(){
 
   App.Routers.approuter = Parse.Router.extend({
@@ -453,6 +495,7 @@ $( document ).ready(function(){
 
     routes: {
       '' : 'home',
+      'event': 'eventInfo',
       'start': 'enterSite',
       'profile' : 'profileInfo',
 
@@ -460,8 +503,7 @@ $( document ).ready(function(){
 
     home: function() {
       $('.enterSite').hide();
-      new App.Views.AddEventView();
-      new App.Views.MyEvents({collection: App.all_events});
+      new App.Views.AllEvents({collection: App.all_events});
     },
 
     enterSite: function() {
@@ -481,7 +523,13 @@ $( document ).ready(function(){
       $('.enterSite').hide();
       new App.Views.MyKidsView();
       new App.Views.MyKidsList({collection: App.all_myKids});
-    }
+    },
+
+    eventInfo: function() {
+      $('.enterSite').hide();
+      new App.Views.AddEventView();
+      new App.Views.MyEvents({collection: App.all_events});
+    },
 
   });
 

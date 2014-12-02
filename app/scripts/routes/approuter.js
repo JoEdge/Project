@@ -8,6 +8,7 @@ $( document ).ready(function(){
 
     routes: {
       '' : 'home',
+      'event': 'eventInfo',
       'start': 'enterSite',
       'profile' : 'profileInfo',
 
@@ -15,8 +16,7 @@ $( document ).ready(function(){
 
     home: function() {
       $('.enterSite').hide();
-      new App.Views.AddEventView();
-      new App.Views.MyEvents({collection: App.all_events});
+      new App.Views.AllEvents({collection: App.all_events});
     },
 
     enterSite: function() {
@@ -36,7 +36,13 @@ $( document ).ready(function(){
       $('.enterSite').hide();
       new App.Views.MyKidsView();
       new App.Views.MyKidsList({collection: App.all_myKids});
-    }
+    },
+
+    eventInfo: function() {
+      $('.enterSite').hide();
+      new App.Views.AddEventView();
+      new App.Views.MyEvents({collection: App.all_events});
+    },
 
   });
 
