@@ -16,6 +16,7 @@ $( document ).ready(function(){
     home: function() {
       $('.enterSite').hide();
       new App.Views.AddEventView();
+      new App.Views.MyEvents({collection: App.all_events});
     },
 
     enterSite: function() {
