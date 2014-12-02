@@ -26,8 +26,10 @@
     <div class="container">
       <!-- navigation bar -->
       <nav>
-        <a href="#/start"</a><button id="logOut">Logout</button></a>
+        <a href="#/signup"</a><button id="signUp">Sign Up</button></a>
+        <a href="#/login"</a><button id="logOut">Logout</button></a>
         <a href="#/profile" class="profileBtn"><button>Update My Profile</button></a>
+        <span id="loggedIn"></span>
       </nav>
 
       <!-- sidebar- messages, update user profile, update events,  update groups, usefull links -->
@@ -55,8 +57,7 @@
         <form id='loginForm'>
           <input id='username' placeholder='Please Enter User Name'/>
           <input id='password' type='password' placeholder='Please Enter Password'/>
-            <button id"login">Log In</button>
-            <button id"logout">Log Out</button>
+            <button id"login">Enter</button>
         </form>
     </script>
 
@@ -121,7 +122,7 @@
       <li class="showMyKids" id="<%= objectId %>">
           <div class="kidShare">
             <h4><%= firstName %> <%= lastName %> </h4>
-              <img id='profilePic' src='kidPhoto.url()'/>
+              <img id='profilePic' src= '<%= image %>' />
               <li><%= birthdate %></li>
               <li><%= address1 %></li>
               <li><%= address2 %></li>
@@ -155,6 +156,8 @@
         <script src="scripts/models/myKidsProfile.js"></script>
         <script src="scripts/collections/userCollection.js"></script>
         <script src="scripts/collections/myKidsCollection.js"></script>
+        <script src="scripts/views/signup.js"></script>
+        <script src="scripts/views/login.js"></script>
         <script src="scripts/views/userProfileView.js"></script>
         <script src="scripts/views/myKidsView.js"></script>
         <script src="scripts/views/myKidsList.js"></script>

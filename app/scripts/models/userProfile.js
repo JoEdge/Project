@@ -1,4 +1,3 @@
-
 $( document ).ready(function(){
 
   App.Models.UserProfile = Parse.Object.extend({

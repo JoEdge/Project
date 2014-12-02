@@ -8,7 +8,8 @@ $( document ).ready(function(){
 
     routes: {
       '' : 'home',
-      'start': 'enterSite',
+      'signup': 'SignUp',
+      'login': 'LogIn',
       'profile' : 'profileInfo',
 
     },
@@ -17,7 +18,21 @@ $( document ).ready(function(){
 
     },
 
-    enterSite: function() {
+    SignUp: function() {
+      $('.enterSite').show();
+      $('.main').hide();
+      $('.sidebar').hide();
+      if(App.user) return App.router.navigate('', {trigger: true});
+        new App.Views.SignUp();
+
+    },
+
+    LogIn: function() {
+      $('.enterSite').show();
+      $('.main').hide();
+      $('.sidebar').hide();
+      if(App.user) return App.router.navigate('', {trigger: true});
+        new App.Views.Login();
 
     },
 

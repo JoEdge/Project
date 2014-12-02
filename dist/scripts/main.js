@@ -6,7 +6,6 @@ App.Collections = {};
 App.Views = {};
 App.Routers = {};
 
-
 $( document ).ready(function(){
 
   App.Models.UserProfile = Parse.Object.extend({
@@ -89,6 +88,138 @@ $( document ).ready(function(){
     model: App.Models.MyKidsProfile,
     comparator: function (model) {
       return (model.get('createdAt'));
+    },
+
+  });
+
+}());
+
+
+(function(){
+
+  App.Views.SignUp = Parse.View.extend({
+
+    events: {
+      "submit #userForm" : "signUp",
+    },
+
+    template: $("#userSignup").html(),
+
+    initialize: function() {
+      this.render();
+
+      $("#log_signup").html(this.$el);
+
+    },
+
+
+    render: function() {
+      this.$el.html(this.template);
+    },
+
+    signUp: function(e) {
+
+      e.preventDefault();
+
+      var username = $('#newusername').val();
+      var password = $('#newpassword').val();
+      var ckpassword = $('#confirmpword').val();
+      console.log(username);
+      console.log(password);
+
+      //Check if passwords match and add new user if true
+      if ( password === ckpassword ){
+
+        var user = new Parse.User();
+        user.set('username', username);
+        user.set('password', password);
+
+        user.signUp (null, {
+          success: function(user) {
+          },
+          error: function(user, error){
+            alert("Error Signup");
+          }
+        });
+
+        console.log("sign up")
+
+        Parse.User.logIn(username, password, {
+          success: function(user){
+            App.user = user;
+            App.updateUser();
+            console.log(App.user);
+          },
+
+          error: function(user, error) {
+            alert("Error");
+          }
+
+        });
+
+        App.router.navigate('', { trigger: true });
+
+      } else {
+        window.alert('Passwords Do Not Match');
+      }
+
+      //Clear form
+
+      $("#userForm")[0].reset();
+    }
+
+  });
+
+}());
+
+
+$( document ).ready(function(){
+
+  App.Views.Login = Parse.View.extend ({
+
+    className: "LogIn",
+
+    events: {
+
+      "click #loggedOut" : "logInUser",
+
+    },
+
+    template: $("#userLogin").html(),
+
+    initialize: function() {
+      this.render();
+
+      $('#log_signup').html(this.$el);
+    },
+
+    render: function() {
+
+      this.$el.html(this.template);
+    },
+
+    logInUser: function(e) {
+
+      e.preventDefault();
+
+      var username = $('#username').val();
+      var password = $('#password').val();
+
+      Parse.User.logIn(username, password, {
+        success: function(user){
+          App.user = user;
+          App.updateUser();
+        },
+
+        error: function(user, error) {
+          alert("Error");
+        }
+
+      });
+
+      //clear my form
+      $("#loginForm")[0].reset();
+      App.router.navigate('', { trigger: true });
     },
 
   });
@@ -222,7 +353,7 @@ $( document ).ready(function(){
       //attempt get 1
       console.log(myKid);
       var kidPhoto = myKid.get("image");
-      $('profilePic')[0].src = kidPhoto.url();
+      $('#profilePic')[0].src = kidPhoto.url();
       console.log(kidPhoto);
       //attempt get 2
       //var image = myKid.get("image").url();
@@ -296,7 +427,8 @@ $( document ).ready(function(){
 
     routes: {
       '' : 'home',
-      'start': 'enterSite',
+      'signup': 'SignUp',
+      'login': 'LogIn',
       'profile' : 'profileInfo',
 
     },
@@ -305,7 +437,21 @@ $( document ).ready(function(){
 
     },
 
-    enterSite: function() {
+    SignUp: function() {
+      $('.enterSite').show();
+      $('.main').hide();
+      $('.sidebar').hide();
+      if(App.user) return App.router.navigate('', {trigger: true});
+        new App.Views.SignUp();
+
+    },
+
+    LogIn: function() {
+      $('.enterSite').show();
+      $('.main').hide();
+      $('.sidebar').hide();
+      if(App.user) return App.router.navigate('', {trigger: true});
+        new App.Views.Login();
 
     },
 
@@ -345,6 +491,24 @@ $( document ).ready(function(){
       Parse.history.start();
 
     });
+
+    // Update User
+    App.updateUser = function (){
+      App.user = Parse.User.current();
+      var currUsr;
+      if (App.user == null){
+        currUsr = '';
+        $('#logOut').text('Log In');
+        App.router.navigate('login', {trigger: true});
+      } else {
+        currUsr = 'Welcome ' + App.user.attributes.username;
+        $('#logOut').text('Log Out');
+      }
+      $('#loggedIn').html(currUsr);
+    };
+
+    App.updateUser();
+
 
 
 }());
