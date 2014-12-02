@@ -62,15 +62,13 @@ $( document ).ready(function(){
 
       myKid.save(null, {
         success: function () {
-          App.all_myKids.add(myKid);
-
           var kidPhoto = myKid.get("image");
-          console.log(myKid);
           $('#profilePic')[0].src = kidPhoto.url();
-
+          App.all_myKids.add(myKid);
         }
       });
 
+      //$('#profilePic-'+myKid.get('objectId'))[0].src = kidPhoto.url();
     //   //attempt get 1
     //   console.log(myKid);
     //   var kidPhoto = myKid.get("image");
