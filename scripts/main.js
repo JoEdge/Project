@@ -340,15 +340,13 @@ $( document ).ready(function(){
 
       myKid.save(null, {
         success: function () {
-          App.all_myKids.add(myKid);
-
           var kidPhoto = myKid.get("image");
-          console.log(myKid);
           $('#profilePic')[0].src = kidPhoto.url();
-
+          App.all_myKids.add(myKid);
         }
       });
 
+      //$('#profilePic-'+myKid.get('objectId'))[0].src = kidPhoto.url();
     //   //attempt get 1
     //   console.log(myKid);
     //   var kidPhoto = myKid.get("image");
@@ -472,8 +470,7 @@ $( document ).ready(function(){
 
       App.router = new App.Routers.approuter();
 
-
-    });
+    });//end of fetch all_users
 
     App.all_myKids = new App.Collections.MyKidsCollection();
 
@@ -483,7 +480,7 @@ $( document ).ready(function(){
 
       Parse.history.start();
 
-    });
+    });//end of fetch all_mykids
 
     // Log Out
     $('#logOut').on('click', function (e) {
@@ -492,7 +489,7 @@ $( document ).ready(function(){
       Parse.User.logOut();
       App.updateUser();
       App.router.navigate('start', {trigger: true});
-    });
+    });//end of logout function
 
 
     // Update User
@@ -507,12 +504,11 @@ $( document ).ready(function(){
         currUsr = 'Welcome ' + App.user.attributes.username;
         $('#logOut').text('Log Out');
         App.router.navigate('profile', {trigger: true});
-      }
+      }//end of else statement
+
       $('#loggedIn').html(currUsr);
-    };
+    };//end of App.updateUser function
 
     App.updateUser();
-
-
 
 }());
