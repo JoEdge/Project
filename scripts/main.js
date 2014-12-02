@@ -101,7 +101,7 @@ $( document ).ready(function(){
 
     events: {
       "submit #userForm" : "signUp",
-    },
+    },//end events
 
     template: $("#userSignup").html(),
 
@@ -110,12 +110,12 @@ $( document ).ready(function(){
 
       $("#profiler").html(this.$el);
 
-    },
+    },//end initialize
 
 
     render: function() {
       this.$el.html(this.template);
-    },
+    },//end render
 
     signUp: function(e) {
 
@@ -136,39 +136,32 @@ $( document ).ready(function(){
 
         user.signUp (null, {
           success: function(user) {
-          },
+          },//end success user.signUp
           error: function(user, error){
-            alert("Error Signup");
-          }
-        });
-
-        console.log("sign up")
+            alert("Please choose another username.");
+          }//end error user.signUp
+        });//end user.signup
 
         Parse.User.logIn(username, password, {
           success: function(user){
             App.user = user;
             App.updateUser();
-            console.log(App.user);
-          },
+            App.router.navigate('profile', { trigger: true });
+            //Clear form
+            $("#userForm")[0].reset();
+            //end form reset
+          },//end success
 
-          error: function(user, error) {
-            alert("Error");
-          }
-
-        });
-
-        App.router.navigate('', { trigger: true });
+        });//end Parse.User.logIn
 
       } else {
         window.alert('Passwords Do Not Match');
-      }
+        App.router.navigate('/start', { trigger: true });
+      }//end passwords don't match
 
-      //Clear form
+    }//end event:signUp
 
-      $("#userForm")[0].reset();
-    }
-
-  });
+  });//end if passwords match
 
 }());
 
@@ -504,10 +497,11 @@ $( document ).ready(function(){
       if (App.user == null){
         currUsr = '';
         $('#logOut').text('Log In');
-        App.router.navigate('profile', {trigger: true});
+        App.router.navigate('start', {trigger: true});
       } else {
         currUsr = 'Welcome ' + App.user.attributes.username;
         $('#logOut').text('Log Out');
+        App.router.navigate('profile', {trigger: true});
       }
       $('#loggedIn').html(currUsr);
     };
