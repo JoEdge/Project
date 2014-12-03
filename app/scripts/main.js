@@ -12,6 +12,13 @@ $( document ).ready(function(){
     //   App.router = new App.Routers.approuter();
     //
     // });//end of fetch all_users
+    App.all_messages = new App.Collections.MessageCollection();
+
+    App.all_messages.fetch().done(function () {
+
+      App.router = new App.Routers.approuter();
+
+    });//end of fetch all_messages
 
     App.all_events = new App.Collections.EventCollection();
 

@@ -11,6 +11,7 @@ $( document ).ready(function(){
       'event': 'eventInfo',
       'start': 'enterSite',
       'profile' : 'profileInfo',
+      'share/:id': 'shareKidInfo',
 
     },
 
@@ -42,6 +43,13 @@ $( document ).ready(function(){
       $('.enterSite').hide();
       new App.Views.AddEventView();
       new App.Views.MyEvents({collection: App.all_events});
+    },
+
+    shareKidInfo: function(id) {
+      $('.enterSite').show();
+      $('.main').hide();
+      $('.sidebar').hide();
+      new App.Views.SenderMessageView();
     },
 
   });

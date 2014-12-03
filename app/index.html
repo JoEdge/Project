@@ -125,7 +125,7 @@
               <li><%= medical %></li>
               <li><%= notes %></li>
                 <a href="#/edit/<%= objectId %>"><button id="updateButton">Edit</button></a>
-                <button id="shareInfo">Share</button>
+                <a href="#/share/<%= objectId %>"><button id="shareInfo">Share</button></a>
           </div>
        </li>
        </div>
@@ -168,6 +168,17 @@
         </div>
       </script>
 
+      <!-- Template for Message  -->
+      <script type='text/template' id='messagesTo'>
+        <div class="chat">
+          <form id="messageForm">
+            <input id='recipient' type='text' placeholder='To: '/>
+            <input id='content' type='text' placeholder='Kid Info'/>
+              <button id"sendMsg">Send</button>
+          </form>
+        </div>
+      </script>
+
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
@@ -183,8 +194,10 @@
         <script src="scripts/setup.js"></script>
         <script src="scripts/models/myKidsProfile.js"></script>
         <script src="scripts/models/events.js"></script>
+        <script src="scripts/models/messageModel.js"></script>
         <script src="scripts/collections/myKidsCollection.js"></script>
         <script src="scripts/collections/eventCollection.js"></script>
+        <script src="scripts/collections/messageCollection.js"></script>
         <script src="scripts/views/signup.js"></script>
         <script src="scripts/views/login.js"></script>
         <script src="scripts/views/myKidsView.js"></script>
@@ -192,6 +205,7 @@
         <script src="scripts/views/addEvent.js"></script>
         <script src="scripts/views/myAddedEvents.js"></script>
         <script src="scripts/views/allEvents.js"></script>
+        <script src="scripts/views/senderMessageView.js"></script>
         <script src="scripts/routes/approuter.js"></script>
         <script src="scripts/main.js"></script>
         <!-- endbuild -->
