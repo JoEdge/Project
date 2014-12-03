@@ -27,6 +27,7 @@ $( document ).ready(function(){
       doctor: '',
       medical:'',
       notes: '',
+      user:'',
     },
 
     idAttribute: 'objectID',
@@ -53,6 +54,7 @@ $( document ).ready(function(){
       eventDate: '',
       location: '',
       kids: '',
+      user:'',
 
     },
 
@@ -113,23 +115,22 @@ $( document ).ready(function(){
 
     render: function() {
       this.$el.html(this.template);
+      console.log('here1');
     },//end render
 
     signUp: function(e) {
-
-      e.preventDefault();
 
       var username = $('#newusername').val();
       var password = $('#newpassword').val();
       var ckpassword = $('#confirmpword').val();
       var email = $('#uEmail').val();
-      var firstName = $('#ufirstName').val();
-      var lastName = $('#ulastName').val();
-      var address1 = $('#uAddress1').val();
-      var address2 = $('#uAddress2').val();
-      var phone = $('#uPhone').val();
-      var image = $('#uimage').val();
-
+      // var firstName = $('#ufirstName').val();
+      // var lastName = $('#ulastName').val();
+      // var address1 = $('#uAddress1').val();
+      // var address2 = $('#uAddress2').val();
+      // var phone = $('#uPhone').val();
+      // var image = $('#uimage').val();
+      console.log(username);
 
       //Check if passwords match and add new user if true
       if ( password === ckpassword ){
@@ -138,17 +139,18 @@ $( document ).ready(function(){
         user.set('username', username);
         user.set('password', password);
         user.set('email', email);
-        user.set('firstName', firstName);
-        user.set('lastName', lastName);
-        user.set('address1', address1);
-        user.set('address2', address2);
-        user.set('password', password);
-        user.set('phone', phone);
-        user.set('image', image);
-
+        // user.set('firstName', firstName);
+        // user.set('lastName', lastName);
+        // user.set('address1', address1);
+        // user.set('address2', address2);
+        // user.set('password', password);
+        // user.set('phone', phone);
+        // user.set('image', image);
+        console.log(username);
 
         user.signUp (null, {
           success: function(user) {
+            console.log("har");
           },//end success user.signUp
           error: function(user, error){
             alert("Please choose another username.");
@@ -157,15 +159,23 @@ $( document ).ready(function(){
 
         Parse.User.logIn(username, password, {
           success: function(user){
+            console.log("show me");
             App.user = user;
-            App.updateUser();
+          //  App.updateUser();
+            console.log(App.user);
+          },//end success
+
+          error: function(user, error) {
+            alert("Error");
+          }//end error
+
+        });//end Parse.User.logIn
+
             App.router.navigate('profile', { trigger: true });
             //Clear form
             $("#userForm")[0].reset();
             //end form reset
-          },//end success
 
-        });//end Parse.User.logIn
 
       } else {
         window.alert('Passwords Do Not Match');
@@ -215,7 +225,6 @@ $( document ).ready(function(){
         success: function(user){
           App.user = user;
           App.updateUser();
-          App.router.navigate('profile', { trigger: true });
         },
 
         error: function(user, error) {
@@ -291,8 +300,18 @@ $( document ).ready(function(){
         doctor: $('#doctor').val(),
         medical: $('#medical').val(),
         notes: $('#notes').val(),
+      //  user: App.user,
 
       });
+
+      // //Set Control
+      // var myKidACL = new Parse.ACL(App.user);
+      // myKidACL.setPublicReadAccess(false);
+      // myKidACL.setWriteAccess(App.user, true);
+      //
+      // myEvent.setACL(myEventACL);
+      //
+      // //save
 
 
       myKid.save(null, {
@@ -340,7 +359,7 @@ $( document ).ready(function(){
       this.$el.empty();
 
       this.collection.each(function (myKid) {
-        var kidPhoto = myKid.get("image");      
+        var kidPhoto = myKid.get("image");
         $('#profilePic').src = kidPhoto.url();
         self.$el.append(self.template(myKid.toJSON()));
       });
@@ -384,10 +403,18 @@ $( document ).ready(function(){
         eventName: $('#eventName').val(),
         eventDate: $('#eventDate').val(),
         location: $('#location').val(),
+        //  user: App.user,
 
       });//end var myEvent
 
+      // //Set Control
+      // var myEventACL = new Parse.ACL(App.user);
+      // myEventACL.setPublicReadAccess(false);
+      // myEventACL.setWriteAccess(App.user, true);
+      //
+      // myEvent.setACL(myEventACL);
 
+      //save
       myEvent.save(null, {
         success: function () {
           App.all_events.add(myEvent);
@@ -421,6 +448,7 @@ $( document ).ready(function(){
 
       //this.collection.off();
       this.collection.on('sync', this.render, this);
+
 
       $('#myKidsOnly').html(this.$el);
 
