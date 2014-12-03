@@ -31,16 +31,16 @@ $( document ).ready(function(){
         eventName: $('#eventName').val(),
         eventDate: $('#eventDate').val(),
         location: $('#location').val(),
-        //  user: App.user,
+        user: App.user,
 
       });//end var myEvent
 
       // //Set Control
-      // var myEventACL = new Parse.ACL(App.user);
-      // myEventACL.setPublicReadAccess(false);
-      // myEventACL.setWriteAccess(App.user, true);
-      //
-      // myEvent.setACL(myEventACL);
+      var myEventACL = new Parse.ACL(Parse.User.current());
+      myEventACL.setPublicReadAccess(false);
+      myEventACL.setWriteAccess(Parse.User.current(), true);
+
+      myEvent.setACL(myEventACL);
 
       //save
       myEvent.save(null, {

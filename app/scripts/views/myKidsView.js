@@ -36,7 +36,7 @@ $( document ).ready(function(){
         console.log(imageFile);
       }
 
-      imageFile.save()
+      //imageFile.save()
       //save this new image file to Parse Cloud
       imageFile.save().then(function() {
       }, function(error) {
@@ -56,20 +56,18 @@ $( document ).ready(function(){
         doctor: $('#doctor').val(),
         medical: $('#medical').val(),
         notes: $('#notes').val(),
-      //  user: App.user,
+        user: App.user,
 
       });
 
       // //Set Control
-      // var myKidACL = new Parse.ACL(App.user);
-      // myKidACL.setPublicReadAccess(false);
-      // myKidACL.setWriteAccess(App.user, true);
-      //
-      // myEvent.setACL(myEventACL);
-      //
-      // //save
+      var myKidACL = new Parse.ACL(Parse.User.current());
+      myKidACL.setPublicReadAccess(false);
+      myKidACL.setWriteAccess(Parse.User.current(), true);
 
+      myKid.setACL(myKidACL);
 
+      //save
       myKid.save(null, {
         success: function () {
           App.all_myKids.add(myKid);
