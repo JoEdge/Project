@@ -587,8 +587,25 @@ $( document ).ready(function(){
     sendMessage: function(e) {
       e.preventDefault();
 
+      var recipient;
+      var query= new Parse.Query(Parse.User);
+        query.equalTo('username', "$('#recipient').val()");
+        query.find({
+          success: function(results) {
+            alert("Successfully retrieved " + results.length);
+            // Do something with the returned Parse.Object values
+            for (var i = 0; i < results.length; i++) {
+              var object = results[i];
+              alert(object.id + ' - ' + object.get('username'));
+            }
+          },
+          error: function(error) {
+            alert("Error: ");
+          }
+        });
+
       var myMessage = new App.Models.MessageModel ({
-        recipient: $('#recipient').val(),
+        recipient: recipient,
         content: $('#content').val(),
         sender: App.user,
 
