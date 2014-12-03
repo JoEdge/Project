@@ -24,6 +24,7 @@ $( document ).ready(function(){
       this.$el.html(this.template);
     },//end render
 
+
     sendMessage: function(e) {
       e.preventDefault();
 

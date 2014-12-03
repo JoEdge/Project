@@ -9,7 +9,7 @@ $( document ).ready(function(){
 
     App.all_users.fetch().done(function () {
 
-    //  App.router = new App.Routers.approuter();
+      App.router = new App.Routers.approuter();
 
     });//end of fetch all_users
     App.all_messages = new App.Collections.MessageCollection();
