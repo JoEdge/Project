@@ -55,28 +55,24 @@
         user.signUp (null, {
           success: function(user) {
             console.log("har");
+            Parse.User.logIn(username, password, {
+              success: function(user){
+                console.log("show me");
+                App.user = user;
+              //  App.updateUser();
+                console.log(App.user);
+              },//end success
+              error: function(user, error) {
+                alert("Error");
+              }//end error
+            });//end Parse.User.logIn
+            App.router.navigate('profile', { trigger: true });
           },//end success user.signUp
           error: function(user, error){
             alert("Please choose another username.");
           }//end error user.signUp
         });//end user.signup
 
-        // Parse.User.logIn(username, password, {
-        //   success: function(user){
-        //     console.log("show me");
-        //     App.user = user;
-        //   //  App.updateUser();
-        //     console.log(App.user);
-        //   },//end success
-        //
-        //   error: function(user, error) {
-        //     alert("Error");
-        //   }//end error
-        //
-        // });//end Parse.User.logIn
-
-        App.router.navigate('profile', { trigger: true });
-        
       } else {
         window.alert('Passwords Do Not Match');
 
