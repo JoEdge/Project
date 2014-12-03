@@ -60,6 +60,7 @@ $( document ).ready(function(){
 
       });
 
+
       // //Set Control
       var myKidACL = new Parse.ACL(Parse.User.current());
       myKidACL.setPublicReadAccess(false);

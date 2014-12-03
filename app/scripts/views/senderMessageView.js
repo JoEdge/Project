@@ -32,7 +32,8 @@ $( document ).ready(function(){
         content: $('#content').val(),
         sender: App.user,
 
-      });//end var myMessage
+      });//end var myMessages
+
 
       // //Set Control
       var myMessageACL = new Parse.ACL(Parse.User.current());

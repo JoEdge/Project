@@ -54,13 +54,10 @@
 
         user.signUp (null, {
           success: function(user) {
-            console.log("har");
+
             Parse.User.logIn(username, password, {
               success: function(user){
-                console.log("show me");
-                App.user = user;
-              //  App.updateUser();
-                console.log(App.user);
+                App.user = user;      
               },//end success
               error: function(user, error) {
                 alert("Error");

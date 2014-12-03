@@ -99,6 +99,18 @@ $( document ).ready(function(){
 
 (function () {
 
+  App.Collections.UserCollection = Parse.Collection.extend ({
+    model: Parse.User,
+    comparator: function (model) {
+      return (model.get('createdAt'));
+    },
+
+  });
+
+}());
+
+(function () {
+
   App.Collections.MyKidsCollection = Parse.Collection.extend ({
     model: App.Models.MyKidsProfile,
     comparator: function (model) {
@@ -189,13 +201,10 @@ $( document ).ready(function(){
 
         user.signUp (null, {
           success: function(user) {
-            console.log("har");
+
             Parse.User.logIn(username, password, {
               success: function(user){
-                console.log("show me");
-                App.user = user;
-              //  App.updateUser();
-                console.log(App.user);
+                App.user = user;      
               },//end success
               error: function(user, error) {
                 alert("Error");
@@ -339,6 +348,7 @@ $( document ).ready(function(){
         user: App.user,
 
       });
+
 
       // //Set Control
       var myKidACL = new Parse.ACL(Parse.User.current());
@@ -581,7 +591,8 @@ $( document ).ready(function(){
         content: $('#content').val(),
         sender: App.user,
 
-      });//end var myMessage
+      });//end var myMessages
+
 
       // //Set Control
       var myMessageACL = new Parse.ACL(Parse.User.current());
@@ -669,13 +680,13 @@ Parse.initialize("rSMFx7NCERf7fOIu7UBDFhrVWQBNXQJLGkzGu0ML", "YNVYJv0m0llTc3tpH3
 
 $( document ).ready(function(){
 
-    // App.all_users = new App.Collections.UserCollection();
-    //
-    // App.all_users.fetch().done(function () {
-    //
-    //   App.router = new App.Routers.approuter();
-    //
-    // });//end of fetch all_users
+    App.all_users = new App.Collections.UserCollection();
+
+    App.all_users.fetch().done(function () {
+
+    //  App.router = new App.Routers.approuter();
+
+    });//end of fetch all_users
     App.all_messages = new App.Collections.MessageCollection();
 
     App.all_messages.fetch().done(function () {
@@ -724,11 +735,12 @@ $( document ).ready(function(){
         currUsr = 'Welcome ' + App.user.attributes.username;
         $('#logOut').text('Log Out');
         $('#loggedIn').html(currUsr);
-        App.router.navigate('', {trigger: true});
+      //  App.router.navigate('', {trigger: true});
       }//end of else statement
 
     };//end of App.updateUser function
 
     App.updateUser();
+
 
 }());
