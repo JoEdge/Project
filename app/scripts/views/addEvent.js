@@ -31,10 +31,18 @@ $( document ).ready(function(){
         eventName: $('#eventName').val(),
         eventDate: $('#eventDate').val(),
         location: $('#location').val(),
+        //  user: App.user,
 
       });//end var myEvent
 
+      // //Set Control
+      // var myEventACL = new Parse.ACL(App.user);
+      // myEventACL.setPublicReadAccess(false);
+      // myEventACL.setWriteAccess(App.user, true);
+      //
+      // myEvent.setACL(myEventACL);
 
+      //save
       myEvent.save(null, {
         success: function () {
           App.all_events.add(myEvent);

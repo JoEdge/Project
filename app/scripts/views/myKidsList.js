@@ -31,7 +31,7 @@
       this.$el.empty();
 
       this.collection.each(function (myKid) {
-        var kidPhoto = myKid.get("image");      
+        var kidPhoto = myKid.get("image");
         $('#profilePic').src = kidPhoto.url();
         self.$el.append(self.template(myKid.toJSON()));
       });

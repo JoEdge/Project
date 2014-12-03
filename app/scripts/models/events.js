@@ -10,6 +10,7 @@ $( document ).ready(function(){
       eventDate: '',
       location: '',
       kids: '',
+      user:'',
 
     },
 

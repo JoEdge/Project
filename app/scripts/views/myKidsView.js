@@ -56,8 +56,18 @@ $( document ).ready(function(){
         doctor: $('#doctor').val(),
         medical: $('#medical').val(),
         notes: $('#notes').val(),
+      //  user: App.user,
 
       });
+
+      // //Set Control
+      // var myKidACL = new Parse.ACL(App.user);
+      // myKidACL.setPublicReadAccess(false);
+      // myKidACL.setWriteAccess(App.user, true);
+      //
+      // myEvent.setACL(myEventACL);
+      //
+      // //save
 
 
       myKid.save(null, {

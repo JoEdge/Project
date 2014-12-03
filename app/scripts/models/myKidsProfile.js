@@ -19,6 +19,7 @@ $( document ).ready(function(){
       doctor: '',
       medical:'',
       notes: '',
+      user:'',
     },
 
     idAttribute: 'objectID',
