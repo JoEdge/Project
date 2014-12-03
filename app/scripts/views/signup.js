@@ -61,29 +61,30 @@
           }//end error user.signUp
         });//end user.signup
 
-        Parse.User.logIn(username, password, {
-          success: function(user){
-            console.log("show me");
-            App.user = user;
-          //  App.updateUser();
-            console.log(App.user);
-          },//end success
+        // Parse.User.logIn(username, password, {
+        //   success: function(user){
+        //     console.log("show me");
+        //     App.user = user;
+        //   //  App.updateUser();
+        //     console.log(App.user);
+        //   },//end success
+        //
+        //   error: function(user, error) {
+        //     alert("Error");
+        //   }//end error
+        //
+        // });//end Parse.User.logIn
 
-          error: function(user, error) {
-            alert("Error");
-          }//end error
-
-        });//end Parse.User.logIn
-
-            App.router.navigate('profile', { trigger: true });
-            //Clear form
-            $("#userForm")[0].reset();
-            //end form reset
-
-
+        App.router.navigate('profile', { trigger: true });
+        
       } else {
         window.alert('Passwords Do Not Match');
-        App.router.navigate('/start', { trigger: true });
+
+        //Clear form
+        $("#userForm")[0].reset();
+
+        //end form reset
+
       }//end passwords don't match
 
     }//end event:signUp

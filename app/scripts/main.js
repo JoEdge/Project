@@ -53,7 +53,7 @@ $( document ).ready(function(){
         currUsr = 'Welcome ' + App.user.attributes.username;
         $('#logOut').text('Log Out');
         $('#loggedIn').html(currUsr);
-        App.router.navigate('profile', {trigger: true});
+        App.router.navigate('', {trigger: true});
       }//end of else statement
 
     };//end of App.updateUser function
