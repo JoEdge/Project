@@ -70,6 +70,33 @@ $( document ).ready(function(){
 
 }());
 
+$( document ).ready(function(){
+
+  App.Models.MessageModel = Parse.Object.extend({
+
+    className: 'Message',
+
+    defaults: {
+
+      sender: '',
+      recipient: '',
+      content: '',
+      kids: '',
+
+    },
+
+    idAttribute: 'objectID',
+
+    initialize: function(){
+      console.log("my message");
+
+    }
+
+  });
+
+
+}());
+
 (function () {
 
   App.Collections.MyKidsCollection = Parse.Collection.extend ({
@@ -86,6 +113,18 @@ $( document ).ready(function(){
 
   App.Collections.EventCollection = Parse.Collection.extend ({
     model: App.Models.Events,
+    comparator: function (model) {
+      return (model.get('createdAt'));
+    },
+
+  });
+
+}());
+
+(function () {
+
+  App.Collections.MessageCollection = Parse.Collection.extend ({
+    model: App.Models.MessageModel,
     comparator: function (model) {
       return (model.get('createdAt'));
     },
@@ -510,6 +549,63 @@ $( document ).ready(function(){
 
 $( document ).ready(function(){
 
+  App.Views.SenderMessageView = Parse.View.extend ({
+
+    className: "Message",
+
+    events: {
+
+      "submit #messageForm" : "sendMessage",
+
+    },//end events
+
+    template: $("#messagesTo").html(),
+
+    initialize: function() {
+
+      this.render();
+
+      $('#log_signup').html(this.$el);
+    },//end initialize
+
+    render: function() {
+
+      this.$el.html(this.template);
+    },//end render
+
+    sendMessage: function(e) {
+      e.preventDefault();
+
+      var myMessage = new App.Models.MessageModel ({
+        recipient: $('#recipient').val(),
+        content: $('#content').val(),
+        sender: App.user,
+
+      });//end var myMessage
+
+      // //Set Control
+      var myMessageACL = new Parse.ACL(Parse.User.current());
+      myMessageACL.setPublicReadAccess(false);
+      myMessageACL.setWriteAccess(Parse.User.current(), true);
+
+      myMessage.setACL(myMessageACL);
+
+      //save
+      myMessage.save(null, {
+        success: function () {
+          App.all_messages.add(myMessage);
+        }//end success
+
+      });//end myMessage.save
+
+    }//end sendMessage
+
+  });//end App.Views
+
+}());
+
+$( document ).ready(function(){
+
   App.Routers.approuter = Parse.Router.extend({
 
     initialize: function () {
@@ -521,6 +617,7 @@ $( document ).ready(function(){
       'event': 'eventInfo',
       'start': 'enterSite',
       'profile' : 'profileInfo',
+      'share/:id': 'shareKidInfo',
 
     },
 
@@ -554,6 +651,13 @@ $( document ).ready(function(){
       new App.Views.MyEvents({collection: App.all_events});
     },
 
+    shareKidInfo: function(id) {
+      $('.enterSite').show();
+      $('.main').hide();
+      $('.sidebar').hide();
+      new App.Views.SenderMessageView();
+    },
+
   });
 
 }());
@@ -572,6 +676,13 @@ $( document ).ready(function(){
     //   App.router = new App.Routers.approuter();
     //
     // });//end of fetch all_users
+    App.all_messages = new App.Collections.MessageCollection();
+
+    App.all_messages.fetch().done(function () {
+
+      App.router = new App.Routers.approuter();
+
+    });//end of fetch all_messages
 
     App.all_events = new App.Collections.EventCollection();
 

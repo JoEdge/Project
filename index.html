@@ -117,7 +117,7 @@
               <li><%= medical %></li>
               <li><%= notes %></li>
                 <a href="#/edit/<%= objectId %>"><button id="updateButton">Edit</button></a>
-                <button id="shareInfo">Share</button>
+                <a href="#/share/<%= objectId %>"><button id="shareInfo">Share</button></a>
           </div>
        </li>
        </div>
@@ -157,6 +157,17 @@
             <p><%= eventDate %></p>
             <p><%= location %></p>
           </li>
+        </div>
+      </script>
+
+      <!-- Template for Message  -->
+      <script type='text/template' id='messagesTo'>
+        <div class="chat">
+          <form id="messageForm">
+            <input id='recipient' type='text' placeholder='To: '/>
+            <input id='content' type='text' placeholder='Kid Info'/>
+              <button id"sendMsg">Send</button>
+          </form>
         </div>
       </script>
 
