@@ -16,8 +16,24 @@ $( document ).ready(function(){
 
       this.render();
 
+    //  this.recieverQuery();
+
       $('#log_signup').html(this.$el);
     },//end initialize
+
+
+
+    // var query= new Parse.Query(Parse.User);
+    // query.equalTo('username', 'recipient');
+    // query.find({
+    //   success: function(results) {
+    //     alert("Successfully retrieved ");
+    //     // Do something with the returned Parse.Object values
+    //   },
+    //   error: function(error) {
+    //     alert("Error");
+    //   }
+    // });
 
     render: function() {
 
@@ -28,32 +44,18 @@ $( document ).ready(function(){
     sendMessage: function(e) {
       e.preventDefault();
 
-      var recipient;
-      var query= new Parse.Query(Parse.User);
-        query.equalTo('username', "$('#recipient').val()");
-        query.find({
-          success: function(results) {
-            alert("Successfully retrieved " + results.length);
-            // Do something with the returned Parse.Object values
-            for (var i = 0; i < results.length; i++) {
-              var object = results[i];
-              alert(object.id + ' - ' + object.get('username'));
-            }
-          },
-          error: function(error) {
-            alert("Error: ");
-          }
-        });
+      // var reciever = App.all_users().where({username: "$('#recipient').val()"});
+      //
+      //   alert(reciever.length);
 
       var myMessage = new App.Models.MessageModel ({
-        recipient: recipient,
+        recipient: $('#recipient').val(),
         content: $('#content').val(),
         sender: App.user,
 
       });//end var myMessages
 
-
-      // //Set Control
+      //Set Control
       var myMessageACL = new Parse.ACL(Parse.User.current());
       myMessageACL.setPublicReadAccess(false);
       myMessageACL.setWriteAccess(Parse.User.current(), true);
