@@ -168,7 +168,7 @@
         </div>
       </script>
 
-      <!-- Template for Message  -->
+      <!-- Template for Sending Message  -->
       <script type='text/template' id='messagesTo'>
         <div class="chat">
           <form id="messageForm">
@@ -176,6 +176,16 @@
             <p>Please add my kids to your list</p>
               <button id"sendMsg">Send</button>
           </form>
+        </div>
+      </script>
+
+      <!-- Template for Getting Message  -->
+      <script type='text/template' id='messagesFrom'>
+        <div class="talk">
+            <h4>To: <%= sender.username %></h4>
+            <p>Please add my kids to your list</p>
+            <p>From: <%= recipient%></p>
+            <button id"getMsg">View</button>
         </div>
       </script>
 
@@ -207,6 +217,7 @@
         <script src="scripts/views/myAddedEvents.js"></script>
         <script src="scripts/views/allEvents.js"></script>
         <script src="scripts/views/senderMessageView.js"></script>
+        <script src="scripts/views/messageList.js"></script>
         <script src="scripts/routes/approuter.js"></script>
         <script src="scripts/main.js"></script>
         <!-- endbuild -->

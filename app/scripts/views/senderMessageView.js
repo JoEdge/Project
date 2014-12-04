@@ -21,19 +21,19 @@ $( document ).ready(function(){
       $('#log_signup').html(this.$el);
     },//end initialize
 
-
-
-    // var query= new Parse.Query(Parse.User);
-    // query.equalTo('username', 'recipient');
-    // query.find({
-    //   success: function(results) {
-    //     alert("Successfully retrieved ");
-    //     // Do something with the returned Parse.Object values
+    //
+    //   var query= new Parse.Query(Parse.User);
+    //   query.equalTo('username', 'recipient' );
+    //   query.find({
+    //     success: function(results) {
+    //       alert("User added ");
+    //       // Do something with the returned Parse.Object values
     //   },
-    //   error: function(error) {
-    //     alert("Error");
+    //     error: function(error) {
+    //       alert("Error");
     //   }
     // });
+
 
     render: function() {
 
@@ -56,11 +56,11 @@ $( document ).ready(function(){
       });//end var myMessages
 
       //Set Control
-      var myMessageACL = new Parse.ACL(Parse.User.current());
-      myMessageACL.setPublicReadAccess(false);
-      myMessageACL.setWriteAccess(Parse.User.current(), true);
-
-      myMessage.setACL(myMessageACL);
+      // var myMessageACL = new Parse.ACL(Parse.User.current());
+      // myMessageACL.setPublicReadAccess(false);
+      // myMessageACL.setWriteAccess(Parse.User.current(), true);
+      //
+      // myMessage.setACL(myMessageACL);
 
       //save
       myMessage.save(null, {
