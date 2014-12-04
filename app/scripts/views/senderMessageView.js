@@ -16,23 +16,8 @@ $( document ).ready(function(){
 
       this.render();
 
-    //  this.recieverQuery();
-
       $('#log_signup').html(this.$el);
     },//end initialize
-
-    //
-    //   var query= new Parse.Query(Parse.User);
-    //   query.equalTo('username', 'recipient' );
-    //   query.find({
-    //     success: function(results) {
-    //       alert("User added ");
-    //       // Do something with the returned Parse.Object values
-    //   },
-    //     error: function(error) {
-    //       alert("Error");
-    //   }
-    // });
 
 
     render: function() {
@@ -47,21 +32,23 @@ $( document ).ready(function(){
       var myMessage = new App.Models.MessageModel ({
         recipient: $('#recipient').val(),
         content: $('#content').val(),
-        sender: App.user.attributes.username,
+        sender: App.user,
+        senderName: $('#senderName').val(),
 
       });//end var myMessages
 
       //Set Control
-      var myMessageACL = new Parse.ACL(Parse.User.current());
-      myMessageACL.setPublicReadAccess(false);
-      myMessageACL.setWriteAccess(Parse.User.current(), true);
-
-      myMessage.setACL(myMessageACL);
+      // var myMessageACL = new Parse.ACL(Parse.User.current());
+      // myMessageACL.setPublicReadAccess(false);
+      // myMessageACL.setWriteAccess(Parse.User.current(), true);
+      //
+      // myMessage.setACL(myMessageACL);
 
       //save
       myMessage.save(null, {
         success: function () {
           App.all_messages.add(myMessage);
+          console.log($('#recipient').val());
         }//end success
 
       });//end myMessage.save

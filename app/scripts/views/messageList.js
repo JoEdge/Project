@@ -16,40 +16,64 @@
 
       this.render();
 
+      this.querySender();
+
+      this.queryRecipient();
+
       //this.collection.off();
       this.collection.on('sync', this.render, this);
 
       $('#updateInfo').html(this.$el);
 
     },
-    // 
-    // var query = new Parse.Query(MessageModel);
-    //     query.get(senderID, {
-    //       success: function(sender) {
-    //         var whoSent = sender.get("User");
-    //           whoSent.fetch({
-    //             success: function(fetched) {
-    //               console.log("User named");
-    //             },
-    //             error: function() {
-    //             console.log("Error");
-    //             }
-    //           });
-    //        }
-    //     });
+
+    querySender: function () {
+
+    var query = new Parse.Query (App.Models.MessageModel);
+    //console.log(sender);
+      query.equalTo('sender', App.user);
+      //  query.include('Message');
+      //  query.include('Message.sender');
+      query.find({
+        success: function(results) {
+          console.log(results);
+      },
+        error: function(error) {
+          alert("Error1");
+      }
+    });
+
+  },
+
+  queryRecipient: function () {
+    var query= new Parse.Query (App.Models.MessageModel);
+    query.equalTo('recipient', $('#recipient').val() );
+    // query.include('message');
+    // query.include('message.recipient');
+    query.find({
+      success: function(results) {
+        console.log(results);
+      },
+      error: function(error) {
+        alert("Error");
+      }
+    });
+
+  },
 
 
     render: function(){
-      var self= this;
+      var self = this;
 
       //clears our element
       this.$el.empty();
 
-      this.collection.each(function (myMessage) {
-        self.$el.append(self.template(myMessage.toJSON()));
+      this.collection.each(function (s) {
+        self.$el.append(self.template(s.toJSON()));
       });
 
     }
+
 
   });
 

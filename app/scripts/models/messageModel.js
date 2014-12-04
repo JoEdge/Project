@@ -7,6 +7,7 @@ $( document ).ready(function(){
     defaults: {
 
       sender: '',
+      senderName: '',
       recipient: '',
       content: '',
       share: '',
