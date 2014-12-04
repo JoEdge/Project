@@ -28,12 +28,12 @@ $( document ).ready(function(){
       medical:'',
       notes: '',
       user:'',
+      listed: '',
     },
 
     idAttribute: 'objectID',
 
     initialize: function(){
-      console.log("my kids info");
 
     }
 
@@ -61,7 +61,6 @@ $( document ).ready(function(){
     idAttribute: 'objectID',
 
     initialize: function(){
-      console.log("my events");
 
     }
 
@@ -81,14 +80,13 @@ $( document ).ready(function(){
       sender: '',
       recipient: '',
       content: '',
-      kids: '',
+      share: '',
 
     },
 
     idAttribute: 'objectID',
 
     initialize: function(){
-      console.log("my message");
 
     }
 
@@ -610,7 +608,7 @@ $( document ).ready(function(){
       var myMessage = new App.Models.MessageModel ({
         recipient: $('#recipient').val(),
         content: $('#content').val(),
-        sender: App.user,
+        sender: App.user.attributes.username,
 
       });//end var myMessages
 
@@ -659,6 +657,21 @@ $( document ).ready(function(){
       $('#updateInfo').html(this.$el);
 
     },
+    // 
+    // var query = new Parse.Query(MessageModel);
+    //     query.get(senderID, {
+    //       success: function(sender) {
+    //         var whoSent = sender.get("User");
+    //           whoSent.fetch({
+    //             success: function(fetched) {
+    //               console.log("User named");
+    //             },
+    //             error: function() {
+    //             console.log("Error");
+    //             }
+    //           });
+    //        }
+    //     });
 
 
     render: function(){
@@ -667,8 +680,8 @@ $( document ).ready(function(){
       //clears our element
       this.$el.empty();
 
-      this.collection.each(function (s) {
-        self.$el.append(self.template(s.toJSON()));
+      this.collection.each(function (myMessage) {
+        self.$el.append(self.template(myMessage.toJSON()));
       });
 
     }
