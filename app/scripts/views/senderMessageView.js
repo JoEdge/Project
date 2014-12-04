@@ -38,11 +38,11 @@ $( document ).ready(function(){
       });//end var myMessages
 
       //Set Control
-      // var myMessageACL = new Parse.ACL(Parse.User.current());
-      // myMessageACL.setPublicReadAccess(false);
-      // myMessageACL.setWriteAccess(Parse.User.current(), true);
-      //
-      // myMessage.setACL(myMessageACL);
+      var myMessageACL = new Parse.ACL(Parse.User.current());
+      myMessageACL.setPublicReadAccess(true);
+      myMessageACL.setWriteAccess(Parse.User.current(), true);
+
+      myMessage.setACL(myMessageACL);
 
       //save
       myMessage.save(null, {

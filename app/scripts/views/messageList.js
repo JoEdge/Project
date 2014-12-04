@@ -6,6 +6,8 @@
 
     events: {
 
+      'click #getMsg' : 'viewMessage',
+
     },
 
     template: _.template($('#messagesFrom').html()),
@@ -78,8 +80,13 @@
         self.$el.append(self.template(s.toJSON()));
       });
 
-    }
+    },
 
+    viewMessage: function (e) {
+      e.preventDefault();
+
+      console.log("ha");
+    },
 
   });
 
