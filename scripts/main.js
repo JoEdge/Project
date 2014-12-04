@@ -78,6 +78,7 @@ $( document ).ready(function(){
     defaults: {
 
       sender: '',
+      senderName: '',
       recipient: '',
       content: '',
       share: '',
@@ -573,23 +574,8 @@ $( document ).ready(function(){
 
       this.render();
 
-    //  this.recieverQuery();
-
       $('#log_signup').html(this.$el);
     },//end initialize
-
-    //
-    //   var query= new Parse.Query(Parse.User);
-    //   query.equalTo('username', 'recipient' );
-    //   query.find({
-    //     success: function(results) {
-    //       alert("User added ");
-    //       // Do something with the returned Parse.Object values
-    //   },
-    //     error: function(error) {
-    //       alert("Error");
-    //   }
-    // });
 
 
     render: function() {
@@ -604,21 +590,23 @@ $( document ).ready(function(){
       var myMessage = new App.Models.MessageModel ({
         recipient: $('#recipient').val(),
         content: $('#content').val(),
-        sender: App.user.attributes.username,
+        sender: App.user,
+        senderName: $('#senderName').val(),
 
       });//end var myMessages
 
       //Set Control
-      var myMessageACL = new Parse.ACL(Parse.User.current());
-      myMessageACL.setPublicReadAccess(false);
-      myMessageACL.setWriteAccess(Parse.User.current(), true);
-
-      myMessage.setACL(myMessageACL);
+      // var myMessageACL = new Parse.ACL(Parse.User.current());
+      // myMessageACL.setPublicReadAccess(false);
+      // myMessageACL.setWriteAccess(Parse.User.current(), true);
+      //
+      // myMessage.setACL(myMessageACL);
 
       //save
       myMessage.save(null, {
         success: function () {
           App.all_messages.add(myMessage);
+          console.log($('#recipient').val());
         }//end success
 
       });//end myMessage.save
@@ -647,40 +635,64 @@ $( document ).ready(function(){
 
       this.render();
 
+      this.querySender();
+
+      this.queryRecipient();
+
       //this.collection.off();
       this.collection.on('sync', this.render, this);
 
       $('#updateInfo').html(this.$el);
 
     },
-    // 
-    // var query = new Parse.Query(MessageModel);
-    //     query.get(senderID, {
-    //       success: function(sender) {
-    //         var whoSent = sender.get("User");
-    //           whoSent.fetch({
-    //             success: function(fetched) {
-    //               console.log("User named");
-    //             },
-    //             error: function() {
-    //             console.log("Error");
-    //             }
-    //           });
-    //        }
-    //     });
+
+    querySender: function () {
+
+    var query = new Parse.Query (App.Models.MessageModel);
+    //console.log(sender);
+      query.equalTo('sender', App.user);
+      //  query.include('Message');
+      //  query.include('Message.sender');
+      query.find({
+        success: function(results) {
+          console.log(results);
+      },
+        error: function(error) {
+          alert("Error1");
+      }
+    });
+
+  },
+
+  queryRecipient: function () {
+    var query= new Parse.Query (App.Models.MessageModel);
+    query.equalTo('recipient', $('#recipient').val() );
+    // query.include('message');
+    // query.include('message.recipient');
+    query.find({
+      success: function(results) {
+        console.log(results);
+      },
+      error: function(error) {
+        alert("Error");
+      }
+    });
+
+  },
 
 
     render: function(){
-      var self= this;
+      var self = this;
 
       //clears our element
       this.$el.empty();
 
-      this.collection.each(function (myMessage) {
-        self.$el.append(self.template(myMessage.toJSON()));
+      this.collection.each(function (s) {
+        self.$el.append(self.template(s.toJSON()));
       });
 
     }
+
 
   });
 
