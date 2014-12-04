@@ -596,11 +596,11 @@ $( document ).ready(function(){
       });//end var myMessages
 
       //Set Control
-      // var myMessageACL = new Parse.ACL(Parse.User.current());
-      // myMessageACL.setPublicReadAccess(false);
-      // myMessageACL.setWriteAccess(Parse.User.current(), true);
-      //
-      // myMessage.setACL(myMessageACL);
+      var myMessageACL = new Parse.ACL(Parse.User.current());
+      myMessageACL.setPublicReadAccess(true);
+      myMessageACL.setWriteAccess(Parse.User.current(), true);
+
+      myMessage.setACL(myMessageACL);
 
       //save
       myMessage.save(null, {
@@ -624,6 +624,8 @@ $( document ).ready(function(){
     className: 'MessageList',
 
     events: {
+
+      'click #getMsg' : 'viewMessage',
 
     },
 
@@ -697,8 +699,13 @@ $( document ).ready(function(){
         self.$el.append(self.template(s.toJSON()));
       });
 
-    }
+    },
 
+    viewMessage: function (e) {
+      e.preventDefault();
+
+      console.log("ha");
+    },
 
   });
 
