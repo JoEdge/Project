@@ -44,10 +44,6 @@ $( document ).ready(function(){
     sendMessage: function(e) {
       e.preventDefault();
 
-      // var reciever = App.all_users().where({username: "$('#recipient').val()"});
-      //
-      //   alert(reciever.length);
-
       var myMessage = new App.Models.MessageModel ({
         recipient: $('#recipient').val(),
         content: $('#content').val(),
@@ -56,11 +52,11 @@ $( document ).ready(function(){
       });//end var myMessages
 
       //Set Control
-      // var myMessageACL = new Parse.ACL(Parse.User.current());
-      // myMessageACL.setPublicReadAccess(false);
-      // myMessageACL.setWriteAccess(Parse.User.current(), true);
-      //
-      // myMessage.setACL(myMessageACL);
+      var myMessageACL = new Parse.ACL(Parse.User.current());
+      myMessageACL.setPublicReadAccess(false);
+      myMessageACL.setWriteAccess(Parse.User.current(), true);
+
+      myMessage.setACL(myMessageACL);
 
       //save
       myMessage.save(null, {
