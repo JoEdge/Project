@@ -580,19 +580,19 @@ $( document ).ready(function(){
       $('#log_signup').html(this.$el);
     },//end initialize
 
-
-
-    // var query= new Parse.Query(Parse.User);
-    // query.equalTo('username', 'recipient');
-    // query.find({
-    //   success: function(results) {
-    //     alert("Successfully retrieved ");
-    //     // Do something with the returned Parse.Object values
+    //
+    //   var query= new Parse.Query(Parse.User);
+    //   query.equalTo('username', 'recipient' );
+    //   query.find({
+    //     success: function(results) {
+    //       alert("User added ");
+    //       // Do something with the returned Parse.Object values
     //   },
-    //   error: function(error) {
-    //     alert("Error");
+    //     error: function(error) {
+    //       alert("Error");
     //   }
     // });
+
 
     render: function() {
 
@@ -615,11 +615,11 @@ $( document ).ready(function(){
       });//end var myMessages
 
       //Set Control
-      var myMessageACL = new Parse.ACL(Parse.User.current());
-      myMessageACL.setPublicReadAccess(false);
-      myMessageACL.setWriteAccess(Parse.User.current(), true);
-
-      myMessage.setACL(myMessageACL);
+      // var myMessageACL = new Parse.ACL(Parse.User.current());
+      // myMessageACL.setPublicReadAccess(false);
+      // myMessageACL.setWriteAccess(Parse.User.current(), true);
+      //
+      // myMessage.setACL(myMessageACL);
 
       //save
       myMessage.save(null, {
@@ -632,6 +632,48 @@ $( document ).ready(function(){
     }//end sendMessage
 
   });//end App.Views
+
+}());
+
+(function () {
+  App.Views.MessageList = Parse.View.extend ({
+
+    tagName: 'ul',
+    className: 'MessageList',
+
+    events: {
+
+    },
+
+    template: _.template($('#messagesFrom').html()),
+
+    initialize: function(options) {
+
+      this.options = options;
+
+      this.render();
+
+      //this.collection.off();
+      this.collection.on('sync', this.render, this);
+
+      $('#updateInfo').html(this.$el);
+
+    },
+
+
+    render: function(){
+      var self= this;
+
+      //clears our element
+      this.$el.empty();
+
+      this.collection.each(function (s) {
+        self.$el.append(self.template(s.toJSON()));
+      });
+
+    }
+
+  });
 
 }());
 
@@ -655,6 +697,7 @@ $( document ).ready(function(){
     home: function() {
       $('.enterSite').hide();
       new App.Views.AllEvents({collection: App.all_events});
+      new App.Views.MessageList({collection: App.all_messages});
     },
 
     enterSite: function() {
