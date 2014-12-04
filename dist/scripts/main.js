@@ -666,11 +666,18 @@ $( document ).ready(function(){
 
   // Query who recieved message
   queryRecipient: function () {
+    var self= this;
+
     var query= new Parse.Query (App.Models.MessageModel);
     query.equalTo('recipient', App.user.attributes.username);
     query.find({
       success: function(results) {
         console.log(results);
+
+        self.collection.models = results;
+
+        self.render();
+
       },
       error: function(error) {
         alert("Error");
