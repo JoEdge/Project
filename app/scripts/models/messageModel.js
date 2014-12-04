@@ -9,14 +9,13 @@ $( document ).ready(function(){
       sender: '',
       recipient: '',
       content: '',
-      kids: '',
+      share: '',
 
     },
 
     idAttribute: 'objectID',
 
     initialize: function(){
-      console.log("my message");
 
     }
 

@@ -20,12 +20,12 @@ $( document ).ready(function(){
       medical:'',
       notes: '',
       user:'',
+      listed: '',
     },
 
     idAttribute: 'objectID',
 
     initialize: function(){
-      console.log("my kids info");
 
     }
 

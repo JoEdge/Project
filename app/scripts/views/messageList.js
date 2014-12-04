@@ -22,6 +22,21 @@
       $('#updateInfo').html(this.$el);
 
     },
+    // 
+    // var query = new Parse.Query(MessageModel);
+    //     query.get(senderID, {
+    //       success: function(sender) {
+    //         var whoSent = sender.get("User");
+    //           whoSent.fetch({
+    //             success: function(fetched) {
+    //               console.log("User named");
+    //             },
+    //             error: function() {
+    //             console.log("Error");
+    //             }
+    //           });
+    //        }
+    //     });
 
 
     render: function(){
@@ -30,8 +45,8 @@
       //clears our element
       this.$el.empty();
 
-      this.collection.each(function (s) {
-        self.$el.append(self.template(s.toJSON()));
+      this.collection.each(function (myMessage) {
+        self.$el.append(self.template(myMessage.toJSON()));
       });
 
     }

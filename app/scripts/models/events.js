@@ -17,7 +17,6 @@ $( document ).ready(function(){
     idAttribute: 'objectID',
 
     initialize: function(){
-      console.log("my events");
 
     }
 

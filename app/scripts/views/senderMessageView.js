@@ -51,7 +51,7 @@ $( document ).ready(function(){
       var myMessage = new App.Models.MessageModel ({
         recipient: $('#recipient').val(),
         content: $('#content').val(),
-        sender: App.user,
+        sender: App.user.attributes.username,
 
       });//end var myMessages
 
