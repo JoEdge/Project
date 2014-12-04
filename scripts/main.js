@@ -635,7 +635,7 @@ $( document ).ready(function(){
 
       this.render();
 
-      this.querySender();
+//      this.querySender();
 
       this.queryRecipient();
 
@@ -646,29 +646,28 @@ $( document ).ready(function(){
 
     },
 
-    querySender: function () {
+  // Query who sent message
+  //   querySender: function () {
+  //
+  //   var query = new Parse.Query (App.Models.MessageModel);
+  //   //console.log(sender);
+  //     query.equalTo('sender', App.user);
+  //     query.find({
+  //       success: function(results) {
+  //         console.log(results);
+  //
+  //     },
+  //       error: function(error) {
+  //         alert("Error1");
+  //     }
+  //   });
+  // },
 
-    var query = new Parse.Query (App.Models.MessageModel);
-    //console.log(sender);
-      query.equalTo('sender', App.user);
-      //  query.include('Message');
-      //  query.include('Message.sender');
-      query.find({
-        success: function(results) {
-          console.log(results);
-      },
-        error: function(error) {
-          alert("Error1");
-      }
-    });
 
-  },
-
+  // Query who recieved message
   queryRecipient: function () {
     var query= new Parse.Query (App.Models.MessageModel);
-    query.equalTo('recipient', $('#recipient').val() );
-    // query.include('message');
-    // query.include('message.recipient');
+    query.equalTo('recipient', App.user.attributes.username);
     query.find({
       success: function(results) {
         console.log(results);
