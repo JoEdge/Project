@@ -48,10 +48,12 @@ $( document ).ready(function(){
     },
 
     shareKidInfo: function(id) {
-      $('.enterSite').show();
-      $('.main').hide();
-      $('.sidebar').hide();
-      new App.Views.SenderMessageView();
+      $('.enterSite').hide();
+      $('.main').show();
+      $('.sidebar').show();
+      var kidId = App.all_myKids.get(id);
+      new App.Views.SenderMessageView({ kid_id: kidId });
+      new App.Views.MyKidsList({collection: App.all_myKids});
     },
 
     editEventInfo: function (id) {

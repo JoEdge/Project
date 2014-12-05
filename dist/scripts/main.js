@@ -82,7 +82,7 @@ $( document ).ready(function(){
       recipient: '',
       content: '',
       share: '',
-
+      kid: '',
     },
 
     idAttribute: 'objectID',
@@ -531,7 +531,7 @@ $( document ).ready(function(){
     initialize: function (options) {
       this.options = options;
       this.render();
-      console.log("1");
+
       // Get our Element On Our Page
       $('#log_signup').html(this.$el);
     },
@@ -539,13 +539,12 @@ $( document ).ready(function(){
     render: function () {
       this.$el.empty();
       this.$el.html(this.template(this.options.events.toJSON()));
-      console.log("2");
 
     },
 
     updateEvent: function (e) {
       e.preventDefault();
-      console.log("3");
+    
       // Update our Model Instance
       this.options.events.set({
         eventName: $("#update_event_name").val(),
@@ -633,17 +632,37 @@ $( document ).ready(function(){
 
     template: $("#messagesTo").html(),
 
-    initialize: function() {
+    initialize: function(options) {
+      this.options = options;
 
       this.render();
 
-      $('#log_signup').html(this.$el);
+    //  this.queryKid();
+
+      // Get the kid profile out of Parse with a query using this.kid_id.
+       //this.kid =
+
+      $('#updateInfo').html(this.$el);
     },//end initialize
 
+    // Query who recieved message
+    // queryKid: function () {
+    //   var queryKid = new Parse.Query(App.Models.MyKidsProfile);
+    //   queryKid.get("kid", App.all_myKids._byId );
+    //     queryKid.find({
+    //     success: function(results) {
+    //       console.log(results);
+    //     },
+    //     error: function(object, error) {
+    //       console.log(error);
+    //     }
+    //   });
+    // },
 
     render: function() {
 
       this.$el.html(this.template);
+
     },//end render
 
 
@@ -652,10 +671,10 @@ $( document ).ready(function(){
 
       var myMessage = new App.Models.MessageModel ({
         recipient: $('#recipient').val(),
-        content: $('#content').val(),
+        content: '',
         sender: App.user,
         senderName: $('#senderName').val(),
-
+        kid: this.kid,
       });//end var myMessages
 
       //Set Control
@@ -823,10 +842,12 @@ $( document ).ready(function(){
     },
 
     shareKidInfo: function(id) {
-      $('.enterSite').show();
-      $('.main').hide();
-      $('.sidebar').hide();
-      new App.Views.SenderMessageView();
+      $('.enterSite').hide();
+      $('.main').show();
+      $('.sidebar').show();
+      var kidId = App.all_myKids.get(id);
+      new App.Views.SenderMessageView({ kid_id: kidId });
+      new App.Views.MyKidsList({collection: App.all_myKids});
     },
 
     editEventInfo: function (id) {

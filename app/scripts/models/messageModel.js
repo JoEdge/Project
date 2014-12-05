@@ -11,7 +11,7 @@ $( document ).ready(function(){
       recipient: '',
       content: '',
       share: '',
-
+      kid: '',
     },
 
     idAttribute: 'objectID',

@@ -12,17 +12,37 @@ $( document ).ready(function(){
 
     template: $("#messagesTo").html(),
 
-    initialize: function() {
+    initialize: function(options) {
+      this.options = options;
 
       this.render();
 
-      $('#log_signup').html(this.$el);
+    //  this.queryKid();
+
+      // Get the kid profile out of Parse with a query using this.kid_id.
+       //this.kid =
+
+      $('#updateInfo').html(this.$el);
     },//end initialize
 
+    // Query who recieved message
+    // queryKid: function () {
+    //   var queryKid = new Parse.Query(App.Models.MyKidsProfile);
+    //   queryKid.get("kid", App.all_myKids._byId );
+    //     queryKid.find({
+    //     success: function(results) {
+    //       console.log(results);
+    //     },
+    //     error: function(object, error) {
+    //       console.log(error);
+    //     }
+    //   });
+    // },
 
     render: function() {
 
       this.$el.html(this.template);
+
     },//end render
 
 
@@ -31,10 +51,10 @@ $( document ).ready(function(){
 
       var myMessage = new App.Models.MessageModel ({
         recipient: $('#recipient').val(),
-        content: $('#content').val(),
+        content: '',
         sender: App.user,
         senderName: $('#senderName').val(),
-
+        kid: this.kid,
       });//end var myMessages
 
       //Set Control
