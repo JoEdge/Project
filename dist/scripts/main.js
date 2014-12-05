@@ -833,8 +833,8 @@ $( document ).ready(function(){
       $('.enterSite').show();
       $('.main').hide();
       $('.sidebar').hide();
-      //var e = App.all_events.get(id);
-      new App.Views.EditEvent();
+      var e = App.all_events.get(id);
+      new App.Views.EditEvent({events:e});
     },
 
   });
