@@ -12,6 +12,7 @@ $( document ).ready(function(){
       'start': 'enterSite',
       'profile' : 'profileInfo',
       'share/:id': 'shareKidInfo',
+      'editEvent/:id': 'editEventInfo',
 
     },
 
@@ -51,6 +52,14 @@ $( document ).ready(function(){
       $('.main').hide();
       $('.sidebar').hide();
       new App.Views.SenderMessageView();
+    },
+
+    editEventInfo: function (id) {
+      $('.enterSite').show();
+      $('.main').hide();
+      $('.sidebar').hide();
+      //var e = App.all_events.get(id);
+      new App.Views.EditEvent();
     },
 
   });

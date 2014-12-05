@@ -144,6 +144,20 @@
           </div>
       </script>
 
+      <!-- Template to Edit Event -->
+      <script type="text/template" id="editedEvent">
+        <h3>Edit Event</h3>
+          <div class="updateEvent" id="<%= objectId %>">
+            <form id="FormEditEvent">
+              <input id='update_event_name' type='text' value="<%= eventName %>"/>
+              <input id='update_event_date' type='text' value="<%= eventDate %>"/>
+              <input id='update_event_location' type='text' value="<%= location %>"/>
+                <button id="editor">Edit It!</button>
+                <button id="eventDelete">Delete</button>
+            </form>
+          </div>
+      </script>
+
       <!-- Template to List My Events  -->
       <script type='text/template' id='listMyEvents'>
       <div class= "eventShown">
@@ -152,12 +166,11 @@
           <p><%= eventDate %></p>
           <p><%= location %></p>
             <a href="#/edit/<%= objectId %>"> <button id"editEvent">Edit</button></a>
-            <button id="eventDelete">Delete</button>
         </li>
       </div>
       </script>
 
-      <!-- Template to List My Events  -->
+      <!-- Template to List All Events  -->
       <script type='text/template' id='allMyEvents'>
         <div class= "allEventShown">
           <li class="allEvents" id="<%= objectId %>">
@@ -217,6 +230,7 @@
         <script src="scripts/views/myKidsList.js"></script>
         <script src="scripts/views/addEvent.js"></script>
         <script src="scripts/views/myAddedEvents.js"></script>
+        <script src="scripts/views/editEvent.js"></script>
         <script src="scripts/views/allEvents.js"></script>
         <script src="scripts/views/senderMessageView.js"></script>
         <script src="scripts/views/messageList.js"></script>
