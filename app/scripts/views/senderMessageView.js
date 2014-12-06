@@ -49,25 +49,25 @@ $( document ).ready(function(){
 
         kid_query.equalTo('kid', this.options.kid_id);
 
-        this.$el.append('<div class="kiddy"></div>');
+        this.$el.append('<ul class="kiddy"></div>');
 
         kid_query.find({
           success: function (results) {
 
             _.each(results, function(kiddy) {
-              $('div.kiddy').append(kidTemplate(kiddy.toJSON()));
+              $('ul.kiddy').append(kidTemplate(kiddy.toJSON()));
             })
           }
         })
 
     },//end render
-
+    //
     sendKidInfo: function(e) {
 
       console.log("ha");
 
         this.options.kid_id.set({
-          image: imageFile,
+          //image: imageFile,
           firstName: $('#kfirstName').val(),
           lastName: $('#klastName').val(),
           birthdate: $('#birthdate').val(),
@@ -86,9 +86,6 @@ $( document ).ready(function(){
 
       // Save Instance
       this.options.kid_id.save();
-
-      // Return to home page
-      App.router.navigate('', {trigger: true});
 
     },
 
@@ -114,7 +111,6 @@ $( document ).ready(function(){
       myMessage.save(null, {
         success: function () {
           App.all_messages.add(myMessage);
-          console.log($('#recipient').val());
         }//end success
 
       });//end myMessage.save

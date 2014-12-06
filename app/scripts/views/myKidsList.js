@@ -35,32 +35,33 @@
         self.$el.append(self.template(myKid.toJSON()));
       });
 
-    },
-
+    //   var MessageTemplate = _.template($('#messageTo').html());
+    //   this.$el.html(this.template(this.options.kid_id.toJSON()));
+    //
     //   var kidTemplate = _.template($('#listMyKids').html());
     //   var kid_query = new Parse.Query(App.Models.MyKidsProfile);
     //
-    //   kid_query.equalTo('parent', this.options.message);
+    //   kid_query.equalTo('kid', this.options.kid_id);
     //
-    //   this.$el.append('<ul class="kiddy"></ul>');
+    //   this.$el.append('<div class="kiddy"></div>');
     //
     //   kid_query.find({
     //     success: function (results) {
     //
     //       _.each(results, function(kiddy) {
-    //         $('ul.kiddy').append(kidTemplate(kiddy.toJSON()));
+    //         $('div.kiddy').append(kidTemplate(kiddy.toJSON()));
     //       })
     //     }
     //   })
-    // },
+    //
+     },
     //
     // sendKidInfo: function(e) {
     //
     //   console.log("ha");
     //
-    //   var kidInfo = new App.Models.MessageModel({
-    //
-    //     image: imageFile,
+    //   this.options.kid_id.set({
+    //     //image: imageFile,
     //     firstName: $('#kfirstName').val(),
     //     lastName: $('#klastName').val(),
     //     birthdate: $('#birthdate').val(),
@@ -73,16 +74,12 @@
     //     doctor: $('#doctor').val(),
     //     medical: $('#medical').val(),
     //     notes: $('#notes').val(),
-    //     parent: this.options.message
+    //     kid: this.options.kid_id
     //
     //   });
     //
-    //   kidInfo.save(null, {
-    //     success: function () {
-    //       console.log('Kid to message');
-    //       App.router.navigate('', {trigger: true});
-    //     }
-    //   });
+    //   // Save Instance
+    //   this.options.kid_id.save();
     //
     // },
 
