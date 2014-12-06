@@ -19,7 +19,7 @@ $( document ).ready(function(){
 
     home: function() {
       $('.enterSite').hide();
-      new App.Views.AllEvents({collection: App.all_events});
+      new App.Views.MyKidsList({collection: App.all_myKids});
       new App.Views.MessageList({collection: App.all_messages});
     },
 

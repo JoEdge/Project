@@ -5,7 +5,7 @@ $( document ).ready(function(){
     className: "Message",
 
     events: {
-      "click #kidInfo": "sendKidInfo",
+      //"click #kidInfo": "sendKidInfo",
       "submit #messageForm" : "sendMessage",
 
     },//end events
@@ -61,32 +61,32 @@ $( document ).ready(function(){
 
     },//end render
     //
-    sendKidInfo: function(e) {
-
-      console.log("ha");
-
-        this.options.kid_id.set({
-          //image: imageFile,
-          // firstName: $('#kfirstName').val(),
-          // lastName: $('#klastName').val(),
-          // birthdate: $('#birthdate').val(),
-          // address1: $('#kAddress1').val(),
-          // address2: $('#kAddress2').val(),
-          // ec1Name: $('#Emergency1').val(),
-          // ec1Phone: $('#Emergency1Phone').val(),
-          // ec2Name: $('#Emergency2').val(),
-          // ec2Phone: $('#Emergency2Phone').val(),
-          // doctor: $('#doctor').val(),
-          // medical: $('#medical').val(),
-          // notes: $('#notes').val(),
-          kid: this.options.kid_id
-
-      });
-
-      // Save Instance
-      this.options.kid_id.save();
-
-    },
+    // sendKidInfo: function(e) {
+    //
+    //   console.log("ha");
+    //
+    //     this.options.kid_id.set({
+    //       image: imageFile,
+    //       firstName: $('#kfirstName').val(),
+    //       lastName: $('#klastName').val(),
+    //       birthdate: $('#birthdate').val(),
+    //       address1: $('#kAddress1').val(),
+    //       address2: $('#kAddress2').val(),
+    //       ec1Name: $('#Emergency1').val(),
+    //       ec1Phone: $('#Emergency1Phone').val(),
+    //       ec2Name: $('#Emergency2').val(),
+    //       ec2Phone: $('#Emergency2Phone').val(),
+    //       doctor: $('#doctor').val(),
+    //       medical: $('#medical').val(),
+    //       notes: $('#notes').val(),
+    //       kid: this.options.kid_id
+    //
+    //   });
+    //
+    //   // Save Instance
+    //   this.options.kid_id.save();
+    //
+    // },
 
     sendMessage: function(e) {
       e.preventDefault();
