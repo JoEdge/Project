@@ -786,7 +786,7 @@ $( document ).ready(function(){
 
         kid_query.equalTo('kid', this.options.kid_id);
 
-        this.$el.append('<ul class="kiddy"></div>');
+        this.$el.append('<ul class="kiddy"></ul>');
 
         kid_query.find({
           success: function (results) {
@@ -834,7 +834,7 @@ $( document ).ready(function(){
         content: '',
         sender: App.user,
         senderName: $('#senderName').val(),
-        kid: this.kid_id
+        kid: this.options.kid_id
       });//end var myMessages
 
       //Set Control
@@ -848,6 +848,12 @@ $( document ).ready(function(){
       myMessage.save(null, {
         success: function () {
           App.all_messages.add(myMessage);
+
+          // Now going to deal with the Kid Object
+          // 1. Take the "kid" shared (this.options.kid_id)
+          // 2. Update their ACL so that the recipient has access
+
+
         }//end success
 
       });//end myMessage.save
