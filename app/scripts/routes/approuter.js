@@ -13,6 +13,7 @@ $( document ).ready(function(){
       'profile' : 'profileInfo',
       'share/:id': 'shareKidInfo',
       'editEvent/:id': 'editEventInfo',
+      'editKid/:id': 'editKidInfo',
 
     },
 
@@ -62,6 +63,14 @@ $( document ).ready(function(){
       $('.sidebar').hide();
       var e = App.all_events.get(id);
       new App.Views.EditEvent({events:e});
+    },
+
+    editKidInfo: function(id) {
+      $('.enterSite').show();
+      $('.main').hide();
+      $('.sidebar').hide();
+      var k = App.all_myKids.get(id);
+      new App.Views.EditKid({kids:k});
     },
 
   });

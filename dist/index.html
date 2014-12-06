@@ -116,11 +116,40 @@
               <li><%= doctor %></li>
               <li><%= medical %></li>
               <li><%= notes %></li>
-                <a href="#/edit/<%= objectId %>"><button id="updateButton">Edit</button></a>
+                <a href="#/editKid/<%= objectId %>"><button id="updateButton">Edit</button></a>
                 <a href="#/share/<%= objectId %>"><button id="shareInfo">Share</button></a>
           </div>
        </li>
        </div>
+      </script>
+
+      <!-- Template to Edit KidProfile -->
+      <script type="text/template" id="editedKid">
+        <h3>Edit Kid</h3>
+          <div class="updateKid" id="<%= objectId %>">
+            <form id="FormEditKid">
+              <input id='update_kfirstName' type='text' value='<%= firstName %>'/>
+              <input id='update_klastName' type='text' value='<%= lastName %>'/>
+              <input id='update_birthdate' type='date' value="<%= birthdate %>"/>
+              <input id='update_kAddress1' type='text' value='<%= address1 %>'/>
+              <input id='update_kAddress2' type='text' va;ue='<%= address2 %>'/>
+              <input id='update_Emergency1' type='text' value='<%= ec1Name %>'/>
+              <input id='update_Emergency1Phone' type='text' value='<%= ec1Phone %>'/>
+              <input id='update_Emergency2' type='text' value='<%= ec2Name %>'/>
+              <input id='update_Emergency2Phone' type='text' value='<%= ec2Phone %>'/>
+              <input id='update_doctor' type='text' value='<%= doctor %>'/>
+                <select id="update_medical" value='<%= medical %>'>
+                  <option value= '<%= medical %>'><%= medical %></option>
+                  <option value='Allergy'>Allergy</option>
+                  <option value='Dietary Restriction'>Dietary Restriction</option>
+                  <option value='Medical Condition'>Medical Condition</option>
+                  <option value='Medication'>Medications</option>
+                </select>
+              <textarea id='update_notes' type='text'><%= notes %></textarea>
+                <button id="kidEditor">Edit It!</button>
+                <button id="kidDelete">Delete</button>
+            </form>
+          </div>
       </script>
 
       <!-- Template to Add Event  -->
@@ -178,9 +207,10 @@
         <div class="chat" id="<%= objectId %>">
           <form id="messageForm">
             <input id='recipient' type='text' placeholder='To: '/>
-              <p>You have access to: </p>
             <input id='senderName' type='text' placeholder='From: '/>
+              <button id="kidInfo">Add Kid Info</button>
               <button id"sendMsg">Send</button>
+            <div class="kidNFO"></div>
           </form>
         </div>
       </script>

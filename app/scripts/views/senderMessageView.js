@@ -5,12 +5,12 @@ $( document ).ready(function(){
     className: "Message",
 
     events: {
-
+      "click #kidInfo": "sendKidInfo",
       "submit #messageForm" : "sendMessage",
 
     },//end events
 
-    template: $("#messagesTo").html(),
+    template: _.template($('#messagesTo').html()),
 
     initialize: function(options) {
       this.options = options;
@@ -41,10 +41,58 @@ $( document ).ready(function(){
 
     render: function() {
 
-      this.$el.html(this.template);
+    //  this.$el.html(this.template);
+      this.$el.html(this.template(this.options.kid_id.toJSON()));
+
+        var kidTemplate = _.template($('#listMyKids').html());
+        var kid_query = new Parse.Query(App.Models.MyKidsProfile);
+
+        kid_query.equalTo('kid', this.options.kid_id);
+
+        this.$el.append('<div class="kiddy"></div>');
+
+        kid_query.find({
+          success: function (results) {
+
+            _.each(results, function(kiddy) {
+              $('div.kiddy').append(kidTemplate(kiddy.toJSON()));
+            })
+          }
+        })
 
     },//end render
 
+    sendKidInfo: function(e) {
+
+      console.log("ha");
+
+      var kidInfo = new App.Models.MessageModel({
+
+        //image: imageFile,
+        firstName: $('#kfirstName').val(),
+        lastName: $('#klastName').val(),
+        birthdate: $('#birthdate').val(),
+        address1: $('#kAddress1').val(),
+        address2: $('#kAddress2').val(),
+        ec1Name: $('#Emergency1').val(),
+        ec1Phone: $('#Emergency1Phone').val(),
+        ec2Name: $('#Emergency2').val(),
+        ec2Phone: $('#Emergency2Phone').val(),
+        doctor: $('#doctor').val(),
+        medical: $('#medical').val(),
+        notes: $('#notes').val(),
+        kid: this.options.kid_id
+
+      });
+
+      kidInfo.save(null, {
+        success: function () {
+          console.log('Kid to message');
+          App.router.navigate('', {trigger: true});
+        }
+      });
+
+    },
 
     sendMessage: function(e) {
       e.preventDefault();
