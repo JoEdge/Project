@@ -345,6 +345,7 @@ $( document ).ready(function(){
         medical: $('#medical').val(),
         notes: $('#notes').val(),
         user: App.user,
+        listed: false,
 
       });
 
@@ -376,7 +377,7 @@ $( document ).ready(function(){
     className: 'myKidsList',
 
     events: {
-    //  'click #shareInfo': 'sendKidInfo',
+
     },
 
     template: _.template($('#listMyKids').html()),
@@ -406,53 +407,7 @@ $( document ).ready(function(){
         self.$el.append(self.template(myKid.toJSON()));
       });
 
-    //   var MessageTemplate = _.template($('#messageTo').html());
-    //   this.$el.html(this.template(this.options.kid_id.toJSON()));
-    //
-    //   var kidTemplate = _.template($('#listMyKids').html());
-    //   var kid_query = new Parse.Query(App.Models.MyKidsProfile);
-    //
-    //   kid_query.equalTo('kid', this.options.kid_id);
-    //
-    //   this.$el.append('<div class="kiddy"></div>');
-    //
-    //   kid_query.find({
-    //     success: function (results) {
-    //
-    //       _.each(results, function(kiddy) {
-    //         $('div.kiddy').append(kidTemplate(kiddy.toJSON()));
-    //       })
-    //     }
-    //   })
-    //
      },
-    //
-    // sendKidInfo: function(e) {
-    //
-    //   console.log("ha");
-    //
-    //   this.options.kid_id.set({
-    //     //image: imageFile,
-    //     firstName: $('#kfirstName').val(),
-    //     lastName: $('#klastName').val(),
-    //     birthdate: $('#birthdate').val(),
-    //     address1: $('#kAddress1').val(),
-    //     address2: $('#kAddress2').val(),
-    //     ec1Name: $('#Emergency1').val(),
-    //     ec1Phone: $('#Emergency1Phone').val(),
-    //     ec2Name: $('#Emergency2').val(),
-    //     ec2Phone: $('#Emergency2Phone').val(),
-    //     doctor: $('#doctor').val(),
-    //     medical: $('#medical').val(),
-    //     notes: $('#notes').val(),
-    //     kid: this.options.kid_id
-    //
-    //   });
-    //
-    //   // Save Instance
-    //   this.options.kid_id.save();
-    //
-    // },
 
   });
 
@@ -828,16 +783,17 @@ $( document ).ready(function(){
 
     sendMessage: function(e) {
       e.preventDefault();
-
+      console.log(this.options.kid_id);
       var myMessage = new App.Models.MessageModel ({
         recipient: $('#recipient').val(),
-        content: '',
+        content:  $('#content').val(),
         sender: App.user,
         senderName: $('#senderName').val(),
         kid: this.options.kid_id
       });//end var myMessages
 
-      //Set Control
+
+      //Set Control on Message
       var myMessageACL = new Parse.ACL(Parse.User.current());
       myMessageACL.setPublicReadAccess(true);
       myMessageACL.setWriteAccess(Parse.User.current(), true);
@@ -848,6 +804,8 @@ $( document ).ready(function(){
       myMessage.save(null, {
         success: function () {
           App.all_messages.add(myMessage);
+          //clear my form
+          $("#messageForm")[0].reset();
 
           // Now going to deal with the Kid Object
           // 1. Take the "kid" shared (this.options.kid_id)
@@ -872,7 +830,7 @@ $( document ).ready(function(){
 
     events: {
 
-      'click #getMsg' : 'viewMessage',
+      'click #getMsg' : 'addNewKids',
 
     },
 
@@ -884,7 +842,7 @@ $( document ).ready(function(){
 
       this.render();
 
-//      this.querySender();
+  //    this.queryKid();
 
       this.queryRecipient();
 
@@ -895,12 +853,12 @@ $( document ).ready(function(){
 
     },
 
-  // Query who sent message
-  //   querySender: function () {
+  //Query who sent message
+  //   queryKid: function () {
   //
   //   var query = new Parse.Query (App.Models.MessageModel);
-  //   //console.log(sender);
-  //     query.equalTo('sender', App.user);
+  //   //console.log(kid);
+  //     query.equalTo('kid', this.options.kid_id);
   //     query.find({
   //       success: function(results) {
   //         console.log(results);
@@ -911,7 +869,6 @@ $( document ).ready(function(){
   //     }
   //   });
   // },
-
 
   // Query who recieved message
   queryRecipient: function () {
@@ -934,7 +891,6 @@ $( document ).ready(function(){
 
   },
 
-
     render: function(){
       var self = this;
 
@@ -947,7 +903,7 @@ $( document ).ready(function(){
 
     },
 
-    viewMessage: function (e) {
+    addNewKids: function (e) {
       e.preventDefault();
 
       console.log("ha");
