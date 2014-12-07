@@ -38,6 +38,16 @@ $( document ).ready(function(){
 
     });//end of fetch all_mykids
 
+
+      // $(".dropdown-button").on('click', function() {
+      //   $(".dropdown-menu").toggleClass("show-menu");
+      //   $(".dropdown-menu > li").on('click',function(){
+      //     $(".dropdown-menu").removeClass("show-menu");
+      //   });
+      //   $(".dropdown-menu.dropdown-select > li").on('click',function() {
+      //     $(".dropdown-button").html($(this).html());
+      //   });
+
     // Log Out
     $('#logOut').on('click', function (e) {
       e.preventDefault();

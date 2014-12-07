@@ -745,43 +745,38 @@ $( document ).ready(function(){
 
 }());
 
-(function () {
-  App.Views.AllEvents = Parse.View.extend ({
+$( document ).ready(function(){
 
-    tagName: 'ul',
-    className: 'AllEvents',
+  App.Views.AddKid2EventView = Parse.View.extend ({
+
+    className: "AddKid2Event",
 
     events: {
+    //  "click #addKidBtn" : "addingKids",
 
-    },
+    },//end events
 
-    template: _.template($('#allMyEvents').html()),
+    template: _.template($('#oneEvent').html()),
 
     initialize: function(options) {
-
       this.options = options;
 
       this.render();
 
-      //this.collection.off();
-      this.collection.on('sync', this.render, this);
+      $('#updateInfo').html(this.$el);
+    },//end initialize
 
-      $('#myKidsOnly').html(this.$el);
+    render: function() {
 
-    },
-
-
-    render: function(){
       var self= this;
 
       //clears our element
       this.$el.empty();
 
-      this.collection.each(function (s) {
-        self.$el.append(self.template(s.toJSON()));
-      });
+      this.$el.html(this.template(this.options.adder.toJSON()));
 
-    }
+    },
+
 
   });
 
@@ -1014,6 +1009,7 @@ $( document ).ready(function(){
       'share/:id': 'shareKidInfo',
       'editEvent/:id': 'editEventInfo',
       'editKid/:id': 'editKidInfo',
+      'addKids/:id': 'addingKids',
 
     },
 
@@ -1054,6 +1050,13 @@ $( document ).ready(function(){
     myKidsInfo: function() {
       $('.enterSite').hide();
       new App.Views.MyKidsView();
+      new App.Views.MyKidsList({collection: App.all_myKids});
+    },
+
+    addingKids: function(id) {
+      $('.enterSite').hide();
+      var ak = App.all_events.get(id);
+      new App.Views.AddKid2EventView({adder: ak});
       new App.Views.MyKidsList({collection: App.all_myKids});
     },
 
@@ -1132,6 +1135,16 @@ $( document ).ready(function(){
       Parse.history.start();
 
     });//end of fetch all_mykids
+
+
+      // $(".dropdown-button").on('click', function() {
+      //   $(".dropdown-menu").toggleClass("show-menu");
+      //   $(".dropdown-menu > li").on('click',function(){
+      //     $(".dropdown-menu").removeClass("show-menu");
+      //   });
+      //   $(".dropdown-menu.dropdown-select > li").on('click',function() {
+      //     $(".dropdown-button").html($(this).html());
+      //   });
 
     // Log Out
     $('#logOut').on('click', function (e) {

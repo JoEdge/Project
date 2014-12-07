@@ -38,7 +38,8 @@
 
       <!-- main-  -->
       <div class="main">
-        <div id="myKidsOnly"></div>
+        <div id="myKidsOnly">
+        </div>
       </div>
     </div>
 
@@ -118,10 +119,11 @@
      <div class= "kidShown">
       <li class="showMyKids" id="<%= objectId %>">
           <div class="kidShare">
-              <a href="#/kidSingle/<%= objectId %>""><img id='profilePic' src= "<%= image.url %>" alt="Smiley face" width="30%"/></a>
+              <a href="#/kidSingle/<%= objectId %>"><img id='profilePic' src= "<%= image.url %>" alt="Smiley face" width="30%"/></a>
               <h3><%= firstName %> <%= lastName %> </h3>
                 <a href="#/editKid/<%= objectId %>"><button id="updateButton">Edit</button></a>
                 <a href="#/share/<%= objectId %>"><button id="shareInfo">Share</button></a>
+                <button id="addKidBtn">Add</button>
           </div>
        </li>
        </div>
@@ -214,14 +216,15 @@
           <p><%= eventDate %></p>
           <p><%= location %></p>
             <a href="#/editEvent/<%= objectId %>"> <button id"editEvent">Edit</button></a>
+            <a href="#/addKids/<%= objectId %>"> <button id"kidAdder">Add Kids</button></a>
         </li>
       </div>
       </script>
 
-      <!-- Template to List All Events  -->
-      <script type='text/template' id='allMyEvents'>
-        <div class= "allEventShown">
-          <li class="allEvents" id="<%= objectId %>">
+      <!-- Template to List One Event  -->
+      <script type='text/template' id='oneEvent'>
+        <div class= "oneEventShown">
+          <li class="soloEvent" id="<%= objectId %>">
             <h4><%= eventName %></hr>
             <p><%= eventDate %></p>
             <p><%= location %></p>

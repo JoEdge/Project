@@ -16,6 +16,7 @@ $( document ).ready(function(){
       'share/:id': 'shareKidInfo',
       'editEvent/:id': 'editEventInfo',
       'editKid/:id': 'editKidInfo',
+      'addKids/:id': 'addingKids',
 
     },
 
@@ -56,6 +57,13 @@ $( document ).ready(function(){
     myKidsInfo: function() {
       $('.enterSite').hide();
       new App.Views.MyKidsView();
+      new App.Views.MyKidsList({collection: App.all_myKids});
+    },
+
+    addingKids: function(id) {
+      $('.enterSite').hide();
+      var ak = App.all_events.get(id);
+      new App.Views.AddKid2EventView({adder: ak});
       new App.Views.MyKidsList({collection: App.all_myKids});
     },
 
