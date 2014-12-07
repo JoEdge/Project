@@ -472,13 +472,52 @@ $( document ).ready(function(){
 
 (function () {
 
+  App.Views.SoloKid = Parse.View.extend({
+
+    tagName: 'ul',
+    className: 'SoloKid',
+
+    events: {
+
+      'click #backItUp' : 'goBack',
+
+    },
+
+    template: _.template($('#solokiddy').html()),
+
+    initialize: function (options) {
+      this.options = options;
+      this.render();
+
+      // Get our Element On Our Page
+      $('#log_signup').html(this.$el);
+    },
+
+    render: function () {
+      this.$el.empty();
+      this.$el.html(this.template(this.options.onekid.toJSON()));
+
+    },
+
+    goBack: function() {
+      App.router.navigate('', {trigger: true});
+
+    },
+
+
+  });
+
+}());
+
+(function () {
+
   App.Views.EditKid = Parse.View.extend({
 
     tagName: 'ul',
     className: 'EditKid',
 
     events: {
-      'submit #FormEditKid' : 'updateKid',
+      'click #kidEditor' : 'updateKid',
       'click #kidDelete' : 'deleteKid',
     },
 
@@ -503,7 +542,7 @@ $( document ).ready(function(){
 
       // Update our Model Instance
       this.options.kids.set({
-        //image: imageFile,
+        image: imageFile,
         firstName: $('#update_kfirstName').val(),
         lastName: $('#update_klastName').val(),
         birthdate: $('#update_birthdate').val(),
@@ -767,7 +806,7 @@ $( document ).ready(function(){
 
       this.render();
 
-      this.queryRecipient();
+    //  this.queryRecipient();
 
     //  this.queryGetter();
 
@@ -788,26 +827,25 @@ $( document ).ready(function(){
     // },
 
     // Query who recieved message
-    queryRecipient: function () {
-      var self= this;
-
-      var query= new Parse.Query (App.Models.MessageModel);
-        query.equalTo('recipient', App.user.attributes.username);
-        query.find({
-
-        success: function(results) {
-          console.log(results);
-        },
-        error: function(error) {
-          alert("Error");
-        }
-      });
-
-    },
+    // queryRecipient: function () {
+    //   var self= this;
+    //
+    //   var query= new Parse.Query (App.Models.MessageModel);
+    //     query.equalTo('recipient', App.user.attributes.username);
+    //     query.find({
+    //
+    //     success: function(results) {
+    //       console.log(results);
+    //     },
+    //     error: function(error) {
+    //       alert("Error");
+    //     }
+    //   });
+    //
+    // },
 
     render: function() {
 
-    //  this.$el.html(this.template);
       this.$el.html(this.template(this.options.kid_id.toJSON()));
 
         var kidTemplate = _.template($('#listMyKids').html());
@@ -972,6 +1010,7 @@ $( document ).ready(function(){
       'start': 'enterSite',
       'profile/:id' : 'profileInfo',
       'mykids' : 'myKidsInfo',
+      'kidSingle/:id' : 'oneKid',
       'share/:id': 'shareKidInfo',
       'editEvent/:id': 'editEventInfo',
       'editKid/:id': 'editKidInfo',
@@ -994,7 +1033,6 @@ $( document ).ready(function(){
       $('#logOut').click(function() {
           location.reload();
       });
-
     },
 
     profileInfo: function() {
@@ -1003,6 +1041,14 @@ $( document ).ready(function(){
       $('.sidebar').hide();
       var u = App.all_users.get(id);
       new App.Views.EditUser({users:u});
+    },
+
+    oneKid: function (id) {
+      $('.enterSite').show();
+      $('.main').hide();
+      $('.sidebar').hide();
+      var sk = App.all_myKids.get(id);
+      new App.Views.SoloKid({onekid:sk});
     },
 
     myKidsInfo: function() {

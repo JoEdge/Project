@@ -18,11 +18,11 @@
     <div class="container">
       <!-- navigation bar -->
       <nav>
-        <a href="#/start"</a><button id="logOut">Logout</button></a>
+        <a href="#/start"><button id="logOut">Logout</button></a>
         <a href="#/profile/" class="profileBtn"><button>Update My Profile</button></a>
-        <a href="#/mykids"</a><button id="eventBtn">Add My Kids</button></a>
-        <a href="#/event"</a><button id="eventBtn">Events</button></a>
-        <a href="#/"</a><button id="homeBtn">Home</button></a>
+        <a href="#/mykids"><button id="eventBtn">Add My Kids</button></a>
+        <a href="#/event"><button id="eventBtn">Events</button></a>
+        <a href="#/"><button id="homeBtn">Home</button></a>
         <span id="loggedIn"></span>
       </nav>
 
@@ -118,23 +118,36 @@
      <div class= "kidShown">
       <li class="showMyKids" id="<%= objectId %>">
           <div class="kidShare">
-            <h4><%= firstName %> <%= lastName %> </h4>
-              <img id='profilePic' src= "<%= image.url %>" alt="Smiley face" width="15%"/>
-              <li><%= birthdate %></li>
-              <li><%= address1 %></li>
-              <li><%= address2 %></li>
-              <li><%= ec1Name %></li>
-              <li><%= ec1Phone %></li>
-              <li><%= ec2Name %></li>
-              <li><%= ec2Phone %></li>
-              <li><%= doctor %></li>
-              <li><%= medical %></li>
-              <li><%= notes %></li>
+              <a href="#/kidSingle/<%= objectId %>""><img id='profilePic' src= "<%= image.url %>" alt="Smiley face" width="30%"/></a>
+              <h3><%= firstName %> <%= lastName %> </h3>
                 <a href="#/editKid/<%= objectId %>"><button id="updateButton">Edit</button></a>
                 <a href="#/share/<%= objectId %>"><button id="shareInfo">Share</button></a>
           </div>
        </li>
        </div>
+      </script>
+
+      <!-- Template for Showing One Kid Info -->
+      <script type="text/template" id="solokiddy">
+        <div class= "oneKid">
+          <li class="showOneKid" id="<%= objectId %>">
+            <div class="kidOneShow">
+              <img id='profilePic' src= "<%= image.url %>" alt="Smiley face" width="30%"/>
+              <h3><%= firstName %> <%= lastName %> </h3>
+                <li><%= birthdate %></li>
+                <li><%= address1 %></li>
+                <li><%= address2 %></li>
+                <li><%= ec1Name %></li>
+                <li><%= ec1Phone %></li>
+                <li><%= ec2Name %></li>
+                <li><%= ec2Phone %></li>
+                <li><%= doctor %></li>
+                <li><%= medical %></li>
+                <li><%= notes %></li>
+                <button id="backItUp">x</button>
+            </div>
+          </li>
+        </div>
       </script>
 
       <!-- Template to Edit KidProfile -->
