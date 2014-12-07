@@ -715,26 +715,43 @@ $( document ).ready(function(){
 
       this.render();
 
-    //  this.queryKid();
+      this.queryRecipient();
 
-      // Get the kid profile out of Parse with a query using this.kid_id.
-       //this.kid =
+    //  this.queryGetter();
 
       $('#updateInfo').html(this.$el);
     },//end initialize
 
-    // queryKid: function () {
-    //   var queryKid = new Parse.Query(App.Models.MyKidsProfile);
-    //   queryKid.get("kid", this.options.kid_id );
-    //     queryKid.find({
+    // queryGetter: function () {
+    //   var queryGetter = new Parse.Query(Parse.User);
+    //   queryGetter.get("reciever", this.options.getter );
+    //     queryGetter.find({
     //     success: function(results) {
-    //       console.log(results);
+    //       console.log(this.options.getter);
     //     },
     //     error: function(object, error) {
     //       console.log(error);
     //     }
     //   });
     // },
+
+    // Query who recieved message
+    queryRecipient: function () {
+      var self= this;
+
+      var query= new Parse.Query (App.Models.MessageModel);
+        query.equalTo('recipient', App.user.attributes.username);
+        query.find({
+
+        success: function(results) {
+          console.log(results);
+        },
+        error: function(error) {
+          alert("Error");
+        }
+      });
+
+    },
 
     render: function() {
 
@@ -758,33 +775,6 @@ $( document ).ready(function(){
         })
 
     },//end render
-    //
-    // sendKidInfo: function(e) {
-    //
-    //   console.log("ha");
-    //
-    //     this.options.kid_id.set({
-    //       image: imageFile,
-    //       firstName: $('#kfirstName').val(),
-    //       lastName: $('#klastName').val(),
-    //       birthdate: $('#birthdate').val(),
-    //       address1: $('#kAddress1').val(),
-    //       address2: $('#kAddress2').val(),
-    //       ec1Name: $('#Emergency1').val(),
-    //       ec1Phone: $('#Emergency1Phone').val(),
-    //       ec2Name: $('#Emergency2').val(),
-    //       ec2Phone: $('#Emergency2Phone').val(),
-    //       doctor: $('#doctor').val(),
-    //       medical: $('#medical').val(),
-    //       notes: $('#notes').val(),
-    //       kid: this.options.kid_id
-    //
-    //   });
-    //
-    //   // Save Instance
-    //   this.options.kid_id.save();
-    //
-    // },
 
     sendMessage: function(e) {
       e.preventDefault();
@@ -806,20 +796,20 @@ $( document ).ready(function(){
 
       myMessage.setACL(myMessageACL);
 
-      //Set Control on Kid Profile
-      console.log(this.options.kid_id);
-
-      var Kid = Parse.Object.extend('App.Models.MyKidProfile');
-      var oneKid = this.options.kid_id
-      console.log(oneKid);
-
-      var thisKidACL = new Parse.ACL();
-      thisKidACL.setPublicReadAccess(true);
-      //thisKidACL.setReadAccess("recipient", true);
-      //thisKidACL.setReadAccess(Parse.User.current(), true);
-
-      oneKid.setACL(thisKidACL);
-      oneKid.save();
+      // //Set Control on Kid Profile
+      // console.log(this.options.kid_id);
+      //
+      // var Kid = Parse.Object.extend('App.Models.MyKidProfile');
+      // var oneKid = this.options.kid_id
+      // console.log(oneKid);
+      //
+      // var thisKidACL = new Parse.ACL();
+      // //thisKidACL.setPublicReadAccess(true);
+      // //thisKidACL.setReadAccess("recipient", true);
+      // //thisKidACL.setReadAccess(Parse.User.current(), true);
+      //
+      // oneKid.setACL(thisKidACL);
+      // oneKid.save();
 
       //save
       myMessage.save(null, {
@@ -864,7 +854,7 @@ $( document ).ready(function(){
 
   //    this.queryKid();
 
-      this.queryRecipient();
+  //    this.queryRecipient();
 
       //this.collection.off();
       this.collection.on('sync', this.render, this);
@@ -874,25 +864,25 @@ $( document ).ready(function(){
     },
 
   // Query who recieved message
-  queryRecipient: function () {
-    var self= this;
-
-    var query= new Parse.Query (App.Models.MessageModel);
-      query.equalTo('recipient', App.user.attributes.username);
-      query.find({
-
-      success: function(results) {
-
-        self.collection.models = results;
-
-        self.render();
-      },
-      error: function(error) {
-        alert("Error");
-      }
-    });
-
-  },
+  // queryRecipient: function () {
+  //   var self= this;
+  //
+  //   var query= new Parse.Query (App.Models.MessageModel);
+  //     query.equalTo('recipient', App.user.attributes.username);
+  //     query.find({
+  //
+  //     success: function(results) {
+  //
+  //       self.collection.models = results;
+  //
+  //       self.render();
+  //     },
+  //     error: function(error) {
+  //       alert("Error");
+  //     }
+  //   });
+  //
+  // },
 
     render: function(){
       var self = this;
@@ -971,6 +961,7 @@ $( document ).ready(function(){
       $('.main').show();
       $('.sidebar').show();
       var kidId = App.all_myKids.get(id);
+      //var RID = App.all_users.get(id);
       new App.Views.SenderMessageView({ kid_id: kidId });
       new App.Views.MyKidsList({collection: App.all_myKids});
     },

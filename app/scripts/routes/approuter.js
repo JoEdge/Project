@@ -53,6 +53,7 @@ $( document ).ready(function(){
       $('.main').show();
       $('.sidebar').show();
       var kidId = App.all_myKids.get(id);
+      //var RID = App.all_users.get(id);
       new App.Views.SenderMessageView({ kid_id: kidId });
       new App.Views.MyKidsList({collection: App.all_myKids});
     },
