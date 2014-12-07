@@ -12,6 +12,7 @@ $( document ).ready(function(){
       'start': 'enterSite',
       'profile/:id' : 'profileInfo',
       'mykids' : 'myKidsInfo',
+      'kidSingle/:id' : 'oneKid',
       'share/:id': 'shareKidInfo',
       'editEvent/:id': 'editEventInfo',
       'editKid/:id': 'editKidInfo',
@@ -34,7 +35,6 @@ $( document ).ready(function(){
       $('#logOut').click(function() {
           location.reload();
       });
-
     },
 
     profileInfo: function() {
@@ -43,6 +43,14 @@ $( document ).ready(function(){
       $('.sidebar').hide();
       var u = App.all_users.get(id);
       new App.Views.EditUser({users:u});
+    },
+
+    oneKid: function (id) {
+      $('.enterSite').show();
+      $('.main').hide();
+      $('.sidebar').hide();
+      var sk = App.all_myKids.get(id);
+      new App.Views.SoloKid({onekid:sk});
     },
 
     myKidsInfo: function() {

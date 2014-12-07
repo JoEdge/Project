@@ -17,7 +17,7 @@ $( document ).ready(function(){
 
       this.render();
 
-      this.queryRecipient();
+    //  this.queryRecipient();
 
     //  this.queryGetter();
 
@@ -38,26 +38,25 @@ $( document ).ready(function(){
     // },
 
     // Query who recieved message
-    queryRecipient: function () {
-      var self= this;
-
-      var query= new Parse.Query (App.Models.MessageModel);
-        query.equalTo('recipient', App.user.attributes.username);
-        query.find({
-
-        success: function(results) {
-          console.log(results);
-        },
-        error: function(error) {
-          alert("Error");
-        }
-      });
-
-    },
+    // queryRecipient: function () {
+    //   var self= this;
+    //
+    //   var query= new Parse.Query (App.Models.MessageModel);
+    //     query.equalTo('recipient', App.user.attributes.username);
+    //     query.find({
+    //
+    //     success: function(results) {
+    //       console.log(results);
+    //     },
+    //     error: function(error) {
+    //       alert("Error");
+    //     }
+    //   });
+    //
+    // },
 
     render: function() {
 
-    //  this.$el.html(this.template);
       this.$el.html(this.template(this.options.kid_id.toJSON()));
 
         var kidTemplate = _.template($('#listMyKids').html());

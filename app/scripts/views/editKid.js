@@ -6,7 +6,7 @@
     className: 'EditKid',
 
     events: {
-      'submit #FormEditKid' : 'updateKid',
+      'click #kidEditor' : 'updateKid',
       'click #kidDelete' : 'deleteKid',
     },
 
@@ -31,7 +31,7 @@
 
       // Update our Model Instance
       this.options.kids.set({
-        //image: imageFile,
+        image: imageFile,
         firstName: $('#update_kfirstName').val(),
         lastName: $('#update_klastName').val(),
         birthdate: $('#update_birthdate').val(),
