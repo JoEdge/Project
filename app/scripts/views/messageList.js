@@ -29,23 +29,6 @@
 
     },
 
-  //Query who sent message
-  //   queryKid: function () {
-  //
-  //   var query = new Parse.Query (App.Models.MessageModel);
-  //   //console.log(kid);
-  //     query.equalTo('kid', this.options.kid_id);
-  //     query.find({
-  //       success: function(results) {
-  //         console.log(results);
-  //
-  //     },
-  //       error: function(error) {
-  //         alert("Error1");
-  //     }
-  //   });
-  // },
-
   // Query who recieved message
   queryRecipient: function () {
     var self= this;
