@@ -10,7 +10,8 @@ $( document ).ready(function(){
       '' : 'home',
       'event': 'eventInfo',
       'start': 'enterSite',
-      'profile' : 'profileInfo',
+      'profile/:id' : 'profileInfo',
+      'mykids' : 'myKidsInfo',
       'share/:id': 'shareKidInfo',
       'editEvent/:id': 'editEventInfo',
       'editKid/:id': 'editKidInfo',
@@ -37,6 +38,14 @@ $( document ).ready(function(){
     },
 
     profileInfo: function() {
+      $('.enterSite').show();
+      $('.main').hide();
+      $('.sidebar').hide();
+      var u = App.all_users.get(id);
+      new App.Views.EditUser({users:u});
+    },
+
+    myKidsInfo: function() {
       $('.enterSite').hide();
       new App.Views.MyKidsView();
       new App.Views.MyKidsList({collection: App.all_myKids});

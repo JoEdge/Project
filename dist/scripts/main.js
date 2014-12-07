@@ -232,6 +232,58 @@ $( document ).ready(function(){
 
 }());
 
+(function () {
+
+  App.Views.EditUser = Parse.View.extend({
+
+    tagName: 'ul',
+    className: 'EditUser',
+
+    events: {
+      'submit #FormEditUser' : 'updateUser',
+
+    },
+
+    template: _.template($('#editedUser').html()),
+
+    initialize: function (options) {
+      this.options = options;
+      this.render();
+
+      // Get our Element On Our Page
+      $('#log_signup').html(this.$el);
+    },
+
+    render: function () {
+      this.$el.empty();
+      this.$el.html(this.template(this.options.users.toJSON()));
+
+    },
+
+    updateUser: function (e) {
+      e.preventDefault();
+
+      // Update our Model Instance
+      this.options.users.set({
+        //image: imageFile,
+        username: $('#update_username').val(),
+        email: $('#update_email').val(),
+
+      });
+
+      // Save Instance
+      this.options.users.save();
+
+      // Return to home page
+      App.router.navigate('', {trigger: true});
+
+    },
+
+
+  });
+
+}());
+
 
 $( document ).ready(function(){
 
@@ -918,7 +970,8 @@ $( document ).ready(function(){
       '' : 'home',
       'event': 'eventInfo',
       'start': 'enterSite',
-      'profile' : 'profileInfo',
+      'profile/:id' : 'profileInfo',
+      'mykids' : 'myKidsInfo',
       'share/:id': 'shareKidInfo',
       'editEvent/:id': 'editEventInfo',
       'editKid/:id': 'editKidInfo',
@@ -945,6 +998,14 @@ $( document ).ready(function(){
     },
 
     profileInfo: function() {
+      $('.enterSite').show();
+      $('.main').hide();
+      $('.sidebar').hide();
+      var u = App.all_users.get(id);
+      new App.Views.EditUser({users:u});
+    },
+
+    myKidsInfo: function() {
       $('.enterSite').hide();
       new App.Views.MyKidsView();
       new App.Views.MyKidsList({collection: App.all_myKids});

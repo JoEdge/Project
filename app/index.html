@@ -27,7 +27,8 @@
       <!-- navigation bar -->
       <nav>
         <a href="#/start"</a><button id="logOut">Logout</button></a>
-        <a href="#/profile" class="profileBtn"><button>Update My Profile</button></a>
+        <a href="#/profile/" class="profileBtn"><button>Update My Profile</button></a>
+        <a href="#/mykids"</a><button id="eventBtn">Add My Kids</button></a>
         <a href="#/event"</a><button id="eventBtn">Events</button></a>
         <a href="#/"</a><button id="homeBtn">Home</button></a>
         <span id="loggedIn"></span>
@@ -77,6 +78,19 @@
           <input id='uImage' type='file' placeholder=''/> -->
             <button>Create New User</button>
         </form>
+    </script>
+
+
+    <!-- Template to Edit User -->
+    <script type="text/template" id="editedUser">
+      <h3>Edit My Profile</h3>
+        <div class="updateUser" id="<%= objectId %>">
+          <form id="FormEditUser">
+            <input id='update_username' type='text' value="<%= username %>"/>
+            <input id='update_email' type='text' value="<%= email %>"/>
+              <button id="editUser">Update!</button>
+          </form>
+        </div>
     </script>
 
      <!-- Template for Add Kid Profile -->
@@ -256,6 +270,7 @@
         <script src="scripts/collections/eventCollection.js"></script>
         <script src="scripts/collections/messageCollection.js"></script>
         <script src="scripts/views/signup.js"></script>
+        <script src="scripts/views/editUser.js"></script>
         <script src="scripts/views/login.js"></script>
         <script src="scripts/views/myKidsView.js"></script>
         <script src="scripts/views/myKidsList.js"></script>
