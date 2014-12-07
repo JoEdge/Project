@@ -5,7 +5,6 @@ $( document ).ready(function(){
     className: "MyKids",
 
     events: {
-
       "submit #myKidInfo" : "updateMyKids",
 
     },//end events
@@ -24,7 +23,7 @@ $( document ).ready(function(){
       this.$el.html(this.template);
     },//end render
 
-    updateMyKids: function(e) {
+    updateMyKids: function(e, listed) {
       e.preventDefault();
       //on click event get a reference to the image file
       var image2file = $("#kImage")[0];
@@ -57,14 +56,13 @@ $( document ).ready(function(){
         medical: $('#medical').val(),
         notes: $('#notes').val(),
         user: App.user,
-        listed: false,
+        listed: listed,
 
       });
 
-
-      // //Set Control
+      //Set Control
       var myKidACL = new Parse.ACL(Parse.User.current());
-      myKidACL.setPublicReadAccess(false);
+      myKidACL.setReadAccess(Parse.User.current(), true);
       myKidACL.setWriteAccess(Parse.User.current(), true);
 
       myKid.setACL(myKidACL);
@@ -76,7 +74,7 @@ $( document ).ready(function(){
         }
       });
 
-    }
+    },
 
   });
 

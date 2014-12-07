@@ -5,7 +5,7 @@
     className: 'myKidsList',
 
     events: {
-
+    //  "click #shareInfo" : "changeListed",
     },
 
     template: _.template($('#listMyKids').html()),
@@ -36,6 +36,13 @@
       });
 
      },
+
+    //  changeListed: function(e) {
+    //    console.log('ha');
+    //    e.preventDefault();
+    //    this.listed = true;
+    //  },
+
 
   });
 

@@ -5,7 +5,6 @@ $( document ).ready(function(){
     className: "Message",
 
     events: {
-      //"click #kidInfo": "sendKidInfo",
       "submit #messageForm" : "sendMessage",
 
     },//end events
@@ -87,6 +86,7 @@ $( document ).ready(function(){
     //   this.options.kid_id.save();
     //
     // },
+
 
     sendMessage: function(e) {
       e.preventDefault();

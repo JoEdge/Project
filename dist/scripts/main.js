@@ -293,7 +293,6 @@ $( document ).ready(function(){
     className: "MyKids",
 
     events: {
-
       "submit #myKidInfo" : "updateMyKids",
 
     },//end events
@@ -312,7 +311,7 @@ $( document ).ready(function(){
       this.$el.html(this.template);
     },//end render
 
-    updateMyKids: function(e) {
+    updateMyKids: function(e, listed) {
       e.preventDefault();
       //on click event get a reference to the image file
       var image2file = $("#kImage")[0];
@@ -345,14 +344,13 @@ $( document ).ready(function(){
         medical: $('#medical').val(),
         notes: $('#notes').val(),
         user: App.user,
-        listed: false,
+        listed: listed,
 
       });
 
-
-      // //Set Control
+      //Set Control
       var myKidACL = new Parse.ACL(Parse.User.current());
-      myKidACL.setPublicReadAccess(false);
+      myKidACL.setReadAccess(Parse.User.current(), true);
       myKidACL.setWriteAccess(Parse.User.current(), true);
 
       myKid.setACL(myKidACL);
@@ -364,7 +362,7 @@ $( document ).ready(function(){
         }
       });
 
-    }
+    },
 
   });
 
@@ -377,7 +375,7 @@ $( document ).ready(function(){
     className: 'myKidsList',
 
     events: {
-
+    //  "click #shareInfo" : "changeListed",
     },
 
     template: _.template($('#listMyKids').html()),
@@ -408,6 +406,13 @@ $( document ).ready(function(){
       });
 
      },
+
+    //  changeListed: function(e) {
+    //    console.log('ha');
+    //    e.preventDefault();
+    //    this.listed = true;
+    //  },
+
 
   });
 
@@ -698,7 +703,6 @@ $( document ).ready(function(){
     className: "Message",
 
     events: {
-      //"click #kidInfo": "sendKidInfo",
       "submit #messageForm" : "sendMessage",
 
     },//end events
@@ -780,6 +784,7 @@ $( document ).ready(function(){
     //   this.options.kid_id.save();
     //
     // },
+
 
     sendMessage: function(e) {
       e.preventDefault();
