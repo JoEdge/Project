@@ -57,6 +57,7 @@ $( document ).ready(function(){
         medical: $('#medical').val(),
         notes: $('#notes').val(),
         user: App.user,
+        listed: false,
 
       });
 

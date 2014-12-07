@@ -90,16 +90,17 @@ $( document ).ready(function(){
 
     sendMessage: function(e) {
       e.preventDefault();
-
+      console.log(this.options.kid_id);
       var myMessage = new App.Models.MessageModel ({
         recipient: $('#recipient').val(),
-        content: '',
+        content:  $('#content').val(),
         sender: App.user,
         senderName: $('#senderName').val(),
         kid: this.options.kid_id
       });//end var myMessages
 
-      //Set Control
+
+      //Set Control on Message
       var myMessageACL = new Parse.ACL(Parse.User.current());
       myMessageACL.setPublicReadAccess(true);
       myMessageACL.setWriteAccess(Parse.User.current(), true);
@@ -110,6 +111,8 @@ $( document ).ready(function(){
       myMessage.save(null, {
         success: function () {
           App.all_messages.add(myMessage);
+          //clear my form
+          $("#messageForm")[0].reset();
 
           // Now going to deal with the Kid Object
           // 1. Take the "kid" shared (this.options.kid_id)

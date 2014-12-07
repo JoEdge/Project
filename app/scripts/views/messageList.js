@@ -6,7 +6,7 @@
 
     events: {
 
-      'click #getMsg' : 'viewMessage',
+      'click #getMsg' : 'addNewKids',
 
     },
 
@@ -18,7 +18,7 @@
 
       this.render();
 
-//      this.querySender();
+  //    this.queryKid();
 
       this.queryRecipient();
 
@@ -29,12 +29,12 @@
 
     },
 
-  // Query who sent message
-  //   querySender: function () {
+  //Query who sent message
+  //   queryKid: function () {
   //
   //   var query = new Parse.Query (App.Models.MessageModel);
-  //   //console.log(sender);
-  //     query.equalTo('sender', App.user);
+  //   //console.log(kid);
+  //     query.equalTo('kid', this.options.kid_id);
   //     query.find({
   //       success: function(results) {
   //         console.log(results);
@@ -45,7 +45,6 @@
   //     }
   //   });
   // },
-
 
   // Query who recieved message
   queryRecipient: function () {
@@ -68,7 +67,6 @@
 
   },
 
-
     render: function(){
       var self = this;
 
@@ -81,7 +79,7 @@
 
     },
 
-    viewMessage: function (e) {
+    addNewKids: function (e) {
       e.preventDefault();
 
       console.log("ha");
