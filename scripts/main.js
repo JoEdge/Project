@@ -703,6 +703,7 @@ $( document ).ready(function(){
     className: "Message",
 
     events: {
+      //"click #shareInfo" : "changeACL",
       "submit #messageForm" : "sendMessage",
 
     },//end events
@@ -785,18 +786,18 @@ $( document ).ready(function(){
     //
     // },
 
-
     sendMessage: function(e) {
       e.preventDefault();
-      console.log(this.options.kid_id);
+
       var myMessage = new App.Models.MessageModel ({
         recipient: $('#recipient').val(),
         content:  $('#content').val(),
         sender: App.user,
         senderName: $('#senderName').val(),
-        kid: this.options.kid_id
-      });//end var myMessages
+        kid: this.options.kid_id,
 
+      });//end var myMessages
+      console.log(this.options.kid_id);
 
       //Set Control on Message
       var myMessageACL = new Parse.ACL(Parse.User.current());
@@ -804,6 +805,21 @@ $( document ).ready(function(){
       myMessageACL.setWriteAccess(Parse.User.current(), true);
 
       myMessage.setACL(myMessageACL);
+
+      //Set Control on Kid Profile
+      console.log(this.options.kid_id);
+
+      var Kid = Parse.Object.extend('App.Models.MyKidProfile');
+      var oneKid = this.options.kid_id
+      console.log(oneKid);
+
+      var thisKidACL = new Parse.ACL();
+      thisKidACL.setPublicReadAccess(true);
+      //thisKidACL.setReadAccess("recipient", true);
+      //thisKidACL.setReadAccess(Parse.User.current(), true);
+
+      oneKid.setACL(thisKidACL);
+      oneKid.save();
 
       //save
       myMessage.save(null, {
@@ -815,7 +831,6 @@ $( document ).ready(function(){
           // Now going to deal with the Kid Object
           // 1. Take the "kid" shared (this.options.kid_id)
           // 2. Update their ACL so that the recipient has access
-
 
         }//end success
 
@@ -857,23 +872,6 @@ $( document ).ready(function(){
       $('#updateInfo').html(this.$el);
 
     },
-
-  //Query who sent message
-  //   queryKid: function () {
-  //
-  //   var query = new Parse.Query (App.Models.MessageModel);
-  //   //console.log(kid);
-  //     query.equalTo('kid', this.options.kid_id);
-  //     query.find({
-  //       success: function(results) {
-  //         console.log(results);
-  //
-  //     },
-  //       error: function(error) {
-  //         alert("Error1");
-  //     }
-  //   });
-  // },
 
   // Query who recieved message
   queryRecipient: function () {
