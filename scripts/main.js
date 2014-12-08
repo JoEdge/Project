@@ -29,6 +29,7 @@ $( document ).ready(function(){
       notes: '',
       user:'',
       listed: '',
+      eventKid:'',
     },
 
     idAttribute: 'objectID',
@@ -363,7 +364,7 @@ $( document ).ready(function(){
       this.$el.html(this.template);
     },//end render
 
-    updateMyKids: function(e, listed) {
+    updateMyKids: function(e, listed, eventKid) {
       e.preventDefault();
       //on click event get a reference to the image file
       var image2file = $("#kImage")[0];
@@ -397,6 +398,7 @@ $( document ).ready(function(){
         notes: $('#notes').val(),
         user: App.user,
         listed: listed,
+        eventKid: eventKid,
 
       });
 
@@ -428,6 +430,7 @@ $( document ).ready(function(){
 
     events: {
     //  "click #shareInfo" : "changeListed",
+      "click #addKidBtn" : "addingKids",
     },
 
     template: _.template($('#listMyKids').html()),
@@ -455,9 +458,29 @@ $( document ).ready(function(){
         var kidPhoto = myKid.get("image");
         $('#profilePic').src = kidPhoto.url();
         self.$el.append(self.template(myKid.toJSON()));
+
       });
 
-     },
+      //add kid to event
+      // this.$el.html(this.template(this.options.kidAdd.toJSON()));
+      //
+      // var kidTemplate = _.template($('#listMyKids').html());
+      // var kid_query = new Parse.Query(App.Models.MyKidsProfile);
+      //
+      // kid_query.equalTo('kids', this.options.kidAdd);
+      //
+      // this.$el.append('<ul class="add_kiddy"></ul>');
+      //
+      // kid_query.find({
+      //   success: function (results) {
+      //
+      //     _.each(results, function(kiddy) {
+      //       $('ul.add_kiddy').append(kidTemplate(add_kiddy.toJSON()));
+      //     })
+      //   }
+      // })
+
+    },//end render
 
     //  changeListed: function(e) {
     //    console.log('ha');
@@ -465,6 +488,31 @@ $( document ).ready(function(){
     //    this.listed = true;
     //  },
 
+    // addingKids: function(){
+    //   console.log("fafafafaf");
+    //
+    //   var adding = new App.Models.MyKidsProfile({
+    //
+    //     firstName: $('#kfirstName').val(),
+    //     lastName: $('#klastName').val(),
+    //     kids: this.options.kidAdd
+    //
+    //   });
+    //
+    //   adding.save(null, {
+    //     success: function () {
+    //       console.log('Kid added');
+    //       App.router.navigate('', {trigger: true});
+    //     }
+    //   });
+    //
+    // },
+
+      addingKids:function(myKid){
+        childAdd.set('eventKid', true);
+
+        console.log('jamjam');
+      },
 
   });
 
@@ -752,7 +800,7 @@ $( document ).ready(function(){
     className: "AddKid2Event",
 
     events: {
-    //  "click #addKidBtn" : "addingKids",
+    
 
     },//end events
 
