@@ -97,26 +97,23 @@ nav {
     margin-top: 25px;
     margin-left: 3%;
 
-    .myKidsList{
-      display: block;
-
-      .showMyKids.block {
+      .showMyKids {
       //  display: inline-block;
         @include span-columns(4);
-        @include omega(3n);
+        @include omega(2n);
           @include media($mobile) {
           @include span-columns(3);
          }//end media(mobile)
           // float: left;
-           width: 10%;
-           max-width: 100px;
+           width: 25%;
+           //max-width: 100px;
            margin-right: 3%;
            margin-bottom: 10px;
            border: 1px solid black;
 
            button {
-             width:2%;
-             min-width:30px;
+             width:6%;
+             min-width:50px;
              text-align: center;
              font-size:12px;
              word-wrap:break-word;
@@ -125,7 +122,6 @@ nav {
              color: red;
            }//end button
       }//end ShowMyKids
-    }//end myKidsList
 
     .eventShown {
       @include span-columns(4);
