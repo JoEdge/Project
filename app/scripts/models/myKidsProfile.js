@@ -21,6 +21,7 @@ $( document ).ready(function(){
       notes: '',
       user:'',
       listed: '',
+      eventKid:'',
     },
 
     idAttribute: 'objectID',

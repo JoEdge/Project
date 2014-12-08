@@ -19,8 +19,7 @@
       <!-- navigation bar -->
       <nav>
         <a href="#/start"><button id="logOut">Logout</button></a>
-        <a href="#/profile/" class="profileBtn"><button>Update My Profile</button></a>
-        <a href="#/mykids"><button id="eventBtn">Add My Kids</button></a>
+        <a href="#/mykids"><button id="eventBtn">My Kids</button></a>
         <a href="#/event"><button id="eventBtn">Events</button></a>
         <a href="#/"><button id="homeBtn">Home</button></a>
         <span id="loggedIn"></span>
@@ -116,17 +115,15 @@
 
      <!-- Template for Listing "My Kids" -->
      <script type="text/template" id="listMyKids">
-     <div class= "kidShown">
+    <!-- <div class= "kidShown"> -->
       <li class="showMyKids" id="<%= objectId %>">
-          <div class="kidShare">
-              <a href="#/kidSingle/<%= objectId %>"><img id='profilePic' src= "<%= image.url %>" alt="Smiley face" width="30%"/></a>
+              <a href="#/kidSingle/<%= objectId %>"><img id='profilePic' src= "<%= image.url %>" alt="Smiley face" width="10%"/></a>
               <h3><%= firstName %> <%= lastName %> </h3>
                 <a href="#/editKid/<%= objectId %>"><button id="updateButton">Edit</button></a>
                 <a href="#/share/<%= objectId %>"><button id="shareInfo">Share</button></a>
                 <button id="addKidBtn">Add</button>
-          </div>
        </li>
-       </div>
+  <!--     </div>  -->
       </script>
 
       <!-- Template for Showing One Kid Info -->

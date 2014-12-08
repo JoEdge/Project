@@ -7,26 +7,37 @@
 
 // Custom Styles
 body {
-  background: white;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #333;
+  background: url('../images/dandelion.jpg')no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
 }//end body
 
 .container {
   @include outer-container;
   $mobile: new-breakpoint(max-width 500px 4);
-  max-width: 1500px;
+  max-width: 1600px;
   width: 100%;
   margin: 0px;
 
 nav {
   @include span-columns(12);
-  height: 100px;
+  position: fixed;
+  height: 50px;
   border: 1px solid black;
   background-color: red;
+  z-index: 3;
 
   button {
-    margin-left: 2%;
+    width:6%;
+    min-width:50px;
+    text-align: center;
+    font-size:12px;
+    word-wrap:break-word;
+    padding-left: 3px;
+    padding-right: 3px;
   }//end button
 }//end nav
 
@@ -39,7 +50,7 @@ nav {
   margin-top: 100px;
   margin-left: 35%;
   height: 100px;
-  background-color: yellow;
+  background-color: white;
   z-index: 2;
 }//end enterSite
 
@@ -50,9 +61,9 @@ nav {
       @include span-columns(3);
     }//end media(mobile)
     border: 1px solid black;
-    margin-top: 25px;
+    margin-top: 100px;
     margin-left: 3%;
-    background-color: red;
+    background-color: white;
   }//end updateInfo
 }//end sidebar
 
@@ -62,9 +73,9 @@ nav {
     @include span-columns(3);
   }//end media(mobile)
   border: 1px solid black;
-  margin-top: 25px;
+  margin-top: 100px;
   margin-left: 3%;
-  background-color: red;
+  background-color: white;
   z-index: 1;
 
   #listInfo {
@@ -78,30 +89,47 @@ nav {
   }//end listInfo
 
   #myKidsOnly {
-    @include span-columns(8);
+    @include span-columns(12);
     @include media($mobile) {
-      @include span-columns(8);
+      @include span-columns(6);
     }//end media(mobile)
-    height: 300px;
+  //  height: 300px;
     margin-top: 25px;
     margin-left: 3%;
 
-    .kidShown{
-      @include span-columns(4);
-      @include omega(2n);
-        @include media($mobile) {
-        @include span-columns(3);
-        }//end media(mobile)
-      float: left;
-      width: 45%;
-      margin-right: 3%;
-      margin-bottom: 10px;
-      border: 1px solid black;
-    }//end kidShown
+    .myKidsList{
+      display: block;
+
+      .showMyKids.block {
+      //  display: inline-block;
+        @include span-columns(4);
+        @include omega(3n);
+          @include media($mobile) {
+          @include span-columns(3);
+         }//end media(mobile)
+          // float: left;
+           width: 10%;
+           max-width: 100px;
+           margin-right: 3%;
+           margin-bottom: 10px;
+           border: 1px solid black;
+
+           button {
+             width:2%;
+             min-width:30px;
+             text-align: center;
+             font-size:12px;
+             word-wrap:break-word;
+             padding-left: 3px;
+             padding-right: 3px;
+             color: red;
+           }//end button
+      }//end ShowMyKids
+    }//end myKidsList
 
     .eventShown {
       @include span-columns(4);
-      @include omega(2n);
+      @include omega(3n);
       @include media($mobile) {
         @include span-columns(3);
       }//end media(mobile)
@@ -114,7 +142,7 @@ nav {
 
     .allEventShown {
       @include span-columns(4);
-      @include omega(2n);
+      @include omega(3n);
       @include media($mobile) {
         @include span-columns(3);
       }//end media(mobile)

@@ -23,7 +23,7 @@ $( document ).ready(function(){
       this.$el.html(this.template);
     },//end render
 
-    updateMyKids: function(e, listed) {
+    updateMyKids: function(e, listed, eventKid) {
       e.preventDefault();
       //on click event get a reference to the image file
       var image2file = $("#kImage")[0];
@@ -57,6 +57,7 @@ $( document ).ready(function(){
         notes: $('#notes').val(),
         user: App.user,
         listed: listed,
+        eventKid: eventKid,
 
       });
 

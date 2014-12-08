@@ -5,7 +5,7 @@ $( document ).ready(function(){
     className: "AddKid2Event",
 
     events: {
-    //  "click #addKidBtn" : "addingKids",
+    
 
     },//end events
 
