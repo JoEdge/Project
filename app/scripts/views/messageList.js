@@ -16,12 +16,13 @@
 
       this.options = options;
 
-      this.render();
+      //this.render();
 
-    //  this.queryRecipient();
+      this.queryRecipient();
 
+      // MIGHT HAVE TO COME BACK TO THIS LATER!!
       //this.collection.off();
-      this.collection.on('sync', this.render, this);
+      //this.collection.on('sync', this.render, this);
 
       $('#updateInfo').html(this.$el);
 
@@ -38,9 +39,8 @@
 
       success: function(results) {
 
-        self.collection.models = results;
+        self.render(results);
 
-        self.render();
       },
       error: function(error) {
         alert("messageList");
@@ -49,15 +49,15 @@
 
   },
 
-    render: function(){
+    render: function(queryCollection){
       var self = this;
 
       //clears our element
       this.$el.empty();
 
-      this.collection.each(function (s) {
+      _.each(queryCollection, function (s) {
         self.$el.append(self.template(s.toJSON()));
-      });
+      })
 
     },
 

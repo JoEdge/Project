@@ -878,9 +878,8 @@ $( document ).ready(function(){
     saveMessage: function(recipient) {
       var self = this;
 
-      console.log(this.options.kid_id);
       var myMessage = new App.Models.MessageModel ({
-        //recipient: $('#recipient').val(),
+        recipientName: $('#recipient').val(),
         recipient: recipient,
         content:  $('#content').val(),
         sender: App.user,
@@ -889,8 +888,10 @@ $( document ).ready(function(){
       });//end var myMessages
 
         myMessage.save(null, {
-          success: function () {
-            self.controlSetter(recipient);
+          success: function (myMessage) {
+            console.log(recipient);
+            self.controlSetter(myMessage);
+          //  self.controlSetter(recipient);
             App.all_messages.add(myMessage);
             //clear my form
             $("#messageForm")[0].reset();
@@ -903,7 +904,7 @@ $( document ).ready(function(){
       },
       //function to set controls
       controlSetter: function(myMessage) {
-        var self=this;
+        //var self= this;
 
       //Set Control on Message
         var myMessageACL = new Parse.ACL(Parse.User.current());
@@ -914,13 +915,20 @@ $( document ).ready(function(){
 
         //Set Control on Kid Profile
         console.log(this.options.kid_id);
-        console.log(self.recipient);
+        //console.log(self.recipient);
+        //console.log(recipient);
+        var recipient = myMessage.attributes.recipient;
+        var sender = myMessage.attributes.sender;
+        console.log(recipient);
+        console.log(sender);
 
         var Kid = Parse.Object.extend('App.Models.MyKidProfile');
         var oneKid = this.options.kid_id;
         var thisKidACL = new Parse.ACL();
 
-        thisKidACL.setReadAccess(this.recipient, true);
+        thisKidACL.setReadAccess(recipient, true);
+        thisKidACL.setReadAccess(sender, true);
+        thisKidACL.setWriteAccess(sender, true);
         oneKid.setACL(thisKidACL);
         oneKid.save();
 
@@ -972,12 +980,13 @@ $( document ).ready(function(){
 
       this.options = options;
 
-      this.render();
+      //this.render();
 
-    //  this.queryRecipient();
+      this.queryRecipient();
 
+      // MIGHT HAVE TO COME BACK TO THIS LATER!!
       //this.collection.off();
-      this.collection.on('sync', this.render, this);
+      //this.collection.on('sync', this.render, this);
 
       $('#updateInfo').html(this.$el);
 
@@ -994,9 +1003,8 @@ $( document ).ready(function(){
 
       success: function(results) {
 
-        self.collection.models = results;
+        self.render(results);
 
-        self.render();
       },
       error: function(error) {
         alert("messageList");
@@ -1005,15 +1013,15 @@ $( document ).ready(function(){
 
   },
 
-    render: function(){
+    render: function(queryCollection){
       var self = this;
 
       //clears our element
       this.$el.empty();
 
-      this.collection.each(function (s) {
+      _.each(queryCollection, function (s) {
         self.$el.append(self.template(s.toJSON()));
-      });
+      })
 
     },
 
