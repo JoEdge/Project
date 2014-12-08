@@ -6,7 +6,7 @@
 
     events: {
 
-      'click #getMsg' : 'addNewKids',
+    //  'click #hideMsg' : 'hideMessage',
 
     },
 
@@ -20,7 +20,7 @@
 
   //    this.queryKid();
 
-  //    this.queryRecipient();
+      this.queryRecipient();
 
       //this.collection.off();
       this.collection.on('sync', this.render, this);
@@ -30,25 +30,25 @@
     },
 
   // Query who recieved message
-  // queryRecipient: function () {
-  //   var self= this;
-  //
-  //   var query= new Parse.Query (App.Models.MessageModel);
-  //     query.equalTo('recipient', App.user.attributes.username);
-  //     query.find({
-  //
-  //     success: function(results) {
-  //
-  //       self.collection.models = results;
-  //
-  //       self.render();
-  //     },
-  //     error: function(error) {
-  //       alert("Error");
-  //     }
-  //   });
-  //
-  // },
+  queryRecipient: function () {
+    var self= this;
+
+    var query= new Parse.Query (App.Models.MessageModel);
+      query.equalTo('recipient', App.user.attributes.username);
+      query.find({
+
+      success: function(results) {
+
+        self.collection.models = results;
+
+        self.render();
+      },
+      error: function(error) {
+        alert("Error");
+      }
+    });
+
+  },
 
     render: function(){
       var self = this;
@@ -62,11 +62,16 @@
 
     },
 
-    addNewKids: function (e) {
-      e.preventDefault();
-
-      console.log("ha");
-    },
+    // hideMessage: function (e) {
+    //   e.preventDefault();
+    //
+    //   var aMessage = this.collection.models[0];
+    //   console.log(aMessage);
+    //
+    // //  aMessage.hide();
+    //
+    //   console.log("hideme");
+    // },
 
   });
 
