@@ -18,9 +18,7 @@
 
       this.render();
 
-  //    this.queryKid();
-
-      this.queryRecipient();
+    //  this.queryRecipient();
 
       //this.collection.off();
       this.collection.on('sync', this.render, this);
@@ -44,7 +42,7 @@
         self.render();
       },
       error: function(error) {
-        alert("Error");
+        alert("messageList");
       }
     });
 
