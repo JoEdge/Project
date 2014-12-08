@@ -26,36 +26,38 @@ $( document ).ready(function(){
     sendMessage: function (e) {
       e.preventDefault();
 
+      var self = this;
+
       var queryGetter = new Parse.Query(Parse.User);
       queryGetter.equalTo('username', $('#recipient').val());
       queryGetter.first({
         success: function(result) {
-          this.recipient = result;
           console.log(result);
-          this.saveMessage();
+          self.saveMessage(result);
         },
         error: function(error) {
           console.log(error + "1");
         }//end error
       });
     },
+
     //function to insert relevant info
-    saveMessage: function() {
+    saveMessage: function(recipient) {
+      var self = this;
 
       console.log(this.options.kid_id);
       var myMessage = new App.Models.MessageModel ({
         //recipient: $('#recipient').val(),
-        recipient: this.recipient,
+        recipient: recipient,
         content:  $('#content').val(),
         sender: App.user,
         senderName: $('#senderName').val(),
         kid: this.options.kid_id,
       });//end var myMessages
 
-        this.controlSetter();
-        
         myMessage.save(null, {
           success: function () {
+            self.controlSetter(recipient);
             App.all_messages.add(myMessage);
             //clear my form
             $("#messageForm")[0].reset();
@@ -68,6 +70,8 @@ $( document ).ready(function(){
       },
       //function to set controls
       controlSetter: function(myMessage) {
+        var self=this;
+
       //Set Control on Message
         var myMessageACL = new Parse.ACL(Parse.User.current());
         myMessageACL.setPublicReadAccess(true);
@@ -77,10 +81,10 @@ $( document ).ready(function(){
 
         //Set Control on Kid Profile
         console.log(this.options.kid_id);
-        console.log(this.recipient);
+        console.log(self.recipient);
+
         var Kid = Parse.Object.extend('App.Models.MyKidProfile');
         var oneKid = this.options.kid_id;
-
         var thisKidACL = new Parse.ACL();
 
         thisKidACL.setReadAccess(this.recipient, true);
@@ -89,7 +93,7 @@ $( document ).ready(function(){
 
       },//end set control function
 
-  //      },
+  //},
 
     render: function() {
 

@@ -32,7 +32,8 @@
     var self= this;
 
     var query= new Parse.Query (App.Models.MessageModel);
-      query.equalTo('recipient', App.user.attributes.username);
+      query.equalTo('recipient', App.user);
+    //  query.equalTo('recipient', App.user.attributes.username);
       query.find({
 
       success: function(results) {

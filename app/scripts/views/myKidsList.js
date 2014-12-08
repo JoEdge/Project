@@ -85,7 +85,7 @@
     // },
 
       addingKids:function(myKid){
-        childAdd.set('eventKid', true);
+        //childAdd.set('eventKid', true);
 
         console.log('jamjam');
       },
