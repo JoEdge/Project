@@ -100,7 +100,7 @@ nav {
       .showMyKids {
       //  display: inline-block;
         @include span-columns(4);
-        @include omega(2n);
+        @include omega(3n);
           @include media($mobile) {
           @include span-columns(3);
          }//end media(mobile)
