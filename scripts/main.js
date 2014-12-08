@@ -864,14 +864,17 @@ $( document ).ready(function(){
             console.log(this.recipient);
           },
           error: function(error) {
-            console.log(error);
+            console.log(error + "1");
           }//end error
       })
     },
       //function to insert relevant info
       insertMessageInfo: function() {
+
+        console.log(this.options.kid_id);
         var myMessage = new App.Models.MessageModel ({
-          recipient: $('#recipient').val(),
+          //recipient: $('#recipient').val(),
+          recipient: this.recipient,
           content:  $('#content').val(),
           sender: App.user,
           senderName: $('#senderName').val(),
@@ -885,7 +888,7 @@ $( document ).ready(function(){
               $("#messageForm")[0].reset();
             },
             error: function(error) {
-              console.log(error);
+              console.log(error + "2");
             }//end error
           })
 
@@ -915,6 +918,7 @@ $( document ).ready(function(){
                     oneKid.save();
 
           },//end set control function
+
 
     render: function() {
 
