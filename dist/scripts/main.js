@@ -838,7 +838,7 @@ $( document ).ready(function(){
 
     events: {
       //"click #shareInfo" : "changeACL",
-      "submit #messageForm" : "sendMessage",
+      "submit #messageForm" : "setInformation",
 
     },//end events
 
@@ -849,24 +849,72 @@ $( document ).ready(function(){
 
       this.render();
 
-    //  this.queryGetter();
-
       $('#updateInfo').html(this.$el);
     },//end initialize
 
-    // queryGetter: function () {
-    //   var queryGetter = new Parse.Query(Parse.User);
-    //   queryGetter.get("reciever", this.options.getter );
-    //     queryGetter.find({
-    //     success: function(results) {
-    //       console.log(this.options.getter);
-    //     },
-    //     error: function(object, error) {
-    //       console.log(error);
-    //     }
-    //   });
-    // },
+    //function to query recipient
+    setInformation: function (e) {
+      e.preventDefault();
 
+      var queryGetter = new Parse.Query(Parse.User);
+        queryGetter.equalTo('username', $('#recipient').val());
+        queryGetter.first({
+          success: function(result) {
+            this.recipient = result;
+            console.log(this.recipient);
+          },
+          error: function(error) {
+            console.log(error);
+          }//end error
+      })
+    },
+      //function to insert relevant info
+      insertMessageInfo: function() {
+        var myMessage = new App.Models.MessageModel ({
+          recipient: $('#recipient').val(),
+          content:  $('#content').val(),
+          sender: App.user,
+          senderName: $('#senderName').val(),
+          kid: this.options.kid_id,
+        });//end var myMessages
+
+          myMessage.save(null, {
+            success: function () {
+              App.all_messages.add(myMessage);
+              //clear my form
+              $("#messageForm")[0].reset();
+            },
+            error: function(error) {
+              console.log(error);
+            }//end error
+          })
+
+      },
+          //function to set controls
+          controlSetter: function() {
+          //Set Control on Message
+            var myMessageACL = new Parse.ACL(Parse.User.current());
+                myMessageACL.setPublicReadAccess(true);
+                myMessageACL.setWriteAccess(Parse.User.current(), true);
+
+                myMessage.setACL(myMessageACL);
+
+          //Set Control on Kid Profile
+                console.log(this.options.kid_id);
+                console.log(this.recipient);
+                var Kid = Parse.Object.extend('App.Models.MyKidProfile');
+                var oneKid = this.options.kid_id
+
+                var thisKidACL = new Parse.ACL();
+
+                //thisKidACL.setPublicReadAccess(true);
+                  thisKidACL.setReadAccess(this.recipient, true);
+                //thisKidACL.setReadAccess(Parse.User.current(), true);
+
+                    oneKid.setACL(thisKidACL);
+                    oneKid.save();
+
+          },//end set control function
 
     render: function() {
 
@@ -889,58 +937,6 @@ $( document ).ready(function(){
         })
 
     },//end render
-
-    sendMessage: function(e) {
-      e.preventDefault();
-
-      var myMessage = new App.Models.MessageModel ({
-        recipient: $('#recipient').val(),
-        content:  $('#content').val(),
-        sender: App.user,
-        senderName: $('#senderName').val(),
-        kid: this.options.kid_id,
-
-      });//end var myMessages
-      console.log(this.options.kid_id);
-
-      //Set Control on Message
-      var myMessageACL = new Parse.ACL(Parse.User.current());
-      myMessageACL.setPublicReadAccess(true);
-      myMessageACL.setWriteAccess(Parse.User.current(), true);
-
-      myMessage.setACL(myMessageACL);
-
-      // //Set Control on Kid Profile
-      // console.log(this.options.kid_id);
-      //
-      // var Kid = Parse.Object.extend('App.Models.MyKidProfile');
-      // var oneKid = this.options.kid_id
-      // console.log(oneKid);
-      //
-      // var thisKidACL = new Parse.ACL();
-      // //thisKidACL.setPublicReadAccess(true);
-      // //thisKidACL.setReadAccess("recipient", true);
-      // //thisKidACL.setReadAccess(Parse.User.current(), true);
-      //
-      // oneKid.setACL(thisKidACL);
-      // oneKid.save();
-
-      //save
-      myMessage.save(null, {
-        success: function () {
-          App.all_messages.add(myMessage);
-          //clear my form
-          $("#messageForm")[0].reset();
-
-          // Now going to deal with the Kid Object
-          // 1. Take the "kid" shared (this.options.kid_id)
-          // 2. Update their ACL so that the recipient has access
-
-        }//end success
-
-      });//end myMessage.save
-
-    }//end sendMessage
 
   });//end App.Views
 
@@ -1105,7 +1101,6 @@ $( document ).ready(function(){
       $('.main').show();
       $('.sidebar').show();
       var kidId = App.all_myKids.get(id);
-      //var RID = App.all_users.get(id);
       new App.Views.SenderMessageView({ kid_id: kidId });
       new App.Views.MyKidsList({collection: App.all_myKids});
     },
