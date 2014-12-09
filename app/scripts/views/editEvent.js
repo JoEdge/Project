@@ -49,7 +49,7 @@
       e.preventDefault();
 
       // Remove Event
-      this.options.events.destroy();
+      this.options.eventOne.destroy();
 
       // Return to home page
       App.router.navigate('event', {trigger: true});
