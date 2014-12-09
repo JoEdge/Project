@@ -431,7 +431,7 @@ $( document ).ready(function(){
 
     events: {
 
-      "click #addKidBtn" : "addingKids",
+    //  "click #addKidBtn" : "addingKids",
     },
 
     template: _.template($('#listMyKids').html()),
@@ -482,28 +482,28 @@ $( document ).ready(function(){
 
     },//end render
 
-    addingKids: function(){
-      console.log("fafafafaf");
-
-      var adding = new App.Models.MyKidsProfile({
-
-        firstName: $('#kfirstName').val(),
-        lastName: $('#klastName').val(),
-        kids: this.options.kidAdd
-
-      });
-       console.log('jamjam');
-      adding.save(null, {
-        success: function () {
-          console.log('Kid added');
-          App.router.navigate('', {trigger: true});
-        },
-        error: function(error) {
-          console.log(error);
-        }//end error
-      });
-
-    },
+    // addingKids: function(){
+    //   console.log("fafafafaf");
+    //
+    //   var adding = new App.Models.MyKidsProfile({
+    //
+    //     firstName: $('#kfirstName').val(),
+    //     lastName: $('#klastName').val(),
+    //     kids: this.options.kidAdd
+    //
+    //   });
+    //    console.log('jamjam');
+    //   adding.save(null, {
+    //     success: function () {
+    //       console.log('Kid added');
+    //       App.router.navigate('', {trigger: true});
+    //     },
+    //     error: function(error) {
+    //       console.log(error);
+    //     }//end error
+    //   });
+    //
+    // },
 
   });
 
@@ -812,8 +812,25 @@ $( document ).ready(function(){
 
       //clears our element
       this.$el.empty();
-      console.log(this.options);
-      this.$el.html(this.template(this.options.adder.toJSON()));
+
+      this.$el.html(this.template(this.options.soloEvent.toJSON()));
+      // this.$el.html(this.template(this.options.kidAdd.toJSON()));
+      //
+      // var kiddyTemplate = _.template($('#listMyKids').html());
+      // var kiddy_query = new Parse.Query(App.Models.MyKidsProfile);
+      //
+      // kiddy_query.equalTo('kids', this.options.kidAdd);
+      //
+      // this.$el.append('<ul class="addedKids"></ul>');
+      //
+      // kiddy_query.find({
+      //   success: function (results) {
+      //
+      //     _.each(results, function(kiddy) {
+      //       $('ul.addedKids').append(kiddyTemplate(kiddy.toJSON()));
+      //     })
+      //   }
+      // })
 
     },
 
@@ -1099,10 +1116,12 @@ $( document ).ready(function(){
 
     addingKids: function(id) {
       $('.enterSite').hide();
-      var ak = App.all_myKids.get(id);
-      var ea = App.all_events.get(id);
-      new App.Views.AddKid2EventView({kidAdd: ak, adder: ea });
-      new App.Views.MyKidsList({collection: App.all_myKids});
+      new App.Views.MyKidsList({collection: App.all_myKids})
+      // var ak = App.all_myKids.get(id);
+      // console.log(ak);
+      // console.log(id);
+      var se =  App.all_events.get(id);
+      new App.Views.AddKid2EventView({soloEvent : se});
     },
 
     eventInfo: function() {

@@ -6,7 +6,7 @@
 
     events: {
 
-      "click #addKidBtn" : "addingKids",
+    //  "click #addKidBtn" : "addingKids",
     },
 
     template: _.template($('#listMyKids').html()),
@@ -57,28 +57,28 @@
 
     },//end render
 
-    addingKids: function(){
-      console.log("fafafafaf");
-
-      var adding = new App.Models.MyKidsProfile({
-
-        firstName: $('#kfirstName').val(),
-        lastName: $('#klastName').val(),
-        kids: this.options.kidAdd
-
-      });
-       console.log('jamjam');
-      adding.save(null, {
-        success: function () {
-          console.log('Kid added');
-          App.router.navigate('', {trigger: true});
-        },
-        error: function(error) {
-          console.log(error);
-        }//end error
-      });
-
-    },
+    // addingKids: function(){
+    //   console.log("fafafafaf");
+    //
+    //   var adding = new App.Models.MyKidsProfile({
+    //
+    //     firstName: $('#kfirstName').val(),
+    //     lastName: $('#klastName').val(),
+    //     kids: this.options.kidAdd
+    //
+    //   });
+    //    console.log('jamjam');
+    //   adding.save(null, {
+    //     success: function () {
+    //       console.log('Kid added');
+    //       App.router.navigate('', {trigger: true});
+    //     },
+    //     error: function(error) {
+    //       console.log(error);
+    //     }//end error
+    //   });
+    //
+    // },
 
   });
 

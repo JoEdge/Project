@@ -25,8 +25,25 @@ $( document ).ready(function(){
 
       //clears our element
       this.$el.empty();
-      console.log(this.options);
-      this.$el.html(this.template(this.options.adder.toJSON()));
+
+      this.$el.html(this.template(this.options.soloEvent.toJSON()));
+      // this.$el.html(this.template(this.options.kidAdd.toJSON()));
+      //
+      // var kiddyTemplate = _.template($('#listMyKids').html());
+      // var kiddy_query = new Parse.Query(App.Models.MyKidsProfile);
+      //
+      // kiddy_query.equalTo('kids', this.options.kidAdd);
+      //
+      // this.$el.append('<ul class="addedKids"></ul>');
+      //
+      // kiddy_query.find({
+      //   success: function (results) {
+      //
+      //     _.each(results, function(kiddy) {
+      //       $('ul.addedKids').append(kiddyTemplate(kiddy.toJSON()));
+      //     })
+      //   }
+      // })
 
     },
 
