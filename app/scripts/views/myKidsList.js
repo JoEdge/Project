@@ -28,41 +28,28 @@
     addingKids: function(e){
 
       e.preventDefault();
-
+      //get selected kid in array 'kids' located in event class
       var kiddyID = e.currentTarget.id;
-      console.log(kiddyID);
 
-      console.log(this.options);
-      // 1. Access to the event object we are on
       var kidArray = this.options.adder.attributes.kids;
-      console.log(kidArray);
 
       kidArray.push(kiddyID);
 
       this.options.adder.save();
 
-      console.log(kidArray);
+      //query events for arrays of kids
+      var queryKids = new Parse.Query(App.Models.Events);
+      queryKids.equalTo('kids', kiddyID);
+      queryKids.find({
+        success: function(result) {
+          console.log(result);
+          
+        },
+        error: function(error) {;
+        }//end error
+      });
 
-      // 2. Grab the `kids` property
-      // 3. Then `.push()` the `kiddyID` onto that properyt
-      // 4. Save the data
-
-
-      // var kidArray = this.collection;
-      //   console.log(kidArray);
-      //
-      // for (var i = 0; i < kidArray.length; i++) {
-      //   var kidNFO = kidArray[i];
-      //   console.log(kidNFO);
-      // }
-
-        // var query = new Parse.Query(App.Models.MyKidsProfile);
-        // query.find({
-        //   success: function(kidNFO) {
-        //     console.log(kidNFO[1].id);
-        //   }
-        // });
-      },
+    },
 
     render: function(){
       var self= this;
