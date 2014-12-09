@@ -431,7 +431,8 @@ $( document ).ready(function(){
 
     events: {
 
-    //  "click #addKidBtn" : "addingKids",
+     "click #addKidBtn" : "addingKids",
+
     },
 
     template: _.template($('#listMyKids').html()),
@@ -460,50 +461,18 @@ $( document ).ready(function(){
         $('#profilePic').src = kidPhoto.url();
         self.$el.append(self.template(myKid.toJSON()));
       });
-      //console.log(this.options.kidAdd);
-      //add kid to event
-      // this.$el.html(this.template(this.options.kidAdd.toJSON()));
-      //
-      // var kidsTemplate = _.template($('#listMyKids').html());
-      // var kids_query = new Parse.Query(App.Models.MyKidsProfile);
-      //
-      // kids_query.equalTo('kids', this.options.kidAdd);
-      //
-      // this.$el.append('<ul class="add_kiddies"></ul>');
-      //
-      // kids_query.find({
-      //   success: function (results) {
-      //
-      //     _.each(results, function(kiddy) {
-      //       $('ul.add_kiddies').append(kidsTemplate(add_kiddies.toJSON()));
-      //     })
-      //   }
-      // })
 
     },//end render
 
-    // addingKids: function(){
-    //   console.log("fafafafaf");
-    //
-    //   var adding = new App.Models.MyKidsProfile({
-    //
-    //     firstName: $('#kfirstName').val(),
-    //     lastName: $('#klastName').val(),
-    //     kids: this.options.kidAdd
-    //
-    //   });
-    //    console.log('jamjam');
-    //   adding.save(null, {
-    //     success: function () {
-    //       console.log('Kid added');
-    //       App.router.navigate('', {trigger: true});
-    //     },
-    //     error: function(error) {
-    //       console.log(error);
-    //     }//end error
-    //   });
-    //
-    // },
+     addingKids: function(){
+       console.log(this.collection.models);
+
+      //  this.collection.each(function(kidID){
+      //    var oneKid = KidID.get(createdAt.id);
+      //  });
+
+
+    },
 
   });
 
@@ -747,7 +716,8 @@ $( document ).ready(function(){
 
     render: function () {
       this.$el.empty();
-      this.$el.html(this.template(this.options.events.toJSON()));
+      console.log(this.options);
+      this.$el.html(this.template(this.options.eventOne.toJSON()));
 
     },
 
@@ -813,7 +783,7 @@ $( document ).ready(function(){
       //clears our element
       this.$el.empty();
 
-      this.$el.html(this.template(this.options.soloEvent.toJSON()));
+      this.$el.html(this.template(this.options.add2event.toJSON()));
       // this.$el.html(this.template(this.options.kidAdd.toJSON()));
       //
       // var kiddyTemplate = _.template($('#listMyKids').html());
@@ -833,7 +803,6 @@ $( document ).ready(function(){
       // })
 
     },
-
 
   });
 
@@ -859,10 +828,6 @@ $( document ).ready(function(){
 
       $('#updateInfo').html(this.$el);
     },//end initialize
-
-    //function to query recipient
-    // main: function(e) {
-    //   e.preventDefault();
 
     sendMessage: function (e) {
       e.preventDefault();
@@ -1117,11 +1082,8 @@ $( document ).ready(function(){
     addingKids: function(id) {
       $('.enterSite').hide();
       new App.Views.MyKidsList({collection: App.all_myKids})
-      // var ak = App.all_myKids.get(id);
-      // console.log(ak);
-      // console.log(id);
       var se =  App.all_events.get(id);
-      new App.Views.AddKid2EventView({soloEvent : se});
+      new App.Views.AddKid2EventView({add2event : se});
     },
 
     eventInfo: function() {
@@ -1153,7 +1115,7 @@ $( document ).ready(function(){
       $('.main').hide();
       $('.sidebar').hide();
       var e = App.all_events.get(id);
-      new App.Views.EditEvent({events: e});
+      new App.Views.EditEvent({eventOne: e});
       $('#editor').click(function() {
         location.reload();
       });
