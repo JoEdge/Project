@@ -1232,7 +1232,7 @@ $( document ).ready(function(){
         $('#homeBtn').hide();
         App.router.navigate('start', {trigger: true});
       } else {
-        currUsr = 'Welcome ' + App.user.attributes.username;
+        currUsr = 'Welcome Back ' + App.user.attributes.username;
         $('#logOut').text('Log Out');
         $('#eventBtn').show();
         $('#myKidsBtn').show();
