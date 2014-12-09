@@ -19,10 +19,6 @@ $( document ).ready(function(){
       $('#updateInfo').html(this.$el);
     },//end initialize
 
-    //function to query recipient
-    // main: function(e) {
-    //   e.preventDefault();
-
     sendMessage: function (e) {
       e.preventDefault();
 

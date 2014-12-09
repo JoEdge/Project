@@ -73,11 +73,8 @@ $( document ).ready(function(){
     addingKids: function(id) {
       $('.enterSite').hide();
       new App.Views.MyKidsList({collection: App.all_myKids})
-      // var ak = App.all_myKids.get(id);
-      // console.log(ak);
-      // console.log(id);
       var se =  App.all_events.get(id);
-      new App.Views.AddKid2EventView({soloEvent : se});
+      new App.Views.AddKid2EventView({add2event : se});
     },
 
     eventInfo: function() {
@@ -109,7 +106,7 @@ $( document ).ready(function(){
       $('.main').hide();
       $('.sidebar').hide();
       var e = App.all_events.get(id);
-      new App.Views.EditEvent({events: e});
+      new App.Views.EditEvent({eventOne: e});
       $('#editor').click(function() {
         location.reload();
       });

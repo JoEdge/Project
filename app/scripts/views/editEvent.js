@@ -22,7 +22,8 @@
 
     render: function () {
       this.$el.empty();
-      this.$el.html(this.template(this.options.events.toJSON()));
+      console.log(this.options);
+      this.$el.html(this.template(this.options.eventOne.toJSON()));
 
     },
 

@@ -26,7 +26,7 @@ $( document ).ready(function(){
       //clears our element
       this.$el.empty();
 
-      this.$el.html(this.template(this.options.soloEvent.toJSON()));
+      this.$el.html(this.template(this.options.add2event.toJSON()));
       // this.$el.html(this.template(this.options.kidAdd.toJSON()));
       //
       // var kiddyTemplate = _.template($('#listMyKids').html());
@@ -46,7 +46,6 @@ $( document ).ready(function(){
       // })
 
     },
-
 
   });
 
