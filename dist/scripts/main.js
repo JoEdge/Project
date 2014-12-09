@@ -54,8 +54,9 @@ $( document ).ready(function(){
       eventName: '',
       eventDate: '',
       location: '',
-      kids: '',
       user:'',
+      kids: []
+
 
     },
 
@@ -431,7 +432,7 @@ $( document ).ready(function(){
 
     events: {
 
-     "click #addKidBtn" : "addingKids",
+     "click .addKidBtn" : "addingKids",
 
     },
 
@@ -450,6 +451,37 @@ $( document ).ready(function(){
 
     },
 
+    addingKids: function(e){
+
+      e.preventDefault();
+
+      var kiddyID = e.currentTarget.id;
+      console.log(kiddyID);
+
+      console.log(this.options);
+
+      // 1. Access to the event object we are on
+      // 2. Grab the `kids` property
+      // 3. Then `.push()` the `kiddyID` onto that properyt
+      // 4. Save the data
+
+
+      // var kidArray = this.collection;
+      //   console.log(kidArray);
+      //
+      // for (var i = 0; i < kidArray.length; i++) {
+      //   var kidNFO = kidArray[i];
+      //   console.log(kidNFO);
+      // }
+
+        // var query = new Parse.Query(App.Models.MyKidsProfile);
+        // query.find({
+        //   success: function(kidNFO) {
+        //     console.log(kidNFO[1].id);
+        //   }
+        // });
+      },
+
     render: function(){
       var self= this;
 
@@ -463,16 +495,6 @@ $( document ).ready(function(){
       });
 
     },//end render
-
-     addingKids: function(){
-       console.log(this.collection.models);
-
-      //  this.collection.each(function(kidID){
-      //    var oneKid = KidID.get(createdAt.id);
-      //  });
-
-
-    },
 
   });
 
@@ -1081,9 +1103,9 @@ $( document ).ready(function(){
 
     addingKids: function(id) {
       $('.enterSite').hide();
-      new App.Views.MyKidsList({collection: App.all_myKids})
       var se =  App.all_events.get(id);
       new App.Views.AddKid2EventView({add2event : se});
+      new App.Views.MyKidsList({collection: App.all_myKids, adder: se});
     },
 
     eventInfo: function() {

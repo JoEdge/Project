@@ -6,7 +6,7 @@
 
     events: {
 
-     "click #addKidBtn" : "addingKids",
+     "click .addKidBtn" : "addingKids",
 
     },
 
@@ -25,6 +25,37 @@
 
     },
 
+    addingKids: function(e){
+
+      e.preventDefault();
+
+      var kiddyID = e.currentTarget.id;
+      console.log(kiddyID);
+
+      console.log(this.options);
+
+      // 1. Access to the event object we are on
+      // 2. Grab the `kids` property
+      // 3. Then `.push()` the `kiddyID` onto that properyt
+      // 4. Save the data
+
+
+      // var kidArray = this.collection;
+      //   console.log(kidArray);
+      //
+      // for (var i = 0; i < kidArray.length; i++) {
+      //   var kidNFO = kidArray[i];
+      //   console.log(kidNFO);
+      // }
+
+        // var query = new Parse.Query(App.Models.MyKidsProfile);
+        // query.find({
+        //   success: function(kidNFO) {
+        //     console.log(kidNFO[1].id);
+        //   }
+        // });
+      },
+
     render: function(){
       var self= this;
 
@@ -38,16 +69,6 @@
       });
 
     },//end render
-
-     addingKids: function(){
-       console.log(this.collection.models);
-
-      //  this.collection.each(function(kidID){
-      //    var oneKid = KidID.get(createdAt.id);
-      //  });
-
-
-    },
 
   });
 

@@ -9,8 +9,9 @@ $( document ).ready(function(){
       eventName: '',
       eventDate: '',
       location: '',
-      kids: '',
       user:'',
+      kids: []
+
 
     },
 

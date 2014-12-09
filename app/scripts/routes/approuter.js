@@ -72,9 +72,9 @@ $( document ).ready(function(){
 
     addingKids: function(id) {
       $('.enterSite').hide();
-      new App.Views.MyKidsList({collection: App.all_myKids})
       var se =  App.all_events.get(id);
       new App.Views.AddKid2EventView({add2event : se});
+      new App.Views.MyKidsList({collection: App.all_myKids, adder: se});
     },
 
     eventInfo: function() {
