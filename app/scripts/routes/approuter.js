@@ -120,9 +120,11 @@ $( document ).ready(function(){
       $('.enterSite').show();
       $('.main').hide();
       $('.sidebar').hide();
+      console.log(id);
       var k = App.all_myKids.get(id);
-      new App.Views.EditKid({kidE: k});
-    },
+      console.log(k);
+      new App.Views.EditKid({kidE : k});
+    }
 
   });
 

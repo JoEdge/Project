@@ -32,7 +32,7 @@
 
       // Update our Model Instance
       this.options.kidE.set({
-      //  image: imageFile,
+       // image: imageFile,
         firstName: $('#update_kfirstName').val(),
         lastName: $('#update_klastName').val(),
         birthdate: $('#update_birthdate').val(),
