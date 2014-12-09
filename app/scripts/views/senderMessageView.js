@@ -35,8 +35,7 @@ $( document ).ready(function(){
           console.log(result);
           self.saveMessage(result);
         },
-        error: function(error) {
-          console.log(error + "1");
+        error: function(error) {;
         }//end error
       });
     },
@@ -56,7 +55,7 @@ $( document ).ready(function(){
 
         myMessage.save(null, {
           success: function (myMessage) {
-            console.log(recipient);
+
             self.controlSetter(myMessage);
           //  self.controlSetter(recipient);
             App.all_messages.add(myMessage);
@@ -64,7 +63,7 @@ $( document ).ready(function(){
             $("#messageForm")[0].reset();
           },
           error: function(error) {
-            console.log(error + "2");
+
           }//end error
         })
 
@@ -81,13 +80,8 @@ $( document ).ready(function(){
         myMessage.setACL(myMessageACL);
 
         //Set Control on Kid Profile
-        console.log(this.options.kid_id);
-        //console.log(self.recipient);
-        //console.log(recipient);
         var recipient = myMessage.attributes.recipient;
         var sender = myMessage.attributes.sender;
-        console.log(recipient);
-        console.log(sender);
 
         var Kid = Parse.Object.extend('App.Models.MyKidProfile');
         var oneKid = this.options.kid_id;

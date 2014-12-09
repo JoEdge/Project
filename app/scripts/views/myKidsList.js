@@ -5,7 +5,7 @@
     className: 'myKidsList',
 
     events: {
-    //  "click #shareInfo" : "changeListed",
+
       "click #addKidBtn" : "addingKids",
     },
 
@@ -34,61 +34,51 @@
         var kidPhoto = myKid.get("image");
         $('#profilePic').src = kidPhoto.url();
         self.$el.append(self.template(myKid.toJSON()));
-
       });
-
+      //console.log(this.options.kidAdd);
       //add kid to event
       // this.$el.html(this.template(this.options.kidAdd.toJSON()));
       //
-      // var kidTemplate = _.template($('#listMyKids').html());
-      // var kid_query = new Parse.Query(App.Models.MyKidsProfile);
+      // var kidsTemplate = _.template($('#listMyKids').html());
+      // var kids_query = new Parse.Query(App.Models.MyKidsProfile);
       //
-      // kid_query.equalTo('kids', this.options.kidAdd);
+      // kids_query.equalTo('kids', this.options.kidAdd);
       //
-      // this.$el.append('<ul class="add_kiddy"></ul>');
+      // this.$el.append('<ul class="add_kiddies"></ul>');
       //
-      // kid_query.find({
+      // kids_query.find({
       //   success: function (results) {
       //
       //     _.each(results, function(kiddy) {
-      //       $('ul.add_kiddy').append(kidTemplate(add_kiddy.toJSON()));
+      //       $('ul.add_kiddies').append(kidsTemplate(add_kiddies.toJSON()));
       //     })
       //   }
       // })
 
     },//end render
 
-    //  changeListed: function(e) {
-    //    console.log('ha');
-    //    e.preventDefault();
-    //    this.listed = true;
-    //  },
+    addingKids: function(){
+      console.log("fafafafaf");
 
-    // addingKids: function(){
-    //   console.log("fafafafaf");
-    //
-    //   var adding = new App.Models.MyKidsProfile({
-    //
-    //     firstName: $('#kfirstName').val(),
-    //     lastName: $('#klastName').val(),
-    //     kids: this.options.kidAdd
-    //
-    //   });
-    //
-    //   adding.save(null, {
-    //     success: function () {
-    //       console.log('Kid added');
-    //       App.router.navigate('', {trigger: true});
-    //     }
-    //   });
-    //
-    // },
+      var adding = new App.Models.MyKidsProfile({
 
-      addingKids:function(myKid){
-        //childAdd.set('eventKid', true);
+        firstName: $('#kfirstName').val(),
+        lastName: $('#klastName').val(),
+        kids: this.options.kidAdd
 
-        console.log('jamjam');
-      },
+      });
+       console.log('jamjam');
+      adding.save(null, {
+        success: function () {
+          console.log('Kid added');
+          App.router.navigate('', {trigger: true});
+        },
+        error: function(error) {
+          console.log(error);
+        }//end error
+      });
+
+    },
 
   });
 

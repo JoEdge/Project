@@ -28,7 +28,7 @@
 
     updateEvent: function (e) {
       e.preventDefault();
-    
+
       // Update our Model Instance
       this.options.events.set({
         eventName: $("#update_event_name").val(),
@@ -40,7 +40,7 @@
       this.options.events.save();
 
       // Return to home page
-      App.router.navigate('', {trigger: true});
+      App.router.navigate('event', {trigger: true});
 
     },
 
@@ -51,7 +51,7 @@
       this.options.events.destroy();
 
       // Return to home page
-      App.router.navigate('', {trigger: true});
+      App.router.navigate('event', {trigger: true});
 
     },
 

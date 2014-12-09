@@ -5,7 +5,7 @@ $( document ).ready(function(){
     className: "AddKid2Event",
 
     events: {
-    
+
 
     },//end events
 
@@ -25,7 +25,7 @@ $( document ).ready(function(){
 
       //clears our element
       this.$el.empty();
-
+      console.log(this.options);
       this.$el.html(this.template(this.options.adder.toJSON()));
 
     },

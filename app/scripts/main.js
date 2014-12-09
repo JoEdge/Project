@@ -48,6 +48,11 @@ $( document ).ready(function(){
       //     $(".dropdown-button").html($(this).html());
       //   });
 
+    //Home Button force refresh
+    $('#homeBtn').click(function() {
+      location.reload();
+    });
+
     // Log Out
     $('#logOut').on('click', function (e) {
       e.preventDefault();
@@ -65,17 +70,21 @@ $( document ).ready(function(){
       if (App.user == null){
         currUsr = '';
         $('#logOut').text('Log In');
+        $('#eventBtn').hide();
+        $('#myKidsBtn').hide();
+        $('#homeBtn').hide();
         App.router.navigate('start', {trigger: true});
       } else {
         currUsr = 'Welcome ' + App.user.attributes.username;
         $('#logOut').text('Log Out');
+        $('#eventBtn').show();
+        $('#myKidsBtn').show();
+        $('#homeBtn').show();
+      }
         $('#loggedIn').html(currUsr);
-      //  App.router.navigate('', {trigger: true});
-      }//end of else statement
 
     };//end of App.updateUser function
 
     App.updateUser();
-
 
 }());

@@ -24,6 +24,9 @@ $( document ).ready(function(){
       $('.enterSite').hide();
       new App.Views.MyKidsList({collection: App.all_myKids});
       new App.Views.MessageList({collection: App.all_messages});
+      $('#homeBtn').click(function() {
+        location.reload();
+      });
     },
 
     enterSite: function() {
@@ -36,6 +39,7 @@ $( document ).ready(function(){
       $('#logOut').click(function() {
           location.reload();
       });
+
     },
 
     profileInfo: function() {
@@ -52,18 +56,28 @@ $( document ).ready(function(){
       $('.sidebar').hide();
       var sk = App.all_myKids.get(id);
       new App.Views.SoloKid({onekid:sk});
+      $('#logOut').click(function() {
+        location.reload();
+      });
     },
 
     myKidsInfo: function() {
       $('.enterSite').hide();
       new App.Views.MyKidsView();
       new App.Views.MyKidsList({collection: App.all_myKids});
+      $('#addMyKid').click(function() {
+        location.reload();
+      });
+      $('#shareInfo').click(function() {
+        location.reload();
+      });
     },
 
     addingKids: function(id) {
       $('.enterSite').hide();
-      var ak = App.all_events.get(id);
-      new App.Views.AddKid2EventView({adder: ak});
+      var ak = App.all_myKids.get(id);
+      var ea = App.all_events.get(id);
+      new App.Views.AddKid2EventView({kidAdd: ak, adder: ea });
       new App.Views.MyKidsList({collection: App.all_myKids});
     },
 
@@ -71,6 +85,15 @@ $( document ).ready(function(){
       $('.enterSite').hide();
       new App.Views.AddEventView();
       new App.Views.MyEvents({collection: App.all_events});
+      $('#createEvent').click(function() {
+        location.reload();
+      });
+      $('#editEvent').click(function() {
+        location.reload();
+      });
+      $('#kidAdder').click(function() {
+        location.reload();
+      });
     },
 
     shareKidInfo: function(id) {
@@ -87,7 +110,13 @@ $( document ).ready(function(){
       $('.main').hide();
       $('.sidebar').hide();
       var e = App.all_events.get(id);
-      new App.Views.EditEvent({events:e});
+      new App.Views.EditEvent({events: e});
+      $('#editor').click(function() {
+        location.reload();
+      });
+      $('#eventDelete').click(function() {
+        location.reload();
+      });
     },
 
     editKidInfo: function(id) {
@@ -95,7 +124,7 @@ $( document ).ready(function(){
       $('.main').hide();
       $('.sidebar').hide();
       var k = App.all_myKids.get(id);
-      new App.Views.EditKid({kids:k});
+      new App.Views.EditKid({kidE: k});
     },
 
   });

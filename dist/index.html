@@ -18,11 +18,15 @@
     <div class="container">
       <!-- navigation bar -->
       <nav>
-        <a href="#/start"><button id="logOut">Logout</button></a>
-        <a href="#/mykids"><button id="eventBtn">My Kids</button></a>
-        <a href="#/event"><button id="eventBtn">Events</button></a>
-        <a href="#/"><button id="homeBtn">Home</button></a>
-        <span id="loggedIn"></span>
+        <div class="navLeft">
+          <a href="#/start"><button id="logOut">Logout</button></a>
+          <span id="loggedIn"></span>
+        </div>
+        <div class="navRght">
+          <a href="#/mykids"><button id="myKidsBtn">My Kids</button></a>
+          <a href="#/event"><button id="eventBtn">Events</button></a>
+          <a href="#/"><button id="homeBtn">Home</button></a>
+        </div>
       </nav>
 
       <!-- sidebar- messages, update user profile, update events,  update groups, usefull links -->
@@ -50,7 +54,7 @@
         <form id='loginForm'>
           <input id='username' type='text' placeholder='Please Enter User Name'/>
           <input id='password' type='password' placeholder='Please Enter Password'/>
-            <button id"login">Enter</button>
+            <button id="loginBtn">Enter</button>
         </form>
     </script>
 
@@ -68,7 +72,7 @@
           <input id='uAddress2' type='text' placeholder='Address'/>
           <input id='uPhone' type='text' placeholder='Phone'/>
           <input id='uImage' type='file' placeholder=''/> -->
-            <button>Create New User</button>
+            <button id="signUpBtn">Create New User</button>
         </form>
     </script>
 
@@ -117,8 +121,8 @@
      <script type="text/template" id="listMyKids">
     <!-- <div class= "kidShown"> -->
       <li class="showMyKids" id="<%= objectId %>">
-              <a href="#/kidSingle/<%= objectId %>"><img id='profilePic' src= "<%= image.url %>" alt="Smiley face" width="30%"/></a>
-              <h3><%= firstName %> <%= lastName %> </h3>
+              <a href="#/kidSingle/<%= objectId %>"><img id='profilePic' src= "<%= image.url %>" alt="Smiley face" width="50%"/>
+              <h4><%= firstName %> <%= lastName %> </h4></a>
                 <a href="#/editKid/<%= objectId %>"><button id="updateButton">Edit</button></a>
                 <a href="#/share/<%= objectId %>"><button id="shareInfo">Share</button></a>
                 <button id="addKidBtn">Add</button>
@@ -186,7 +190,7 @@
               <input id='eventName' type='text' placeholder='Event Name'/>
               <input id='eventDate' type='date' placeholder="Date"/>
               <input id='location' type='text' placeholder="Location"/>
-                <button id"createEvent">Enter</button>
+                <button id="createEvent">Enter</button>
             </form>
           </div>
       </script>
@@ -212,8 +216,9 @@
           <h4><%= eventName %></hr>
           <p><%= eventDate %></p>
           <p><%= location %></p>
-            <a href="#/editEvent/<%= objectId %>"> <button id"editEvent">Edit</button></a>
-            <a href="#/addKids/<%= objectId %>"> <button id"kidAdder">Add Kids</button></a>
+            <div id="added2"></div>
+            <a href="#/editEvent/<%= objectId %>"> <button id="editEvent">Edit</button></a>
+            <a href="#/addKids/<%= objectId %>"> <button id="kidAdder">Add Kids</button></a>
         </li>
       </div>
       </script>
@@ -236,7 +241,7 @@
             <input id='recipient' type='text' placeholder='To: '/>
             <input id='senderName' type='text' placeholder='From: '/>
             <textarea id='content' type='text' placeholder="Add a personal note"></textarea>
-              <button id"sendMsg">Send</button>
+              <button id="sendMsg">Send</button>
             <div class="kidNFO"></div>
           </form>
         </div>

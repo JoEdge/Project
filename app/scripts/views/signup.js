@@ -19,10 +19,10 @@
 
     render: function() {
       this.$el.html(this.template);
-      console.log('here1');
     },//end render
 
     signUp: function(e) {
+      e.preventDefault();
 
       var username = $('#newusername').val();
       var password = $('#newpassword').val();
@@ -54,31 +54,31 @@
 
         user.signUp (null, {
           success: function(user) {
+          },
+          error: function(user, error){
+            alert("Error Signup");
+          }
+        });
 
-            Parse.User.logIn(username, password, {
-              success: function(user){
-                App.user = user;      
+        Parse.User.logIn(username, password, {
+            success: function(user){
+              App.user = user;
+              App.updateUser();
+              console.log(App.user);
               },//end success
               error: function(user, error) {
                 alert("Error");
               }//end error
             });//end Parse.User.logIn
-            App.router.navigate('profile', { trigger: true });
-          },//end success user.signUp
-          error: function(user, error){
-            alert("Please choose another username.");
-          }//end error user.signUp
-        });//end user.signup
+
+          App.router.navigate('', { trigger: true });
 
       } else {
         window.alert('Passwords Do Not Match');
+      }
 
         //Clear form
         $("#userForm")[0].reset();
-
-        //end form reset
-
-      }//end passwords don't match
 
     }//end event:signUp
 

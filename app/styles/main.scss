@@ -30,15 +30,45 @@ nav {
   background-color: red;
   z-index: 3;
 
-  button {
-    width:6%;
-    min-width:50px;
-    text-align: center;
-    font-size:12px;
-    word-wrap:break-word;
-    padding-left: 3px;
-    padding-right: 3px;
-  }//end button
+  .navLeft {
+    @include span-columns(3);
+    @include media($mobile) {
+      @include span-columns(3);
+    }//end media(mobile)
+    float: left;
+    margin-left: 2%;
+    margin-top: 1%;
+
+    button {
+      width:6%;
+      min-width:50px;
+      text-align: center;
+      font-size:12px;
+      word-wrap:break-word;
+      padding-left: 3px;
+      padding-right: 3px;
+    }//end button
+  }//end .navLeft
+
+  .navRght {
+    @include span-columns(2.5);
+    @include media($mobile) {
+      @include span-columns(3);
+    }//end media(mobile)
+    float: right;
+    margin-left: 2%;
+    margin-top: 1%;
+
+    button {
+      width:6%;
+      min-width:50px;
+      text-align: center;
+      font-size:12px;
+      word-wrap:break-word;
+      padding-left: 3px;
+      padding-right: 3px;
+    }//end button
+  }//end .navRght
 }//end nav
 
 .enterSite {

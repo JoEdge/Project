@@ -22,7 +22,8 @@
 
     render: function () {
       this.$el.empty();
-      this.$el.html(this.template(this.options.kids.toJSON()));
+
+      this.$el.html(this.template(this.options.kidE.toJSON()));
 
     },
 
@@ -30,8 +31,8 @@
       e.preventDefault();
 
       // Update our Model Instance
-      this.options.kids.set({
-        image: imageFile,
+      this.options.kidE.set({
+      //  image: imageFile,
         firstName: $('#update_kfirstName').val(),
         lastName: $('#update_klastName').val(),
         birthdate: $('#update_birthdate').val(),
@@ -48,7 +49,7 @@
       });
 
       // Save Instance
-      this.options.kids.save();
+      this.options.kidE.save();
 
       // Return to home page
       App.router.navigate('', {trigger: true});
@@ -59,7 +60,7 @@
       e.preventDefault();
 
       // Remove Event
-      this.options.events.destroy();
+      this.options.kidE.destroy();
 
       // Return to home page
       App.router.navigate('', {trigger: true});

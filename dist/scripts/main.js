@@ -167,10 +167,10 @@ $( document ).ready(function(){
 
     render: function() {
       this.$el.html(this.template);
-      console.log('here1');
     },//end render
 
     signUp: function(e) {
+      e.preventDefault();
 
       var username = $('#newusername').val();
       var password = $('#newpassword').val();
@@ -202,31 +202,31 @@ $( document ).ready(function(){
 
         user.signUp (null, {
           success: function(user) {
+          },
+          error: function(user, error){
+            alert("Error Signup");
+          }
+        });
 
-            Parse.User.logIn(username, password, {
-              success: function(user){
-                App.user = user;      
+        Parse.User.logIn(username, password, {
+            success: function(user){
+              App.user = user;
+              App.updateUser();
+              console.log(App.user);
               },//end success
               error: function(user, error) {
                 alert("Error");
               }//end error
             });//end Parse.User.logIn
-            App.router.navigate('profile', { trigger: true });
-          },//end success user.signUp
-          error: function(user, error){
-            alert("Please choose another username.");
-          }//end error user.signUp
-        });//end user.signup
+
+          App.router.navigate('', { trigger: true });
 
       } else {
         window.alert('Passwords Do Not Match');
+      }
 
         //Clear form
         $("#userForm")[0].reset();
-
-        //end form reset
-
-      }//end passwords don't match
 
     }//end event:signUp
 
@@ -430,7 +430,7 @@ $( document ).ready(function(){
     className: 'myKidsList',
 
     events: {
-    //  "click #shareInfo" : "changeListed",
+
       "click #addKidBtn" : "addingKids",
     },
 
@@ -459,61 +459,51 @@ $( document ).ready(function(){
         var kidPhoto = myKid.get("image");
         $('#profilePic').src = kidPhoto.url();
         self.$el.append(self.template(myKid.toJSON()));
-
       });
-
+      //console.log(this.options.kidAdd);
       //add kid to event
       // this.$el.html(this.template(this.options.kidAdd.toJSON()));
       //
-      // var kidTemplate = _.template($('#listMyKids').html());
-      // var kid_query = new Parse.Query(App.Models.MyKidsProfile);
+      // var kidsTemplate = _.template($('#listMyKids').html());
+      // var kids_query = new Parse.Query(App.Models.MyKidsProfile);
       //
-      // kid_query.equalTo('kids', this.options.kidAdd);
+      // kids_query.equalTo('kids', this.options.kidAdd);
       //
-      // this.$el.append('<ul class="add_kiddy"></ul>');
+      // this.$el.append('<ul class="add_kiddies"></ul>');
       //
-      // kid_query.find({
+      // kids_query.find({
       //   success: function (results) {
       //
       //     _.each(results, function(kiddy) {
-      //       $('ul.add_kiddy').append(kidTemplate(add_kiddy.toJSON()));
+      //       $('ul.add_kiddies').append(kidsTemplate(add_kiddies.toJSON()));
       //     })
       //   }
       // })
 
     },//end render
 
-    //  changeListed: function(e) {
-    //    console.log('ha');
-    //    e.preventDefault();
-    //    this.listed = true;
-    //  },
+    addingKids: function(){
+      console.log("fafafafaf");
 
-    // addingKids: function(){
-    //   console.log("fafafafaf");
-    //
-    //   var adding = new App.Models.MyKidsProfile({
-    //
-    //     firstName: $('#kfirstName').val(),
-    //     lastName: $('#klastName').val(),
-    //     kids: this.options.kidAdd
-    //
-    //   });
-    //
-    //   adding.save(null, {
-    //     success: function () {
-    //       console.log('Kid added');
-    //       App.router.navigate('', {trigger: true});
-    //     }
-    //   });
-    //
-    // },
+      var adding = new App.Models.MyKidsProfile({
 
-      addingKids:function(myKid){
-        //childAdd.set('eventKid', true);
+        firstName: $('#kfirstName').val(),
+        lastName: $('#klastName').val(),
+        kids: this.options.kidAdd
 
-        console.log('jamjam');
-      },
+      });
+       console.log('jamjam');
+      adding.save(null, {
+        success: function () {
+          console.log('Kid added');
+          App.router.navigate('', {trigger: true});
+        },
+        error: function(error) {
+          console.log(error);
+        }//end error
+      });
+
+    },
 
   });
 
@@ -582,7 +572,8 @@ $( document ).ready(function(){
 
     render: function () {
       this.$el.empty();
-      this.$el.html(this.template(this.options.kids.toJSON()));
+
+      this.$el.html(this.template(this.options.kidE.toJSON()));
 
     },
 
@@ -590,8 +581,8 @@ $( document ).ready(function(){
       e.preventDefault();
 
       // Update our Model Instance
-      this.options.kids.set({
-        image: imageFile,
+      this.options.kidE.set({
+      //  image: imageFile,
         firstName: $('#update_kfirstName').val(),
         lastName: $('#update_klastName').val(),
         birthdate: $('#update_birthdate').val(),
@@ -608,7 +599,7 @@ $( document ).ready(function(){
       });
 
       // Save Instance
-      this.options.kids.save();
+      this.options.kidE.save();
 
       // Return to home page
       App.router.navigate('', {trigger: true});
@@ -619,7 +610,7 @@ $( document ).ready(function(){
       e.preventDefault();
 
       // Remove Event
-      this.options.events.destroy();
+      this.options.kidE.destroy();
 
       // Return to home page
       App.router.navigate('', {trigger: true});
@@ -762,7 +753,7 @@ $( document ).ready(function(){
 
     updateEvent: function (e) {
       e.preventDefault();
-    
+
       // Update our Model Instance
       this.options.events.set({
         eventName: $("#update_event_name").val(),
@@ -774,7 +765,7 @@ $( document ).ready(function(){
       this.options.events.save();
 
       // Return to home page
-      App.router.navigate('', {trigger: true});
+      App.router.navigate('event', {trigger: true});
 
     },
 
@@ -785,7 +776,7 @@ $( document ).ready(function(){
       this.options.events.destroy();
 
       // Return to home page
-      App.router.navigate('', {trigger: true});
+      App.router.navigate('event', {trigger: true});
 
     },
 
@@ -801,7 +792,7 @@ $( document ).ready(function(){
     className: "AddKid2Event",
 
     events: {
-    
+
 
     },//end events
 
@@ -821,7 +812,7 @@ $( document ).ready(function(){
 
       //clears our element
       this.$el.empty();
-
+      console.log(this.options);
       this.$el.html(this.template(this.options.adder.toJSON()));
 
     },
@@ -868,8 +859,7 @@ $( document ).ready(function(){
           console.log(result);
           self.saveMessage(result);
         },
-        error: function(error) {
-          console.log(error + "1");
+        error: function(error) {;
         }//end error
       });
     },
@@ -889,7 +879,7 @@ $( document ).ready(function(){
 
         myMessage.save(null, {
           success: function (myMessage) {
-            console.log(recipient);
+
             self.controlSetter(myMessage);
           //  self.controlSetter(recipient);
             App.all_messages.add(myMessage);
@@ -897,7 +887,7 @@ $( document ).ready(function(){
             $("#messageForm")[0].reset();
           },
           error: function(error) {
-            console.log(error + "2");
+
           }//end error
         })
 
@@ -914,13 +904,8 @@ $( document ).ready(function(){
         myMessage.setACL(myMessageACL);
 
         //Set Control on Kid Profile
-        console.log(this.options.kid_id);
-        //console.log(self.recipient);
-        //console.log(recipient);
         var recipient = myMessage.attributes.recipient;
         var sender = myMessage.attributes.sender;
-        console.log(recipient);
-        console.log(sender);
 
         var Kid = Parse.Object.extend('App.Models.MyKidProfile');
         var oneKid = this.options.kid_id;
@@ -1007,7 +992,7 @@ $( document ).ready(function(){
 
       },
       error: function(error) {
-        alert("messageList");
+        
       }
     });
 
@@ -1066,6 +1051,9 @@ $( document ).ready(function(){
       $('.enterSite').hide();
       new App.Views.MyKidsList({collection: App.all_myKids});
       new App.Views.MessageList({collection: App.all_messages});
+      $('#homeBtn').click(function() {
+        location.reload();
+      });
     },
 
     enterSite: function() {
@@ -1078,6 +1066,7 @@ $( document ).ready(function(){
       $('#logOut').click(function() {
           location.reload();
       });
+
     },
 
     profileInfo: function() {
@@ -1094,18 +1083,28 @@ $( document ).ready(function(){
       $('.sidebar').hide();
       var sk = App.all_myKids.get(id);
       new App.Views.SoloKid({onekid:sk});
+      $('#logOut').click(function() {
+        location.reload();
+      });
     },
 
     myKidsInfo: function() {
       $('.enterSite').hide();
       new App.Views.MyKidsView();
       new App.Views.MyKidsList({collection: App.all_myKids});
+      $('#addMyKid').click(function() {
+        location.reload();
+      });
+      $('#shareInfo').click(function() {
+        location.reload();
+      });
     },
 
     addingKids: function(id) {
       $('.enterSite').hide();
-      var ak = App.all_events.get(id);
-      new App.Views.AddKid2EventView({adder: ak});
+      var ak = App.all_myKids.get(id);
+      var ea = App.all_events.get(id);
+      new App.Views.AddKid2EventView({kidAdd: ak, adder: ea });
       new App.Views.MyKidsList({collection: App.all_myKids});
     },
 
@@ -1113,6 +1112,15 @@ $( document ).ready(function(){
       $('.enterSite').hide();
       new App.Views.AddEventView();
       new App.Views.MyEvents({collection: App.all_events});
+      $('#createEvent').click(function() {
+        location.reload();
+      });
+      $('#editEvent').click(function() {
+        location.reload();
+      });
+      $('#kidAdder').click(function() {
+        location.reload();
+      });
     },
 
     shareKidInfo: function(id) {
@@ -1129,7 +1137,13 @@ $( document ).ready(function(){
       $('.main').hide();
       $('.sidebar').hide();
       var e = App.all_events.get(id);
-      new App.Views.EditEvent({events:e});
+      new App.Views.EditEvent({events: e});
+      $('#editor').click(function() {
+        location.reload();
+      });
+      $('#eventDelete').click(function() {
+        location.reload();
+      });
     },
 
     editKidInfo: function(id) {
@@ -1137,7 +1151,7 @@ $( document ).ready(function(){
       $('.main').hide();
       $('.sidebar').hide();
       var k = App.all_myKids.get(id);
-      new App.Views.EditKid({kids:k});
+      new App.Views.EditKid({kidE: k});
     },
 
   });
@@ -1194,6 +1208,11 @@ $( document ).ready(function(){
       //     $(".dropdown-button").html($(this).html());
       //   });
 
+    //Home Button force refresh
+    $('#homeBtn').click(function() {
+      location.reload();
+    });
+
     // Log Out
     $('#logOut').on('click', function (e) {
       e.preventDefault();
@@ -1211,17 +1230,21 @@ $( document ).ready(function(){
       if (App.user == null){
         currUsr = '';
         $('#logOut').text('Log In');
+        $('#eventBtn').hide();
+        $('#myKidsBtn').hide();
+        $('#homeBtn').hide();
         App.router.navigate('start', {trigger: true});
       } else {
         currUsr = 'Welcome ' + App.user.attributes.username;
         $('#logOut').text('Log Out');
+        $('#eventBtn').show();
+        $('#myKidsBtn').show();
+        $('#homeBtn').show();
+      }
         $('#loggedIn').html(currUsr);
-      //  App.router.navigate('', {trigger: true});
-      }//end of else statement
 
     };//end of App.updateUser function
 
     App.updateUser();
-
 
 }());
