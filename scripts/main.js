@@ -582,7 +582,7 @@ $( document ).ready(function(){
 
       // Update our Model Instance
       this.options.kidE.set({
-      //  image: imageFile,
+       // image: imageFile,
         firstName: $('#update_kfirstName').val(),
         lastName: $('#update_klastName').val(),
         birthdate: $('#update_birthdate').val(),
@@ -1147,9 +1147,11 @@ $( document ).ready(function(){
       $('.enterSite').show();
       $('.main').hide();
       $('.sidebar').hide();
+      console.log(id);
       var k = App.all_myKids.get(id);
-      new App.Views.EditKid({kidE: k});
-    },
+      console.log(k);
+      new App.Views.EditKid({kidE : k});
+    }
 
   });
 
