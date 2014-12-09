@@ -459,8 +459,16 @@ $( document ).ready(function(){
       console.log(kiddyID);
 
       console.log(this.options);
-
       // 1. Access to the event object we are on
+      var kidArray = this.options.adder.attributes.kids;
+      console.log(kidArray);
+
+      kidArray.push(kiddyID);
+
+      this.options.adder.save();
+
+      console.log(kidArray);
+
       // 2. Grab the `kids` property
       // 3. Then `.push()` the `kiddyID` onto that properyt
       // 4. Save the data
@@ -765,7 +773,7 @@ $( document ).ready(function(){
       e.preventDefault();
 
       // Remove Event
-      this.options.events.destroy();
+      this.options.eventOne.destroy();
 
       // Return to home page
       App.router.navigate('event', {trigger: true});
