@@ -108,10 +108,10 @@
             <input id='birthdate' type='date' placeholder="Birthday"/>
             <input id='kAddress1' type='text' placeholder='Address'/>
             <input id='kAddress2' type='text' placeholder='Address'/>
-            <input id='Emergency1' type='text' placeholder='Emergency Contact 1 Name'/>
-            <input id='Emergency1Phone' type='text' placeholder='Emergency Contact 1 Phone'/>
-            <input id='Emergency2' type='text' placeholder='Emergency Contact 2 Name'/>
-            <input id='Emergency2Phone' type='text' placeholder='Emergency Contact 2 Phone'/>
+            <input id='Emergency1' type='text' placeholder='Contact 1 Name'/>
+            <input id='Emergency1Phone' type='text' placeholder='Contact 1 Phone'/>
+            <input id='Emergency2' type='text' placeholder='Contact 2 Name'/>
+            <input id='Emergency2Phone' type='text' placeholder='Contact 2 Phone'/>
             <input id='doctor' type='text' placeholder='Primary Care Physician'/>
               <select id="medical">
                 <option value= ''>Please Select Category</option>
@@ -129,8 +129,8 @@
      <script type="text/template" id="listMyKids">
     <!-- <div class= "kidShown"> -->
       <li class="showMyKids" id="<%= objectId %>">
-              <a href="#/kidSingle/<%= objectId %>"><img id='profilePic' src= "<%= image.url %>" alt="Smiley face" width="50%"/>
-              <h4><%= firstName %> <%= lastName %> </h4></a>
+              <a href="#/kidSingle/<%= objectId %>"><img id='profilePic' src= "<%= image.url %>" alt="Smiley face"/>
+              <h5><%= firstName %> <%= lastName %> </h5></a>
                 <a href="#/editKid/<%= objectId %>"><button id="updateButton">Edit</button></a>
                 <a href="#/share/<%= objectId %>"><button id="shareInfo">Share</button></a>
                 <button id="addKidBtn">Add</button>
@@ -221,7 +221,7 @@
       <script type='text/template' id='listMyEvents'>
       <div class= "eventShown">
         <li class="showEvent" id="<%= objectId %>">
-          <h4><%= eventName %></hr>
+          <h5><%= eventName %></h5>
           <p><%= eventDate %></p>
           <p><%= location %></p>
             <div id="added2"></div>

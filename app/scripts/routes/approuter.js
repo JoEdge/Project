@@ -65,9 +65,6 @@ $( document ).ready(function(){
       $('.enterSite').hide();
       new App.Views.MyKidsView();
       new App.Views.MyKidsList({collection: App.all_myKids});
-      $('#addMyKid').click(function() {
-        location.reload();
-      });
       $('#shareInfo').click(function() {
         location.reload();
       });
