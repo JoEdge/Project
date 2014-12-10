@@ -30,31 +30,26 @@
       e.preventDefault();
       //get selected kid in array 'kids' located in event class
       var kiddyID = e.currentTarget.id;
-      console.log(kiddyID);
       var kidPhoto = $(e.currentTarget).data('img');
-      console.log(kidPhoto);
       var kidArray = this.options.adder.attributes.kids;
-      console.log(kidArray);
       var kidObject = { kid: kiddyID, photo: kidPhoto };
-      console.log(kidObject);
 
       kidArray.push(kidObject);
-      console.log(kidArray);
 
       this.options.adder.save();
 
-      //query events for arrays of kids
-    //   var queryKids = new Parse.Query(App.Models.Events);
-    //   queryKids.equalTo('kids', kiddyID);
-    //   queryKids.find({
-    //     success: function(result) {
-    //       console.log(result);
-    //
-    //     },
-    //     error: function(error) {;
-    //     }//end error
-    //   });
-    //
+      // //query events for arrays of kids
+      var queryKids = new Parse.Query(App.Models.Events);
+      queryKids.equalTo('kids', kidObject);
+      queryKids.find({
+        success: function(result) {
+          console.log(result);
+
+        },
+        error: function(error) {;
+        }//end error
+      });
+
      },
 
     render: function(){

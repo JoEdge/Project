@@ -14,6 +14,7 @@ $( document ).ready(function(){
     initialize: function(options) {
       this.options = options;
 
+      //this.addingKids();
       this.render();
       //this.addingKids();
 
@@ -21,22 +22,22 @@ $( document ).ready(function(){
     },//end initialize
 
     //query events for arrays of kids
-    addingKids : function(e) {
-
-      e.preventDefault();
-
-      var queryKids = new Parse.Query(App.Models.Events);
-        queryKids.containedIn('kids', []);
-        queryKids.find({
-          success: function(result) {
-            console.log(result);
-
-          },
-          error: function(error) {;
-          }//end error
-      });
-
-    },
+    // adderKids : function(e) {
+    //
+    //   e.preventDefault();
+    //
+    //   var queryKids = new Parse.Query(App.Models.Events);
+    //     queryKids.containedIn('kids', );
+    //     queryKids.find({
+    //       success: function(result) {
+    //         console.log(result);
+    //
+    //       },
+    //       error: function(error) {;
+    //       }//end error
+    //   });
+    //
+    // },
 
     render: function() {
 

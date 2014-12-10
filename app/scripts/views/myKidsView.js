@@ -1,4 +1,4 @@
-$( document ).ready(function(){
+(function(){
 
   App.Views.MyKidsView = Parse.View.extend ({
 

@@ -6,7 +6,7 @@
 
     events: {
 
-    //  'click #hideMsg' : 'hideMessage',
+    // 'click #hideMsg' : 'deleteMessage',
 
     },
 
@@ -57,16 +57,16 @@
 
     },
 
-    // hideMessage: function (e) {
+    // deleteMessage: function (e) {
     //   e.preventDefault();
     //
-    //   var aMessage = this.collection.models[0];
-    //   console.log(aMessage);
+    //   // Remove Message
+    //   //this.options.s.destroy();
     //
-    // //  aMessage.hide();
-    //
-    //   console.log("hideme");
-    // },
+    //   // Return to home page
+    //   App.router.navigate('', {trigger: true});
+
+  //  },
 
   });
 

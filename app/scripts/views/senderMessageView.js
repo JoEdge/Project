@@ -1,4 +1,4 @@
-$( document ).ready(function(){
+(function(){
 
   App.Views.SenderMessageView = Parse.View.extend ({
 
@@ -53,7 +53,7 @@ $( document ).ready(function(){
           success: function (myMessage) {
 
             self.controlSetter(myMessage);
-          //  self.controlSetter(recipient);
+
             App.all_messages.add(myMessage);
             //clear my form
             $("#messageForm")[0].reset();

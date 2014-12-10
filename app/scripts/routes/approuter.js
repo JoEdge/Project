@@ -1,4 +1,4 @@
-$( document ).ready(function(){
+(function(){
 
   App.Routers.approuter = Parse.Router.extend({
 
@@ -69,7 +69,9 @@ $( document ).ready(function(){
 
     addingKids: function(id) {
       $('.enterSite').hide();
+      console.log(id);
       var se =  App.all_events.get(id);
+      console.log(se);
       new App.Views.AddKid2EventView({add2event : se});
       new App.Views.MyKidsList({collection: App.all_myKids, adder: se});
     },

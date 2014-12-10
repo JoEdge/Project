@@ -235,7 +235,12 @@
           <strong>Location</strong>
           <li><%= location %></li>
           <li><%= location2 %></li>
-            <div id="added2"></div>
+            <ul id="added2">
+            <% _.each(kids, function (k) { %>
+              <a href="kid/<%= k.kid %>"><img src="<%= k.photo %>"></a>
+              <% }); %>
+              </ul>
+            </ul>
             <a href="#/editEvent/<%= objectId %>"> <button id="editEvent">Edit</button></a>
             <a href="#/addKids/<%= objectId %>"> <button id="kidAdder">Add Kids</button></a>
         </li>
@@ -252,7 +257,12 @@
             <strong>Location</strong>
             <li><%= location %></li>
             <li><%= location2 %></li>
-              <div id="addedKids"></div>
+              <ul id="addedKids">
+                <% _.each(kids, function (k) { %>
+                <a href="kid/<%= k.kid %>"><img src="<%= k.photo %>"></a>
+                <% }); %>
+              </ul>
+              </div>
           </li>
         </div>
       </script>
