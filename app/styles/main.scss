@@ -54,12 +54,15 @@ nav {
     }//end button
   }//end .navLeft
 
-  h3{
+  h3 {
     @include span-columns(5);
     @include media($mobile) {
       @include span-columns(3);
     }//end media(mobile)
     text-align: center;
+    padding-right: 13%;
+    color: HSLA(215, 55%, 54%, 1);
+
   }
 
   .navRght {
@@ -136,6 +139,10 @@ nav {
     margin-top: 100px;
     margin-left: 3%;
     color: black;
+
+    h3 {
+      color: white;
+    }
 
     //event for kids to be added to
     .oneEventShown {

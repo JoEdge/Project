@@ -417,10 +417,12 @@ $( document ).ready(function(){
       myKid.save(null, {
         success: function () {
           App.all_myKids.add(myKid);
+          App.router.navigate('', {trigger: true});
         }
       });
 
     },
+
 
   });
 
@@ -545,7 +547,7 @@ $( document ).ready(function(){
     className: 'EditKid',
 
     events: {
-      'click #kidEditor' : 'updateKid',
+      'submit #FormEditKid' : 'updateKid',
       'click #kidDelete' : 'deleteKid',
     },
 
@@ -592,6 +594,10 @@ $( document ).ready(function(){
 
       // Return to home page
       App.router.navigate('', {trigger: true});
+      console.log('ha');
+      App.router.navigate('mykids', {trigger: true});
+      console.log('ha');
+      App.router.navigate('', {trigger: true});
 
 
     },
@@ -603,6 +609,10 @@ $( document ).ready(function(){
       this.options.kidE.destroy();
 
       // Return to home page
+      console.log('ha');
+      App.router.navigate('', {trigger: true});
+      console.log('ha');
+      App.router.navigate('mykids', {trigger: true});
       App.router.navigate('', {trigger: true});
 
     },
@@ -660,6 +670,8 @@ $( document ).ready(function(){
       myEvent.save(null, {
         success: function () {
           App.all_events.add(myEvent);
+          App.router.navigate('', {trigger: true});
+          App.router.navigate('event', {trigger: true});
         }//end success
 
       });//end myEvent.save
@@ -800,23 +812,6 @@ $( document ).ready(function(){
       $('#updateInfo').html(this.$el);
     },//end initialize
 
-    //query events for arrays of kids
-    // adderKids : function(e) {
-    //
-    //   e.preventDefault();
-    //
-    //   var queryKids = new Parse.Query(App.Models.Events);
-    //     queryKids.containedIn('kids', );
-    //     queryKids.find({
-    //       success: function(result) {
-    //         console.log(result);
-    //
-    //       },
-    //       error: function(error) {;
-    //       }//end error
-    //   });
-    //
-    // },
 
     render: function() {
 
@@ -1040,7 +1035,6 @@ $( document ).ready(function(){
       '' : 'home',
       'event': 'eventInfo',
       'start': 'enterSite',
-      'profile/:id' : 'profileInfo',
       'mykids' : 'myKidsInfo',
       'kidSingle/:id' : 'oneKid',
       'share/:id': 'shareKidInfo',
@@ -1069,23 +1063,16 @@ $( document ).ready(function(){
 
     },
 
-    // profileInfo: function() {
-    //   $('.enterSite').show();
-    //   $('.main').hide();
-    //   $('.sidebar').hide();
-    //   var u = App.all_users.get(id);
-    //   new App.Views.EditUser({users:u});
-    // },
-
     oneKid: function (id) {
       $('.enterSite').show();
       $('.main').hide();
       $('.sidebar').hide();
       var sk = App.all_myKids.get(id);
       new App.Views.SoloKid({onekid:sk});
-      // $('#logOut').click(function() {
-      //   location.reload();
-      // });
+      App.router.navigate('start', {trigger: true});
+      $('#backItUp').click(function() {
+        location.reload();
+      });
     },
 
     myKidsInfo: function() {
@@ -1095,6 +1082,7 @@ $( document ).ready(function(){
       $('#shareInfo').click(function() {
         location.reload();
       });
+
     },
 
     addingKids: function(id) {
@@ -1110,15 +1098,7 @@ $( document ).ready(function(){
       $('.enterSite').hide();
       new App.Views.AddEventView();
       new App.Views.MyEvents({collection: App.all_events});
-      $('#createEvent').click(function() {
-        location.reload();
-      });
-      $('#editEvent').click(function() {
-        location.reload();
-      });
-      $('#kidAdder').click(function() {
-        location.reload();
-      });
+
     },
 
     shareKidInfo: function(id) {
@@ -1136,6 +1116,13 @@ $( document ).ready(function(){
       $('.sidebar').hide();
       var e = App.all_events.get(id);
       new App.Views.EditEvent({eventOne: e});
+      $('#eventDelete').click(function() {
+        location.reload();
+      });
+      $('#editor').click(function() {
+        location.reload();
+      });
+
 
     },
 
@@ -1143,11 +1130,16 @@ $( document ).ready(function(){
       $('.enterSite').show();
       $('.main').hide();
       $('.sidebar').hide();
-      console.log(id);
       var k = App.all_myKids.get(id);
-      console.log(k);
       new App.Views.EditKid({kidE : k});
-    }
+      $('#kidDelete').click(function() {
+        location.reload();
+      });
+      $('#kidEditor').click(function() {
+        location.reload();
+      });
+
+    },
 
   });
 
@@ -1164,37 +1156,39 @@ $( document ).ready(function(){
 
     App.all_users.fetch().done(function () {
 
-      App.router = new App.Routers.approuter();
+      App.all_messages = new App.Collections.MessageCollection();
 
+      App.all_messages.fetch().done(function () {
+
+        App.all_events = new App.Collections.EventCollection();
+
+        App.all_events.fetch().done(function () {
+
+          App.all_myKids = new App.Collections.MyKidsCollection();
+
+          App.all_myKids.fetch().done(function () {
+
+            App.router = new App.Routers.approuter();
+
+            Parse.history.start();
+
+          })
+        })
+      })
     });//end of fetch all_users
-    App.all_messages = new App.Collections.MessageCollection();
-
-    App.all_messages.fetch().done(function () {
-
-      App.router = new App.Routers.approuter();
-
-    });//end of fetch all_messages
-
-    App.all_events = new App.Collections.EventCollection();
-
-    App.all_events.fetch().done(function () {
-
-      App.router = new App.Routers.approuter();
-
-    });//end of fetch all_events
-
-    App.all_myKids = new App.Collections.MyKidsCollection();
-
-    App.all_myKids.fetch().done(function () {
-
-      App.router = new App.Routers.approuter();
-
-      Parse.history.start();
-
-    });//end of fetch all_mykids
 
     //Home Button force refresh
     $('#homeBtn').click(function() {
+      location.reload();
+    });
+
+    //Event Button force refresh
+    $('#eventBtn').click(function() {
+      location.reload();
+    });
+
+    //My kids button force refresh
+    $('#myKidsBtn').click(function() {
       location.reload();
     });
 

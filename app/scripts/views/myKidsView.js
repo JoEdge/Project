@@ -72,10 +72,12 @@
       myKid.save(null, {
         success: function () {
           App.all_myKids.add(myKid);
+          App.router.navigate('', {trigger: true});
         }
       });
 
     },
+
 
   });
 

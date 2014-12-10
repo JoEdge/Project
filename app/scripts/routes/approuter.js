@@ -10,7 +10,6 @@
       '' : 'home',
       'event': 'eventInfo',
       'start': 'enterSite',
-      'profile/:id' : 'profileInfo',
       'mykids' : 'myKidsInfo',
       'kidSingle/:id' : 'oneKid',
       'share/:id': 'shareKidInfo',
@@ -39,23 +38,16 @@
 
     },
 
-    // profileInfo: function() {
-    //   $('.enterSite').show();
-    //   $('.main').hide();
-    //   $('.sidebar').hide();
-    //   var u = App.all_users.get(id);
-    //   new App.Views.EditUser({users:u});
-    // },
-
     oneKid: function (id) {
       $('.enterSite').show();
       $('.main').hide();
       $('.sidebar').hide();
       var sk = App.all_myKids.get(id);
       new App.Views.SoloKid({onekid:sk});
-      // $('#logOut').click(function() {
-      //   location.reload();
-      // });
+      App.router.navigate('start', {trigger: true});
+      $('#backItUp').click(function() {
+        location.reload();
+      });
     },
 
     myKidsInfo: function() {
@@ -65,6 +57,7 @@
       $('#shareInfo').click(function() {
         location.reload();
       });
+
     },
 
     addingKids: function(id) {
@@ -80,15 +73,7 @@
       $('.enterSite').hide();
       new App.Views.AddEventView();
       new App.Views.MyEvents({collection: App.all_events});
-      $('#createEvent').click(function() {
-        location.reload();
-      });
-      $('#editEvent').click(function() {
-        location.reload();
-      });
-      $('#kidAdder').click(function() {
-        location.reload();
-      });
+
     },
 
     shareKidInfo: function(id) {
@@ -106,6 +91,13 @@
       $('.sidebar').hide();
       var e = App.all_events.get(id);
       new App.Views.EditEvent({eventOne: e});
+      $('#eventDelete').click(function() {
+        location.reload();
+      });
+      $('#editor').click(function() {
+        location.reload();
+      });
+
 
     },
 
@@ -113,11 +105,16 @@
       $('.enterSite').show();
       $('.main').hide();
       $('.sidebar').hide();
-      console.log(id);
       var k = App.all_myKids.get(id);
-      console.log(k);
       new App.Views.EditKid({kidE : k});
-    }
+      $('#kidDelete').click(function() {
+        location.reload();
+      });
+      $('#kidEditor').click(function() {
+        location.reload();
+      });
+
+    },
 
   });
 

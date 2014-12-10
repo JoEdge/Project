@@ -9,37 +9,39 @@ $( document ).ready(function(){
 
     App.all_users.fetch().done(function () {
 
-      App.router = new App.Routers.approuter();
+      App.all_messages = new App.Collections.MessageCollection();
 
+      App.all_messages.fetch().done(function () {
+
+        App.all_events = new App.Collections.EventCollection();
+
+        App.all_events.fetch().done(function () {
+
+          App.all_myKids = new App.Collections.MyKidsCollection();
+
+          App.all_myKids.fetch().done(function () {
+
+            App.router = new App.Routers.approuter();
+
+            Parse.history.start();
+
+          })
+        })
+      })
     });//end of fetch all_users
-    App.all_messages = new App.Collections.MessageCollection();
-
-    App.all_messages.fetch().done(function () {
-
-      App.router = new App.Routers.approuter();
-
-    });//end of fetch all_messages
-
-    App.all_events = new App.Collections.EventCollection();
-
-    App.all_events.fetch().done(function () {
-
-      App.router = new App.Routers.approuter();
-
-    });//end of fetch all_events
-
-    App.all_myKids = new App.Collections.MyKidsCollection();
-
-    App.all_myKids.fetch().done(function () {
-
-      App.router = new App.Routers.approuter();
-
-      Parse.history.start();
-
-    });//end of fetch all_mykids
 
     //Home Button force refresh
     $('#homeBtn').click(function() {
+      location.reload();
+    });
+
+    //Event Button force refresh
+    $('#eventBtn').click(function() {
+      location.reload();
+    });
+
+    //My kids button force refresh
+    $('#myKidsBtn').click(function() {
       location.reload();
     });
 

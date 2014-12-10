@@ -47,6 +47,8 @@ $( document ).ready(function(){
       myEvent.save(null, {
         success: function () {
           App.all_events.add(myEvent);
+          App.router.navigate('', {trigger: true});
+          App.router.navigate('event', {trigger: true});
         }//end success
 
       });//end myEvent.save

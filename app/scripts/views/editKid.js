@@ -6,7 +6,7 @@
     className: 'EditKid',
 
     events: {
-      'click #kidEditor' : 'updateKid',
+      'submit #FormEditKid' : 'updateKid',
       'click #kidDelete' : 'deleteKid',
     },
 
@@ -53,6 +53,10 @@
 
       // Return to home page
       App.router.navigate('', {trigger: true});
+      console.log('ha');
+      App.router.navigate('mykids', {trigger: true});
+      console.log('ha');
+      App.router.navigate('', {trigger: true});
 
 
     },
@@ -64,6 +68,10 @@
       this.options.kidE.destroy();
 
       // Return to home page
+      console.log('ha');
+      App.router.navigate('', {trigger: true});
+      console.log('ha');
+      App.router.navigate('mykids', {trigger: true});
       App.router.navigate('', {trigger: true});
 
     },

@@ -21,23 +21,6 @@ $( document ).ready(function(){
       $('#updateInfo').html(this.$el);
     },//end initialize
 
-    //query events for arrays of kids
-    // adderKids : function(e) {
-    //
-    //   e.preventDefault();
-    //
-    //   var queryKids = new Parse.Query(App.Models.Events);
-    //     queryKids.containedIn('kids', );
-    //     queryKids.find({
-    //       success: function(result) {
-    //         console.log(result);
-    //
-    //       },
-    //       error: function(error) {;
-    //       }//end error
-    //   });
-    //
-    // },
 
     render: function() {
 
