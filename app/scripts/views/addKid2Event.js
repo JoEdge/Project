@@ -21,22 +21,22 @@ $( document ).ready(function(){
     },//end initialize
 
     //query events for arrays of kids
-    // addingKids : function(e) {
-    //
-    // //  e.preventDefault();
-    //
-    //   var queryKids = new Parse.Query(App.Models.Events);
-    //     queryKids.containedIn('objectId', ['kids']);
-    //     queryKids.find({
-    //       success: function(result) {
-    //         console.log(result);
-    //
-    //       },
-    //       error: function(error) {;
-    //       }//end error
-    //   });
-    //
-    // },
+    addingKids : function(e) {
+
+      e.preventDefault();
+
+      var queryKids = new Parse.Query(App.Models.Events);
+        queryKids.containedIn('kids', []);
+        queryKids.find({
+          success: function(result) {
+            console.log(result);
+
+          },
+          error: function(error) {;
+          }//end error
+      });
+
+    },
 
     render: function() {
 

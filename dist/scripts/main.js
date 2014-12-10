@@ -458,25 +458,32 @@ $( document ).ready(function(){
       e.preventDefault();
       //get selected kid in array 'kids' located in event class
       var kiddyID = e.currentTarget.id;
+      console.log(kiddyID);
+      var kidPhoto = $(e.currentTarget).data('img');
+      console.log(kidPhoto);
       var kidArray = this.options.adder.attributes.kids;
+      console.log(kidArray);
+      var kidObject = { kid: kiddyID, photo: kidPhoto };
+      console.log(kidObject);
 
-      kidArray.push(kiddyID);
+      kidArray.push(kidObject);
+      console.log(kidArray);
 
       this.options.adder.save();
 
       //query events for arrays of kids
-      var queryKids = new Parse.Query(App.Models.Events);
-      queryKids.equalTo('kids', kiddyID);
-      queryKids.find({
-        success: function(result) {
-          console.log(result);
-
-        },
-        error: function(error) {;
-        }//end error
-      });
-
-    },
+    //   var queryKids = new Parse.Query(App.Models.Events);
+    //   queryKids.equalTo('kids', kiddyID);
+    //   queryKids.find({
+    //     success: function(result) {
+    //       console.log(result);
+    //
+    //     },
+    //     error: function(error) {;
+    //     }//end error
+    //   });
+    //
+     },
 
     render: function(){
       var self= this;
@@ -798,22 +805,22 @@ $( document ).ready(function(){
     },//end initialize
 
     //query events for arrays of kids
-    // addingKids : function(e) {
-    //
-    // //  e.preventDefault();
-    //
-    //   var queryKids = new Parse.Query(App.Models.Events);
-    //     queryKids.containedIn('objectId', ['kids']);
-    //     queryKids.find({
-    //       success: function(result) {
-    //         console.log(result);
-    //
-    //       },
-    //       error: function(error) {;
-    //       }//end error
-    //   });
-    //
-    // },
+    addingKids : function(e) {
+
+      e.preventDefault();
+
+      var queryKids = new Parse.Query(App.Models.Events);
+        queryKids.containedIn('kids', []);
+        queryKids.find({
+          success: function(result) {
+            console.log(result);
+
+          },
+          error: function(error) {;
+          }//end error
+      });
+
+    },
 
     render: function() {
 
