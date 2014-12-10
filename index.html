@@ -229,7 +229,7 @@
           <li><%= location2 %></li>
             <ul id="added2">
             <% _.each(kids, function (k) { %>
-              <a href="kid/<%= k.kid %>"><img src="<%= k.photo %>"></a>
+              <a href="#/kidSingle/<%= k.kid %>"><img src="<%= k.photo %>"></a>
               <% }); %>
               </ul>
             </ul>
@@ -251,7 +251,7 @@
             <li><%= location2 %></li>
               <ul id="addedKids">
                 <% _.each(kids, function (k) { %>
-                <a href="kid/<%= k.kid %>"><img src="<%= k.photo %>"></a>
+                <a href="#/kidSingle/<%= k.kid %>"><img src="<%= k.photo %>"></a>
                 <% }); %>
               </ul>
               </div>
