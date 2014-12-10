@@ -30,7 +30,7 @@
           <a href="#/start"><button id="logOut">Logout</button></a>
           <span id="loggedIn"></span>
         </div>
-        <h2>Safety Net</h2>
+        <h3>Safety Net</h3>
         <div class="navRght">
           <a href="#/mykids"><button id="myKidsBtn">My Kids</button></a>
           <a href="#/event"><button id="eventBtn">Events</button></a>
@@ -233,8 +233,8 @@
           <strong>Date</strong>
           <p><%= eventDate %></p>
           <strong>Location</strong>
-          <p><%= location %></p>
-          <p><%= location2 %></p>
+          <li><%= location %></li>
+          <li><%= location2 %></li>
             <div id="added2"></div>
             <a href="#/editEvent/<%= objectId %>"> <button id="editEvent">Edit</button></a>
             <a href="#/addKids/<%= objectId %>"> <button id="kidAdder">Add Kids</button></a>
@@ -250,8 +250,8 @@
             <strong>Date</strong>
             <p><%= eventDate %></p>
             <strong>Location</strong>
-            <p><%= location %></p>
-            <p><%= location2 %></p>
+            <li><%= location %></li>
+            <li><%= location2 %></li>
               <div id="addedKids"></div>
           </li>
         </div>
@@ -260,6 +260,7 @@
       <!-- Template for Sending Message  -->
       <script type='text/template' id='messagesTo'>
         <div class="chat" id="<%= objectId %>">
+        <h4>Messenger</h4>
           <form id="messageForm">
             <input id='recipient' type='text' placeholder='To: '/>
             <input id='senderName' type='text' placeholder='From: '/>
