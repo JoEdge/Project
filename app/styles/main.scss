@@ -129,11 +129,39 @@ nav {
     @include media($mobile) {
       @include span-columns(3);
     }//end media(mobile)
-    border: 1px solid white;
+  //  border: 1px solid white;
     margin-top: 100px;
     margin-left: 3%;
     color: grey;
-    //background-color: white;
+
+    .MessageList {
+      background-color: transparent;
+
+      .talk {
+        margin-bottom: 10px;
+        background-color: white;
+
+        h4{
+          border: 1px solid white;
+          color: white;
+          background-color: HSLA(215, 55%, 54%, 1);
+          margin-bottom: 7px;
+        }
+
+        #hideMsg {
+          min-width:50px;
+          text-align: center;
+          font-size:12px;
+          word-wrap:break-word;
+          margin-top: 5px;
+          margin-left: 73%;
+          margin-bottom: 3px;
+          padding-left: 3px;
+          padding-right: 3px;
+        }
+      }
+    }
+
   }//end updateInfo
 }//end sidebar
 
