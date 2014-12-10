@@ -36,15 +36,11 @@
       query.equalTo('recipient', App.user);
     //  query.equalTo('recipient', App.user.attributes.username);
       query.find({
-
-      success: function(results) {
-
-        self.render(results);
-
-      },
-      error: function(error) {
-        
-      }
+        success: function(results) {
+          self.render(results);
+        },
+        error: function(error) {
+        }
     });
 
   },

@@ -128,7 +128,6 @@
 
      <!-- Template for Listing "My Kids" -->
      <script type="text/template" id="listMyKids">
-    <!-- <div class= "kidShown"> -->
       <li class="showMyKids" id="<%= objectId %>">
               <a href="#/kidSingle/<%= objectId %>"><img id='profilePic' src= "<%= image.url %>" alt="Smiley face"/>
               <h5><%= firstName %> <%= lastName %> </h5></a>
@@ -144,20 +143,26 @@
         <div class= "oneKid">
           <li class="showOneKid" id="<%= objectId %>">
             <div class="kidOneShow">
-              <img id='profilePic' src= "<%= image.url %>" alt="Smiley face" width="30%"/>
-              <h3><%= firstName %> <%= lastName %> </h3>
+              <img id='profilePic' src= "<%= image.url %>" alt="Smiley face"/>
+            </div>
+              <h5><%= firstName %> <%= lastName %> </h5>
+                <strong>Date of Birth</strong>
                 <li><%= birthdate %></li>
+                <strong>Address</strong>
                 <li><%= address1 %></li>
                 <li><%= address2 %></li>
+                <strong>Emergency Contact</strong>
                 <li><%= ec1Name %></li>
                 <li><%= ec1Phone %></li>
+                <strong>Emergency Contact</strong>
                 <li><%= ec2Name %></li>
                 <li><%= ec2Phone %></li>
+                <strong>Doctor</strong>
                 <li><%= doctor %></li>
+                <strong>Medical Concerns</strong>
                 <li><%= medical %></li>
                 <li><%= notes %></li>
                 <button id="backItUp">x</button>
-            </div>
           </li>
         </div>
       </script>

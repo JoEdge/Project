@@ -30,7 +30,6 @@
       e.preventDefault();
       //get selected kid in array 'kids' located in event class
       var kiddyID = e.currentTarget.id;
-
       var kidArray = this.options.adder.attributes.kids;
 
       kidArray.push(kiddyID);
@@ -43,7 +42,7 @@
       queryKids.find({
         success: function(result) {
           console.log(result);
-          
+
         },
         error: function(error) {;
         }//end error

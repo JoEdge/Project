@@ -5,7 +5,7 @@ $( document ).ready(function(){
     className: "AddKid2Event",
 
     events: {
-
+    //  "submit #updateInfo" : "addingKids",
 
     },//end events
 
@@ -15,9 +15,28 @@ $( document ).ready(function(){
       this.options = options;
 
       this.render();
+      //this.addingKids();
 
       $('#updateInfo').html(this.$el);
     },//end initialize
+
+    //query events for arrays of kids
+    // addingKids : function(e) {
+    //
+    // //  e.preventDefault();
+    //
+    //   var queryKids = new Parse.Query(App.Models.Events);
+    //     queryKids.containedIn('objectId', ['kids']);
+    //     queryKids.find({
+    //       success: function(result) {
+    //         console.log(result);
+    //
+    //       },
+    //       error: function(error) {;
+    //       }//end error
+    //   });
+    //
+    // },
 
     render: function() {
 
@@ -27,23 +46,6 @@ $( document ).ready(function(){
       this.$el.empty();
 
       this.$el.html(this.template(this.options.add2event.toJSON()));
-      // this.$el.html(this.template(this.options.kidAdd.toJSON()));
-      //
-      // var kiddyTemplate = _.template($('#listMyKids').html());
-      // var kiddy_query = new Parse.Query(App.Models.MyKidsProfile);
-      //
-      // kiddy_query.equalTo('kids', this.options.kidAdd);
-      //
-      // this.$el.append('<ul class="addedKids"></ul>');
-      //
-      // kiddy_query.find({
-      //   success: function (results) {
-      //
-      //     _.each(results, function(kiddy) {
-      //       $('ul.addedKids').append(kiddyTemplate(kiddy.toJSON()));
-      //     })
-      //   }
-      // })
 
     },
 

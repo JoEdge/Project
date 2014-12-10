@@ -89,8 +89,38 @@ nav {
   margin-top: 100px;
   margin-left: 35%;
   min-height: 100px;
-  background-color: white;
+  //background-color: white;
   z-index: 2;
+
+  .oneKid{
+    @include span-columns(9 of 12);
+    @include media($mobile) {
+      @include span-columns(4);
+    }//end media(mobile)
+    min-width: 200px;
+    border: 1px solid black;
+    margin-left: 13%;
+    background-color: white;
+
+      .kidOneShow {
+        height: 60px;
+        background-color: grey;
+        margin-top: 10px;
+        border-top: 2px solid blue;
+        border-bottom: 2px solid blue;
+
+        img {
+          margin-left: 30%;
+          width: 35%;
+          height: 56px;
+          max-width: 70px;
+        }
+      }
+
+      #backItUp {
+        float: right;
+      }
+  }
 }//end enterSite
 
 .sidebar{
