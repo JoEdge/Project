@@ -343,7 +343,7 @@ $( document ).ready(function(){
 
 }());
 
-$( document ).ready(function(){
+(function(){
 
   App.Views.MyKidsView = Parse.View.extend ({
 
@@ -458,31 +458,26 @@ $( document ).ready(function(){
       e.preventDefault();
       //get selected kid in array 'kids' located in event class
       var kiddyID = e.currentTarget.id;
-      console.log(kiddyID);
       var kidPhoto = $(e.currentTarget).data('img');
-      console.log(kidPhoto);
       var kidArray = this.options.adder.attributes.kids;
-      console.log(kidArray);
       var kidObject = { kid: kiddyID, photo: kidPhoto };
-      console.log(kidObject);
 
       kidArray.push(kidObject);
-      console.log(kidArray);
 
       this.options.adder.save();
 
-      //query events for arrays of kids
-    //   var queryKids = new Parse.Query(App.Models.Events);
-    //   queryKids.equalTo('kids', kiddyID);
-    //   queryKids.find({
-    //     success: function(result) {
-    //       console.log(result);
-    //
-    //     },
-    //     error: function(error) {;
-    //     }//end error
-    //   });
-    //
+      // //query events for arrays of kids
+      var queryKids = new Parse.Query(App.Models.Events);
+      queryKids.equalTo('kids', kidObject);
+      queryKids.find({
+        success: function(result) {
+          console.log(result);
+
+        },
+        error: function(error) {;
+        }//end error
+      });
+
      },
 
     render: function(){
@@ -798,6 +793,7 @@ $( document ).ready(function(){
     initialize: function(options) {
       this.options = options;
 
+      //this.addingKids();
       this.render();
       //this.addingKids();
 
@@ -805,22 +801,22 @@ $( document ).ready(function(){
     },//end initialize
 
     //query events for arrays of kids
-    addingKids : function(e) {
-
-      e.preventDefault();
-
-      var queryKids = new Parse.Query(App.Models.Events);
-        queryKids.containedIn('kids', []);
-        queryKids.find({
-          success: function(result) {
-            console.log(result);
-
-          },
-          error: function(error) {;
-          }//end error
-      });
-
-    },
+    // adderKids : function(e) {
+    //
+    //   e.preventDefault();
+    //
+    //   var queryKids = new Parse.Query(App.Models.Events);
+    //     queryKids.containedIn('kids', );
+    //     queryKids.find({
+    //       success: function(result) {
+    //         console.log(result);
+    //
+    //       },
+    //       error: function(error) {;
+    //       }//end error
+    //   });
+    //
+    // },
 
     render: function() {
 
@@ -837,7 +833,7 @@ $( document ).ready(function(){
 
 }());
 
-$( document ).ready(function(){
+(function(){
 
   App.Views.SenderMessageView = Parse.View.extend ({
 
@@ -892,7 +888,7 @@ $( document ).ready(function(){
           success: function (myMessage) {
 
             self.controlSetter(myMessage);
-          //  self.controlSetter(recipient);
+
             App.all_messages.add(myMessage);
             //clear my form
             $("#messageForm")[0].reset();
@@ -966,7 +962,7 @@ $( document ).ready(function(){
 
     events: {
 
-    //  'click #hideMsg' : 'hideMessage',
+    // 'click #hideMsg' : 'deleteMessage',
 
     },
 
@@ -1017,22 +1013,22 @@ $( document ).ready(function(){
 
     },
 
-    // hideMessage: function (e) {
+    // deleteMessage: function (e) {
     //   e.preventDefault();
     //
-    //   var aMessage = this.collection.models[0];
-    //   console.log(aMessage);
+    //   // Remove Message
+    //   //this.options.s.destroy();
     //
-    // //  aMessage.hide();
-    //
-    //   console.log("hideme");
-    // },
+    //   // Return to home page
+    //   App.router.navigate('', {trigger: true});
+
+  //  },
 
   });
 
 }());
 
-$( document ).ready(function(){
+(function(){
 
   App.Routers.approuter = Parse.Router.extend({
 
@@ -1103,7 +1099,9 @@ $( document ).ready(function(){
 
     addingKids: function(id) {
       $('.enterSite').hide();
+      console.log(id);
       var se =  App.all_events.get(id);
+      console.log(se);
       new App.Views.AddKid2EventView({add2event : se});
       new App.Views.MyKidsList({collection: App.all_myKids, adder: se});
     },
