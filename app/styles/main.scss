@@ -9,6 +9,7 @@
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #333;
+  list-style-type: none;
   background: url('../images/dandelion.jpg')no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -92,6 +93,7 @@ nav {
   //background-color: white;
   z-index: 2;
 
+//solo Kid view
   .oneKid{
     @include span-columns(9 of 12);
     @include media($mobile) {
@@ -134,6 +136,20 @@ nav {
     margin-left: 3%;
     color: grey;
 
+    //sending message styling
+    .oneEventShown {
+      min-height: 200px;
+      background-color: white;
+
+      h4 {
+        text-align: center;
+      }
+
+
+
+    }//end .oneEventShown
+
+    //recieved message styling
     .MessageList {
       background-color: transparent;
 
@@ -160,7 +176,7 @@ nav {
           padding-right: 3px;
         }
       }
-    }
+    }//end .MessageList
 
   }//end updateInfo
 }//end sidebar
@@ -268,6 +284,7 @@ nav {
         word-wrap: break-word;
         padding-left: 3px;
         padding-right: 3px;
+        margin-bottom: 3px;
         color: white;
       }//end button
     }//end eventShown

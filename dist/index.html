@@ -195,7 +195,8 @@
             <form id='eventForm'>
               <input id='eventName' type='text' placeholder='Event Name'/>
               <input id='eventDate' type='date' placeholder="Date"/>
-              <input id='location' type='text' placeholder="Location"/>
+              <input id='location' type='text' placeholder="Address"/>
+              <input id='location2' type='text' placeholder="Address"/>
                 <button id="createEvent">Enter</button>
             </form>
           </div>
@@ -207,8 +208,9 @@
           <div class="updateEvent" id="<%= objectId %>">
             <form id="FormEditEvent">
               <input id='update_event_name' type='text' value="<%= eventName %>"/>
-              <input id='update_event_date' type='text' value="<%= eventDate %>"/>
+              <input id='update_event_date' type='date' value="<%= eventDate %>"/>
               <input id='update_event_location' type='text' value="<%= location %>"/>
+              <input id='update_event_location2' type='text' value="<%= location2 %>"/>
                 <button id="editor">Edit It!</button>
                 <button id="eventDelete">Delete</button>
             </form>
@@ -220,8 +222,11 @@
       <div class= "eventShown">
         <li class="showEvent" id="<%= objectId %>">
           <h5><%= eventName %></h5>
+          <strong>Date</strong>
           <p><%= eventDate %></p>
+          <strong>Location</strong>
           <p><%= location %></p>
+          <p><%= location2 %></p>
             <div id="added2"></div>
             <a href="#/editEvent/<%= objectId %>"> <button id="editEvent">Edit</button></a>
             <a href="#/addKids/<%= objectId %>"> <button id="kidAdder">Add Kids</button></a>
@@ -233,9 +238,12 @@
       <script type='text/template' id='oneEvent'>
         <div class= "oneEventShown">
           <li class="soloEvent" id="<%= objectId %>">
-            <h4><%= eventName %></hr>
+            <h4><%= eventName %></h4>
+            <strong>Date</strong>
             <p><%= eventDate %></p>
+            <strong>Location</strong>
             <p><%= location %></p>
+            <p><%= location2 %></p>
               <div id="addedKids"></div>
           </li>
         </div>

@@ -31,14 +31,15 @@
       e.preventDefault();
 
       // Update our Model Instance
-      this.options.events.set({
+      this.options.eventOne.set({
         eventName: $("#update_event_name").val(),
         eventDate: $("#update_event_date").val(),
         location: $("#update_event_location").val(),
+        location2: $("#update_event_location2").val(),
       });
 
       // Save Instance
-      this.options.events.save();
+      this.options.eventOne.save();
 
       // Return to home page
       App.router.navigate('event', {trigger: true});

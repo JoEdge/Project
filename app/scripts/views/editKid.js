@@ -54,6 +54,7 @@
       // Return to home page
       App.router.navigate('', {trigger: true});
 
+
     },
 
     deleteKid: function (e) {
@@ -66,7 +67,6 @@
       App.router.navigate('', {trigger: true});
 
     },
-
 
   });
 

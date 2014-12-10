@@ -35,6 +35,7 @@ $( document ).ready(function(){
         success: function(user){
           App.user = user;
           App.updateUser();
+          App.router.navigate('', {trigger: true});
         },
 
         error: function(user, error) {
@@ -45,7 +46,7 @@ $( document ).ready(function(){
 
       //clear my form
       $("#loginForm")[0].reset();
-      App.router.navigate('', { trigger: true });
+      // App.router.navigate('', { trigger: true });
     },
 
   });

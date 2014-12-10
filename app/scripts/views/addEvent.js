@@ -31,6 +31,7 @@ $( document ).ready(function(){
         eventName: $('#eventName').val(),
         eventDate: $('#eventDate').val(),
         location: $('#location').val(),
+        location2: $('#location2').val(),
         user: App.user,
 
       });//end var myEvent

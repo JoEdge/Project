@@ -38,20 +38,11 @@ $( document ).ready(function(){
 
     });//end of fetch all_mykids
 
-
-      // $(".dropdown-button").on('click', function() {
-      //   $(".dropdown-menu").toggleClass("show-menu");
-      //   $(".dropdown-menu > li").on('click',function(){
-      //     $(".dropdown-menu").removeClass("show-menu");
-      //   });
-      //   $(".dropdown-menu.dropdown-select > li").on('click',function() {
-      //     $(".dropdown-button").html($(this).html());
-      //   });
-
     //Home Button force refresh
     $('#homeBtn').click(function() {
       location.reload();
     });
+
 
     // Log Out
     $('#logOut').on('click', function (e) {
@@ -62,6 +53,9 @@ $( document ).ready(function(){
       App.router.navigate('start', {trigger: true});
     });//end of logout function
 
+    $('#logOut').click(function() {
+      location.reload();
+    });
 
     // Update User
     App.updateUser = function (){
