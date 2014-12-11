@@ -53,6 +53,8 @@ body {
     //slider
     .sliding-menu-button {
       display: inline-block;
+      min-width: 20px;
+      padding: 6px;
       cursor: pointer;
       font-size: $base-font-size;
       margin-bottom: $base-line-height;
@@ -60,7 +62,7 @@ body {
       outline: none;
 
       img {
-        height: 1.3em;
+        height: 20px;
       }
     }
 
