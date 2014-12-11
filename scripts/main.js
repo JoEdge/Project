@@ -706,6 +706,8 @@ $( document ).ready(function(){
 
       $('#myKidsOnly').html(this.$el);
 
+      $('.targeted').hide();
+
     },
 
 
