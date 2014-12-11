@@ -1,8 +1,16 @@
  // Bourbon & Neat
-
 @import '../../bower_components/bourbon/dist/bourbon';
 @import "../../base/base";
 @import '../../bower_components/neat/app/assets/stylesheets/neat';
+
+
+//Sass for slide menu
+$sliding-menu-border-color: $dark-gray;
+$sliding-menu-background: lighten($sliding-menu-border-color, 5);
+$sliding-menu-color: #fff;
+$sliding-menu-border: 1px solid $sliding-menu-border-color;
+$sliding-menu-background-hover: $base-accent-color;
+$sliding-menu-color-hover: #fff;
 
 
 // Custom Styles
@@ -18,25 +26,23 @@ body {
 
 .container {
   @include outer-container;
-  // $first-breakpoint-value: 400px;
-  // $second-breakpoint-value: 700px;
   $mobile: new-breakpoint(max-width 400px 4);
   $medium: new-breakpoint(max-width 700px 4);
   max-width: 1600px;
   width: 100%;
   margin: 0px;
 
-nav {
+.mainNav {
   @include span-columns(12);
   position: fixed;
   min-height: 50px;
-  max-height: 120px;
+  max-height: 60px;
   border: 1px solid black;
   background-color: white;
-  z-index: 3;
+  z-index: 9999999;
 
   .navLeft {
-    @include span-columns(4);
+    @include span-columns(3);
     @include media($mobile) {
       @include span-columns(4);
     }//end media(mobile)
@@ -44,35 +50,73 @@ nav {
     margin-left: 2%;
     margin-top: 1%;
 
-    button {
-      min-width:60px;
-      text-align: center;
-      font-size:12px;
-      word-wrap:break-word;
-      padding-left: 3px;
-      padding-right: 3px;
-    }//end button
+    //slider
+    .sliding-menu-button {
+      display: inline-block;
+      cursor: pointer;
+      font-size: $base-font-size;
+      margin-bottom: $base-line-height;
+      position: relative;
+      outline: none;
+
+      img {
+        height: 1.3em;
+      }
+    }
+
+    .sliding-menu-content {
+      @include position(fixed, 58px auto 0px 0px);
+      @include size(230px 100%);
+      @include transform(translateX(-220px));
+      @include transition(all .25s linear);
+      background: $sliding-menu-background;
+      z-index: 999998;
+      overflow-y: scroll;
+      -webkit-overflow-scrolling: touch;
+
+      ul li a {
+        border-bottom: $sliding-menu-border;
+        color: $sliding-menu-color;
+        display: block;
+        font-weight: bold;
+        padding: 1em;
+        z-index: 999999;
+
+        &:hover {
+          background-color: $sliding-menu-background-hover;
+          color: $sliding-menu-color-hover;
+        }
+      }
+
+      &.is-visible {
+        @include transform(translateX(0));
+      }
+    }
+
   }//end .navLeft
 
   h3 {
-    @include span-columns(5);
+    @include span-columns(4.5);
     @include media($mobile) {
       @include span-columns(3);
     }//end media(mobile)
     text-align: center;
-    padding-right: 13%;
+    padding-left: 3%;
     color: HSLA(215, 55%, 54%, 1);
-
-  }
+  }//end h3
 
   .navRght {
-    @include span-columns(2.5);
+    @include span-columns(4);
     @include media($mobile) {
       @include span-columns(3);
     }//end media(mobile)
     float: right;
-    margin-left: 2%;
+    padding-left: 5%;
     margin-top: 1%;
+
+    span {
+      margin-right: 2%;
+    }
 
     button {
       min-width:60px;
@@ -84,6 +128,20 @@ nav {
     }//end button
   }//end .navRght
 }//end nav
+
+.menu-screen {
+  @include position(fixed, 0px 0px 0px 0px);
+  @include transition;
+  background: $sliding-menu-border-color;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 900000;
+
+  &.is-visible {
+    opacity: .4;
+    visibility: visible;
+  }
+}
 
 .enterSite {
   @include span-columns(4);

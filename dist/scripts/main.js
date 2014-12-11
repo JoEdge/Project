@@ -1160,7 +1160,7 @@ $( document ).ready(function(){
 Parse.initialize("rSMFx7NCERf7fOIu7UBDFhrVWQBNXQJLGkzGu0ML", "YNVYJv0m0llTc3tpH3AmS982AyhLx6memgnignCY");
 
 
-$( document ).ready(function(){
+(function(){
 
     App.all_users = new App.Collections.UserCollection();
 
@@ -1186,6 +1186,22 @@ $( document ).ready(function(){
         })
       })
     });//end of fetch all_users
+
+    //slide out menu
+
+    $(document).ready(function(){
+      $('.js-menu-trigger').on('click touchstart', function(e){
+        $('.js-menu').toggleClass('is-visible');
+        $('.js-menu-screen').toggleClass('is-visible');
+        e.preventDefault();
+      });
+
+      $('.js-menu-screen').on('click touchstart', function(e){
+        $('.js-menu').toggleClass('is-visible');
+        $('.js-menu-screen').toggleClass('is-visible');
+        e.preventDefault();
+      });
+    });
 
 
     //Home Button force refresh

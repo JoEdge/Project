@@ -22,21 +22,29 @@
     <!-- endbuild -->
   </head>
   <body>
-
     <div class="container">
       <!-- navigation bar -->
-      <nav>
-        <div class="navLeft">
-          <a href="#/start"><button id="logOut">Logout</button></a>
-          <span id="loggedIn"></span>
-        </div>
+     <div class ="mainNav">
+      <div class="navLeft">
+        <button type="button" class="js-menu-trigger sliding-menu-button" width="40px">
+          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/menu-white.png" alt="Menu Icon" width="30px"/>
+        </button>
+      <nav class="js-menu sliding-menu-content">
+          <ul>
+           <li id="myKidsBtn"><a href="#/mykids">My Kids</a></li>
+           <li id="eventBtn"><a href="#/event">Events</a></li>
+           <li id="homeBtn"><a href="#/"> Home</a></li>
+          </ul>
+        </nav>
+      </div>  <!-- end .navleft -->
+      <!-- Center Logo -->
         <h3>Safety Net</h3>
         <div class="navRght">
-          <a href="#/mykids"><button id="myKidsBtn">My Kids</button></a>
-          <a href="#/event"><button id="eventBtn">Events</button></a>
-          <a href="#/"><button id="homeBtn">Home</button></a>
+          <span id="loggedIn"></span>
+          <a href="#/start"><button id="logOut">Logout</button></a>
         </div>
-      </nav>
+      </div>
+     <div class="js-menu-screen menu-screen"></div>
 
       <!-- sidebar- messages, update user profile, update events,  update groups, usefull links -->
       <div class="sidebar">
