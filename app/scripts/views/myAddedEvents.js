@@ -22,6 +22,8 @@
 
       $('#myKidsOnly').html(this.$el);
 
+      $('.targeted').hide();
+
     },
 
 
