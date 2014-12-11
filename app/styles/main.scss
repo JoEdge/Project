@@ -7,6 +7,9 @@
 $Lifesaver: 'Life Savers', cursive;
 $Yanone: 'Yanone Kaffeesatz', sans-serif;
 
+//Colors
+$burnt: HSLA(18, 96%, 63%, 1);
+
 //Sass for slide menu
 $sliding-menu-border-color: $dark-gray;
 $sliding-menu-background: lighten($sliding-menu-border-color, 5);
@@ -24,7 +27,7 @@ $sliding-menu-color-hover: #fff;
     margin-left: 5%;
     margin-right: 1.8%;
     margin-bottom: 20px;
-    border: 4px solid HSLA(18, 96%, 63%, 1);
+    border: 4px solid $burnt;
     border-radius: 50em;
     background-color: white;
 
@@ -144,9 +147,9 @@ body {
       @include span-columns(3);
     }//end media(mobile)
     p {
-    font-family: $Lifesaver;
+    font-family: $Yanone;
     font-weight: bold;
-    font-size: 45px;
+    font-size: 48px;
     padding-top: 5%;
     margin-bottom: 0px;
     text-align: center;
@@ -199,44 +202,90 @@ body {
   }//end media(mobile)
   position: relative;
   margin-top: 50px;
-  margin-bottom: 50px;
   margin-left: 35%;
+  margin-bottom: 50px;
   min-height: 100px;
   z-index: 2;
+  color: white;
+
+  .LogIn {
+    margin-bottom: 15px;
+  }
+
+  #loginForm, #userForm {
+    color: black;
+  }
+
+  #loginBtn, #signUpBtn {
+    background-color: $burnt;
+    font-size: 18px;
+  }
+
+  //Edit Event
+  .updateEvent {
+
+    #editor, #eventDelete {
+      background-color: $burnt;
+      font-size: 18px;
+    }
+
+  }
 
 //solo Kid view
   .oneKid{
-    @include span-columns(9 of 12);
-    @include media($mobile) {
-      @include span-columns(4);
-    }//end media(mobile)
-    min-width: 200px;
-    border: 1px solid black;
-    margin-left: 13%;
     background-color: white;
+    color: black;
+
+    h5{
+      text-align: center;
+      font-family: $Yanone;
+      font-size: 30px;
+    }
+
+    strong {
+      font-size: 20px;
+      text-decoration: underline;
+    }
 
       .kidOneShow {
-        height: 70px;
-        background-color: orange;
         margin-top: 10px;
         margin-bottom: 10px;
         border-top: 2px solid blue;
         border-bottom: 2px solid blue;
+        background-color: $burnt;
+      }
 
         img {
-          margin-left: 30%;
-          width: 35%;
-          height: 63px;
-          max-width: 63px;
+          width: 50%;
+          height: 84px;
+          max-width: 84px;
           margin-top: 2px;
+          margin-left: 40%;
           border-radius: 50em;
         }
+
+      #updateButton, #shareInfo {
+        width: 20%;
+        height: 40px;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        margin-left: 1%;
+        line-height: .5;
+        background-color: $burnt;
+        font-size: 18px;
       }
 
       #backItUp {
         float: right;
+        width: 10%;
+        height: 40px;
+        margin-top: 10px;
+        margin-right: 1%;
+        line-height: .5;
+        background-color: $burnt;
+        font-size: 18px;
       }
-  }
+  }//end oneKid
 }//end enterSite
 
 .sidebar{
@@ -258,6 +307,24 @@ body {
       font-width: bold;
     }
 
+    //add my kids form
+    .MyKids{
+
+      #addMyKid {
+        background-color: $burnt;
+        font-size: 18px;
+      }
+    }
+
+    //Edit Event Form
+    .Events {
+
+      #createEvent {
+        background-color: $burnt;
+        font-size: 18px;
+      }
+    }
+
     //event for kids to be added to
     .oneEventShown {
       min-height: 200px;
@@ -265,14 +332,35 @@ body {
       color: grey;
 
       h4 {
+        height: 40px;
         font-family: $Lifesaver;
+        padding-top: 5px;
+        border-top: 2px solid blue;
+        border-bottom: 2px solid blue;
+        margin-top: 10px;
+        margin-bottom: 3px;
         text-align: center;
+        color:white;
+        background-color: $burnt;
+        font-size: 24px;
+      }
+
+      strong {
+        margin-left: 1%;
+        font-size: 20px;
+        color: black;
+        text-decoration: underline;
+      }
+
+      .soloEvent {
+        font-size: 18px;
+        color: black;
       }
 
       img {
         width: 43%;
-        height: 80px;
-        max-width: 90px;
+        height: 75px;
+        max-width: 75px;
         margin-top: 10px;
         margin-left: 6px;
       }
@@ -341,11 +429,11 @@ body {
       @include span-columns(6);
     }//end media(mobile)
     margin-top: 25px;
-    margin-left: 3%;
+
 
       .showMyKids {
         @include span-columns(4);
-        @include omega(3n);
+        @include omega(4n);
         @include media($mobile) {
           @include span-columns(3);
         }//end media(mobile)
@@ -368,31 +456,41 @@ body {
       @include media($mobile) {
         @include span-columns(3);
       }//end media(mobile)
-      width: 35%;
-      max-width: 170px;
+      width: 45%;
+      max-width: 200px;
       min-height: 160px;
       margin-left: 5%;
       margin-right: 1.8%;
       margin-bottom: 20px;
-      border: 1px solid black;
+      //border: 1px solid black;
       background-color: white;
 
       h5{
+        height: 40px;
         font-family: $Lifesaver;
-        border-top: 1px solid blue;
-        border-bottom: 1px solid blue;
+        padding-top: 5px;
+        border-top: 2px solid blue;
+        border-bottom: 2px solid blue;
         margin-top: 10px;
         margin-bottom: 3px;
         text-align: center;
         color:white;
-        background-color: grey;
+        background-color: $burnt;
+        font-size: 22px;
       }
 
       strong {
         margin-left: 1%;
+        font-size: 20px;
+        color: black;
+        text-decoration: underline;
       }
       p{
         margin-left: 2%;
+      }
+
+      li{
+        font-size: 20px;
       }
 
       img {
@@ -405,23 +503,47 @@ body {
 
       .toggle {
         width: 100%;
+        height: 30px;
+        border-top: 2px solid blue;
+        border-bottom: 2px solid blue;
+        margin-top: 5px;
+        line-height: .25;
         text-align: center;
-        font-size: 12px;
+        font-size: 18px;
         color: white;
+        background-color: grey;
       }
 
-      .buttons {
-        float: right;
+      #kidAdder {
+        float: left;
         min-width: 60px;
+        height: 40px;
         text-align: center;
-        font-size: 12px;
+        font-size: 18px;
         word-wrap: break-word;
         padding-left: 2%;
         padding-right: 2%;
         margin-top: 10px;
-        margin-right: 1%;
+        margin-left: 10%;
         margin-bottom: 3px;
         color: white;
+        background-color: $burnt;
+      }
+
+      #editEvent {
+        float: right;
+        min-width: 60px;
+        height: 40px;
+        text-align: center;
+        font-size: 18px;
+        word-wrap: break-word;
+        padding-left: 10%;
+        padding-right: 10%;
+        margin-top: 10px;
+        margin-right: 10%;
+        margin-bottom: 3px;
+        color: white;
+        background-color: $burnt;
       }//end bottom buttons
 
     }//end eventShown
