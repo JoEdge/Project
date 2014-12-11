@@ -12,9 +12,11 @@
     <link rel="stylesheet" href="../bower_components/normalize-css/normalize.css" />
     <!-- endbower -->
     <!-- endbuild -->
-
+    <link href='http://fonts.googleapis.com/css?family=Life+Savers:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700' rel='stylesheet' type='text/css'>
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+
     <!-- endbuild -->
 
     <!-- build:js scripts/vendor/modernizr.js -->
@@ -26,6 +28,7 @@
       <!-- navigation bar -->
      <div class ="mainNav">
       <div class="navLeft">
+      <!-- hamburger button -->
         <button type="button" class="js-menu-trigger sliding-menu-button" width="40px">
           <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/menu-white.png" alt="Menu Icon"/>
         </button>
@@ -38,17 +41,21 @@
         </nav>
       </div>  <!-- end .navleft -->
       <!-- Center Logo -->
-        <h3>Safety Net</h3>
+        <div class="logo">
+          <p>Safety Net</p>
+        </div>
         <div class="navRght">
           <a href="#/start"><button id="logOut">Logout</button></a>
           <span id="loggedIn"></span>
         </div>
       </div>
+
      <div class="js-menu-screen menu-screen"></div>
 
       <!-- sidebar- messages, update user profile, update events,  update groups, usefull links -->
       <div class="sidebar">
-        <div id="updateInfo"></div>
+          <div id="updateInfo"></div>
+
       </div>
 
       <div class="enterSite">
@@ -83,27 +90,8 @@
           <input id='newpassword' type='password' placeholder = 'Enter a Password'/>
           <input id='confirmpword' type='password' placeholder = 'Confirm Password'/>
           <input id='uEmail' type='email' placeholder='Email'/>
-    <!--      <input id='ufirstName' type='text' placeholder='First Name'/>
-          <input id='ulastName' type='text' placeholder='Last Name'/>
-          <input id='uAddress1' type='text' placeholder='Address'/>
-          <input id='uAddress2' type='text' placeholder='Address'/>
-          <input id='uPhone' type='text' placeholder='Phone'/>
-          <input id='uImage' type='file' placeholder=''/> -->
             <button id="signUpBtn">Create New User</button>
         </form>
-    </script>
-
-
-    <!-- Template to Edit User -->
-    <script type="text/template" id="editedUser">
-      <h3>Edit My Profile</h3>
-        <div class="updateUser" id="<%= objectId %>">
-          <form id="FormEditUser">
-            <input id='update_username' type='text' value="<%= username %>"/>
-            <input id='update_email' type='text' value="<%= email %>"/>
-              <button id="editUser">Update!</button>
-          </form>
-        </div>
     </script>
 
      <!-- Template for Add Kid Profile -->
@@ -137,13 +125,21 @@
      <!-- Template for Listing "My Kids" -->
      <script type="text/template" id="listMyKids">
       <li class="showMyKids" id="<%= objectId %>">
-              <a href="#/kidSingle/<%= objectId %>"><img id='profilePic' src= "<%= image.url %>" alt="Smiley face"/>
-              <h5><%= firstName %> <%= lastName %> </h5></a>
-                <a href="#/editKid/<%= objectId %>"><button id="updateButton">Edit</button></a>
-                <a href="#/share/<%= objectId %>"><button id="shareInfo">Share</button></a>
-                <button class="addKidBtn" id="<%= objectId %>" data-img="<%= image.url %>">Add</button>
+              <a href="#/kidSingle/<%= objectId %>"><img id='profilePic' src= "<%= image.url %>" alt="Smiley face"/></a>
+          <!--    <h5><%= firstName %> <%= lastName %> </h5></a> -->
        </li>
   <!--     </div>  -->
+      </script>
+
+      <!--Template for kids to add to messages -->
+      <script type="text/template" id="listMyKids2">
+      <li class="showMyKids2" id="<%= objectId %>">
+      <a href="#/kidSingle/<%= objectId %>"><img id='profilePic' src= "<%= image.url %>" alt="Smiley face"/>
+      <h5><%= firstName %> <%= lastName %> </h5></a>
+      <div class ='addthem'>
+      <button class="addKidBtn" id="<%= objectId %>" data-img="<%= image.url %>">Add</button>
+      </li>
+      </div>
       </script>
 
       <!-- Template for Showing One Kid Info -->
@@ -170,6 +166,8 @@
                 <strong>Medical Concerns</strong>
                 <li><%= medical %></li>
                 <li><%= notes %></li>
+                <a href="#/editKid/<%= objectId %>"><button id="updateButton">Edit</button></a>
+                <a href="#/share/<%= objectId %>"><button id="shareInfo">Share</button></a>
                 <button id="backItUp">x</button>
           </li>
         </div>
@@ -200,6 +198,7 @@
               <textarea id='update_notes' type='text'><%= notes %></textarea>
                 <button id="kidEditor">Edit It!</button>
                 <button id="kidDelete">Delete</button>
+                <button id="backItUp">x</button>
             </form>
           </div>
       </script>
@@ -326,7 +325,6 @@
         <script src="scripts/collections/eventCollection.js"></script>
         <script src="scripts/collections/messageCollection.js"></script>
         <script src="scripts/views/signup.js"></script>
-        <script src="scripts/views/editUser.js"></script>
         <script src="scripts/views/login.js"></script>
         <script src="scripts/views/myKidsView.js"></script>
         <script src="scripts/views/myKidsList.js"></script>
@@ -336,6 +334,8 @@
         <script src="scripts/views/myAddedEvents.js"></script>
         <script src="scripts/views/editEvent.js"></script>
         <script src="scripts/views/addKid2Event.js"></script>
+        <script src="scripts/views/kids2Events.js"></script>
+
         <script src="scripts/views/senderMessageView.js"></script>
         <script src="scripts/views/messageList.js"></script>
         <script src="scripts/routes/approuter.js"></script>

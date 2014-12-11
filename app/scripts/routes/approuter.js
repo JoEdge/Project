@@ -20,6 +20,7 @@
     },
 
     home: function() {
+      console.log('loading home');
       $('.enterSite').hide();
       new App.Views.MyKidsList({collection: App.all_myKids});
       new App.Views.MessageList({collection: App.all_messages});
@@ -32,10 +33,6 @@
       if(App.user) return App.router.navigate('start', {trigger: true});
         new App.Views.SignUp();
         new App.Views.Login();
-      // $('#logOut').click(function() {
-      //     location.reload();
-      // });
-
     },
 
     oneKid: function (id) {
@@ -44,7 +41,6 @@
       $('.sidebar').hide();
       var sk = App.all_myKids.get(id);
       new App.Views.SoloKid({onekid:sk});
-      App.router.navigate('start', {trigger: true});
       $('#backItUp').click(function() {
         location.reload();
       });
@@ -66,7 +62,7 @@
       var se =  App.all_events.get(id);
       console.log(se);
       new App.Views.AddKid2EventView({add2event : se});
-      new App.Views.MyKidsList({collection: App.all_myKids, adder: se});
+      new App.Views.Kids2Event({collection: App.all_myKids, adder: se});
     },
 
     eventInfo: function() {

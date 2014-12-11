@@ -6,7 +6,7 @@
 
     events: {
 
-     "click .addKidBtn" : "addingKids",
+     //"click .addKidBtn" : "addingKids",
 
     },
 
@@ -25,32 +25,32 @@
 
     },
 
-    addingKids: function(e){
-
-      e.preventDefault();
-      //get selected kid in array 'kids' located in event class
-      var kiddyID = e.currentTarget.id;
-      var kidPhoto = $(e.currentTarget).data('img');
-      var kidArray = this.options.adder.attributes.kids;
-      var kidObject = { kid: kiddyID, photo: kidPhoto };
-
-      kidArray.push(kidObject);
-
-      this.options.adder.save();
-
-      // //query events for arrays of kids
-      var queryKids = new Parse.Query(App.Models.Events);
-      queryKids.equalTo('kids', kidObject);
-      queryKids.find({
-        success: function(result) {
-          console.log(result);
-
-        },
-        error: function(error) {;
-        }//end error
-      });
-
-     },
+    // addingKids: function(e){
+    //
+    //   e.preventDefault();
+    //   //get selected kid in array 'kids' located in event class
+    //   var kiddyID = e.currentTarget.id;
+    //   var kidPhoto = $(e.currentTarget).data('img');
+    //   var kidArray = this.options.adder.attributes.kids;
+    //   var kidObject = { kid: kiddyID, photo: kidPhoto };
+    //
+    //   kidArray.push(kidObject);
+    //
+    //   this.options.adder.save();
+    //
+    //   // //query events for arrays of kids
+    //   var queryKids = new Parse.Query(App.Models.Events);
+    //   queryKids.equalTo('kids', kidObject);
+    //   queryKids.find({
+    //     success: function(result) {
+    //       console.log(result);
+    //
+    //     },
+    //     error: function(error) {;
+    //     }//end error
+    //   });
+    //
+    //  },
 
     render: function(){
       var self= this;

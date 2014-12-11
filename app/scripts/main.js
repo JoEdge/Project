@@ -24,6 +24,7 @@ Parse.initialize("rSMFx7NCERf7fOIu7UBDFhrVWQBNXQJLGkzGu0ML", "YNVYJv0m0llTc3tpH3
             App.router = new App.Routers.approuter();
 
             Parse.history.start();
+            App.updateUser();
 
           })
         })
@@ -98,6 +99,6 @@ Parse.initialize("rSMFx7NCERf7fOIu7UBDFhrVWQBNXQJLGkzGu0ML", "YNVYJv0m0llTc3tpH3
 
     };//end of App.updateUser function
 
-    App.updateUser();
+
 
 }());

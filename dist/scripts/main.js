@@ -236,58 +236,6 @@ $( document ).ready(function(){
 
 }());
 
-(function () {
-
-  App.Views.EditUser = Parse.View.extend({
-
-    tagName: 'ul',
-    className: 'EditUser',
-
-    events: {
-      'submit #FormEditUser' : 'updateUser',
-
-    },
-
-    template: _.template($('#editedUser').html()),
-
-    initialize: function (options) {
-      this.options = options;
-      this.render();
-
-      // Get our Element On Our Page
-      $('#log_signup').html(this.$el);
-    },
-
-    render: function () {
-      this.$el.empty();
-      this.$el.html(this.template(this.options.users.toJSON()));
-
-    },
-
-    updateUser: function (e) {
-      e.preventDefault();
-
-      // Update our Model Instance
-      this.options.users.set({
-        //image: imageFile,
-        username: $('#update_username').val(),
-        email: $('#update_email').val(),
-
-      });
-
-      // Save Instance
-      this.options.users.save();
-
-      // Return to home page
-      App.router.navigate('', {trigger: true});
-
-    },
-
-
-  });
-
-}());
-
 
 $( document ).ready(function(){
 
@@ -326,6 +274,7 @@ $( document ).ready(function(){
           App.user = user;
           App.updateUser();
           App.router.navigate('', {trigger: true});
+          location.reload();
         },
 
         error: function(user, error) {
@@ -336,7 +285,7 @@ $( document ).ready(function(){
 
       //clear my form
       $("#loginForm")[0].reset();
-      // App.router.navigate('', { trigger: true });
+       App.router.navigate('', { trigger: true });
     },
 
   });
@@ -436,7 +385,7 @@ $( document ).ready(function(){
 
     events: {
 
-     "click .addKidBtn" : "addingKids",
+     //"click .addKidBtn" : "addingKids",
 
     },
 
@@ -455,32 +404,32 @@ $( document ).ready(function(){
 
     },
 
-    addingKids: function(e){
-
-      e.preventDefault();
-      //get selected kid in array 'kids' located in event class
-      var kiddyID = e.currentTarget.id;
-      var kidPhoto = $(e.currentTarget).data('img');
-      var kidArray = this.options.adder.attributes.kids;
-      var kidObject = { kid: kiddyID, photo: kidPhoto };
-
-      kidArray.push(kidObject);
-
-      this.options.adder.save();
-
-      // //query events for arrays of kids
-      var queryKids = new Parse.Query(App.Models.Events);
-      queryKids.equalTo('kids', kidObject);
-      queryKids.find({
-        success: function(result) {
-          console.log(result);
-
-        },
-        error: function(error) {;
-        }//end error
-      });
-
-     },
+    // addingKids: function(e){
+    //
+    //   e.preventDefault();
+    //   //get selected kid in array 'kids' located in event class
+    //   var kiddyID = e.currentTarget.id;
+    //   var kidPhoto = $(e.currentTarget).data('img');
+    //   var kidArray = this.options.adder.attributes.kids;
+    //   var kidObject = { kid: kiddyID, photo: kidPhoto };
+    //
+    //   kidArray.push(kidObject);
+    //
+    //   this.options.adder.save();
+    //
+    //   // //query events for arrays of kids
+    //   var queryKids = new Parse.Query(App.Models.Events);
+    //   queryKids.equalTo('kids', kidObject);
+    //   queryKids.find({
+    //     success: function(result) {
+    //       console.log(result);
+    //
+    //     },
+    //     error: function(error) {;
+    //     }//end error
+    //   });
+    //
+    //  },
 
     render: function(){
       var self= this;
@@ -838,6 +787,78 @@ $( document ).ready(function(){
 
 }());
 
+(function () {
+  App.Views.Kids2Event = Parse.View.extend ({
+
+    tagName: 'ul',
+    className: 'myKidsList2',
+
+    events: {
+
+      "click .addKidBtn" : "addingKids",
+
+    },
+
+    template: _.template($('#listMyKids2').html()),
+
+    initialize: function(options) {
+
+      this.options = options;
+
+      this.render();
+
+      //this.collection.off();
+      this.collection.on('sync', this.render, this);
+
+      $('#myKidsOnly').html(this.$el);
+
+    },
+
+    addingKids: function(e){
+
+      e.preventDefault();
+      //get selected kid in array 'kids' located in event class
+      var kiddyID = e.currentTarget.id;
+      var kidPhoto = $(e.currentTarget).data('img');
+      var kidArray = this.options.adder.attributes.kids;
+      var kidObject = { kid: kiddyID, photo: kidPhoto };
+
+      kidArray.push(kidObject);
+
+      this.options.adder.save();
+
+      // //query events for arrays of kids
+      var queryKids = new Parse.Query(App.Models.Events);
+      queryKids.equalTo('kids', kidObject);
+      queryKids.find({
+        success: function(result) {
+          console.log(result);
+
+        },
+        error: function(error) {;
+        }//end error
+      });
+
+    },
+
+    render: function(){
+      var self= this;
+
+      //clears our element
+      this.$el.empty();
+
+      this.collection.each(function (myKid) {
+        var kidPhoto = myKid.get("image");
+        $('#profilePic').src = kidPhoto.url();
+        self.$el.append(self.template(myKid.toJSON()));
+      });
+
+    },//end render
+
+  });
+
+}());
+
 (function(){
 
   App.Views.SenderMessageView = Parse.View.extend ({
@@ -1055,6 +1076,7 @@ $( document ).ready(function(){
     },
 
     home: function() {
+      console.log('loading home');
       $('.enterSite').hide();
       new App.Views.MyKidsList({collection: App.all_myKids});
       new App.Views.MessageList({collection: App.all_messages});
@@ -1067,10 +1089,6 @@ $( document ).ready(function(){
       if(App.user) return App.router.navigate('start', {trigger: true});
         new App.Views.SignUp();
         new App.Views.Login();
-      // $('#logOut').click(function() {
-      //     location.reload();
-      // });
-
     },
 
     oneKid: function (id) {
@@ -1079,7 +1097,6 @@ $( document ).ready(function(){
       $('.sidebar').hide();
       var sk = App.all_myKids.get(id);
       new App.Views.SoloKid({onekid:sk});
-      App.router.navigate('start', {trigger: true});
       $('#backItUp').click(function() {
         location.reload();
       });
@@ -1101,7 +1118,7 @@ $( document ).ready(function(){
       var se =  App.all_events.get(id);
       console.log(se);
       new App.Views.AddKid2EventView({add2event : se});
-      new App.Views.MyKidsList({collection: App.all_myKids, adder: se});
+      new App.Views.Kids2Event({collection: App.all_myKids, adder: se});
     },
 
     eventInfo: function() {
@@ -1181,6 +1198,7 @@ Parse.initialize("rSMFx7NCERf7fOIu7UBDFhrVWQBNXQJLGkzGu0ML", "YNVYJv0m0llTc3tpH3
             App.router = new App.Routers.approuter();
 
             Parse.history.start();
+            App.updateUser();
 
           })
         })
@@ -1255,6 +1273,6 @@ Parse.initialize("rSMFx7NCERf7fOIu7UBDFhrVWQBNXQJLGkzGu0ML", "YNVYJv0m0llTc3tpH3
 
     };//end of App.updateUser function
 
-    App.updateUser();
+
 
 }());
