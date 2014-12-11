@@ -5,7 +5,7 @@
     className: 'myEventsList',
 
     events: {
-
+      "click .toggle" : "show",
     },
 
     template: _.template($('#listMyEvents').html()),
@@ -34,6 +34,14 @@
       this.collection.each(function (s) {
         self.$el.append(self.template(s.toJSON()));
       });
+
+    },
+
+    show: function(e) {
+      e.preventDefault();
+  $(e.target.nextElementSibling).slideToggle('slow', function(){
+          $(".buttons");
+        });
 
     }
 

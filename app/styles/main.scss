@@ -260,6 +260,7 @@ nav {
            }//end button
       }//end ShowMyKids
 
+
     .eventShown {
       @include span-columns(4);
       @include omega(3n);
@@ -302,6 +303,7 @@ nav {
         margin-bottom: 3px;
         color: white;
       }//end button
+
     }//end eventShown
 
     .allEventShown {

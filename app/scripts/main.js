@@ -30,6 +30,7 @@ $( document ).ready(function(){
       })
     });//end of fetch all_users
 
+
     //Home Button force refresh
     $('#homeBtn').click(function() {
       location.reload();

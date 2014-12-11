@@ -689,7 +689,7 @@ $( document ).ready(function(){
     className: 'myEventsList',
 
     events: {
-
+      "click .toggle" : "show",
     },
 
     template: _.template($('#listMyEvents').html()),
@@ -718,6 +718,14 @@ $( document ).ready(function(){
       this.collection.each(function (s) {
         self.$el.append(self.template(s.toJSON()));
       });
+
+    },
+
+    show: function(e) {
+      e.preventDefault();
+  $(e.target.nextElementSibling).slideToggle('slow', function(){
+          $(".buttons");
+        });
 
     }
 
@@ -1176,6 +1184,7 @@ $( document ).ready(function(){
         })
       })
     });//end of fetch all_users
+
 
     //Home Button force refresh
     $('#homeBtn').click(function() {
