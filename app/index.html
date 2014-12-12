@@ -133,13 +133,10 @@
 
       <!--Template for kids to add to messages -->
       <script type="text/template" id="listMyKids2">
-      <li class="showMyKids2" id="<%= objectId %>">
-      <a href="#/kidSingle/<%= objectId %>"><img id='profilePic' src= "<%= image.url %>" alt="Smiley face"/>
-      <h5><%= firstName %> <%= lastName %> </h5></a>
-      <div class ='addthem'>
-      <button class="addKidBtn" id="<%= objectId %>" data-img="<%= image.url %>">Add</button>
-      </li>
-      </div>
+        <li class="showMyKids2" id="<%= objectId %>">
+          <a href="#/kidSingle/<%= objectId %>"><img id='profilePic' src= "<%= image.url %>" alt="Smiley face"/></a>
+      <button class="addKidBtn" id="<%= objectId %>" data-img="<%= image.url %>" style="background-color: HSLA(18, 96%, 63%, 1)">Add</button>
+        </li>
       </script>
 
       <!-- Template for Showing One Kid Info -->

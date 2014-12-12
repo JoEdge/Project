@@ -9,6 +9,7 @@ $Yanone: 'Yanone Kaffeesatz', sans-serif;
 
 //Colors
 $burnt: HSLA(18, 96%, 63%, 1);
+$scooter: HSLA(196, 50%, 44%, 1);
 
 //Sass for slide menu
 $sliding-menu-border-color: $dark-gray;
@@ -81,8 +82,7 @@ body {
   @include span-columns(12);
   min-height: 50px;
   margin-top: 30px;
-  border: 1px solid black;
-  background-color: white;
+  background: url("../images/orange.jpg");
   z-index: 9999999;
 
   .navLeft {
@@ -104,6 +104,7 @@ body {
       margin-bottom: $base-line-height;
       position: relative;
       outline: none;
+      background-color: $scooter;
 
       img {
         height: 20px;
@@ -149,16 +150,16 @@ body {
     p {
     font-family: $Yanone;
     font-weight: bold;
-    font-size: 48px;
-    padding-top: 5%;
+    font-size: 52px;
+    padding-top: 3%;
     margin-bottom: 0px;
     text-align: center;
-    color: HSLA(215, 55%, 54%, 1);
+    color: white;
     }
   }//end h3
 
   .navRght {
-    @include span-columns(3.8);
+    @include span-columns(3.9);
     @include media($mobile) {
       @include span-columns(3);
     }//end media(mobile)
@@ -167,16 +168,22 @@ body {
     span {
       float: right;
       margin-right: 2%;
+      font-size: 20px;
+      color: white;
     }
 
     button {
       float: right;
-      min-width:60px;
+      min-width:70px;
+      height: 40px;
       text-align: center;
-      font-size:12px;
+      font-size:16px;
       word-wrap:break-word;
       padding-left: 3px;
       padding-right: 3px;
+      margin-left: 2%;
+      margin-bottom: 30px;
+      background-color: $scooter;
     }//end button
   }//end .navRght
 }//end nav
@@ -358,11 +365,12 @@ body {
       }
 
       img {
-        width: 43%;
-        height: 75px;
-        max-width: 75px;
+        width: 47%;
+        height: 80px;
+        max-width: 80px;
         margin-top: 10px;
-        margin-left: 6px;
+        margin-left: 9%;
+        border-radius: 50em;
       }
 
     }//end .oneEventShown
@@ -406,7 +414,6 @@ body {
   @include media($mobile) {
     @include span-columns(3);
   }//end media(mobile)
-  border: 1px solid white;
   margin-top: 40px;
   margin-bottom: 50px;
   margin-left: 3%;
@@ -438,15 +445,31 @@ body {
           @include span-columns(3);
         }//end media(mobile)
         @include main;
-      }
+       }
 
       .showMyKids2 {
         @include span-columns(4);
-        @include omega(3n);
+        @include omega(4n);
         @include media($mobile) {
           @include span-columns(3);
         }//end media(mobile)
-        @include main
+        max-width: 160px;
+        height: 160px;
+        //overflow:hidden;
+        margin-left: 5%;
+        margin-right: 1.8%;
+        margin-bottom: 60px;
+        border: 4px solid $burnt;
+        border-radius: 50em;
+        background-color: white;
+
+        img {
+          width: 100%;
+          min-height: 158px;
+          max-width: 160px;
+          border-radius: 50em;
+          padding-bottom: 6px;
+        }
       }//end ShowMyKids2
 
 
@@ -494,11 +517,12 @@ body {
       }
 
       img {
-        width: 43%;
+        width: 47%;
         height: 75px;
         max-width: 75px;
-        margin-top: 10px;
-        margin-left: 6px;
+        margin-top: 7px;
+        margin-left: 8%;
+        border-radius: 50em;
       }
 
       .toggle {
