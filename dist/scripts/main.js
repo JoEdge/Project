@@ -1198,7 +1198,7 @@ Parse.initialize("rSMFx7NCERf7fOIu7UBDFhrVWQBNXQJLGkzGu0ML", "YNVYJv0m0llTc3tpH3
             App.router = new App.Routers.approuter();
 
             Parse.history.start();
-            App.updateUser();
+            // App.updateUser();
 
           })
         })
@@ -1222,20 +1222,20 @@ Parse.initialize("rSMFx7NCERf7fOIu7UBDFhrVWQBNXQJLGkzGu0ML", "YNVYJv0m0llTc3tpH3
     });
 
 
-    //Home Button force refresh
-    $('#homeBtn').click(function() {
-      location.reload();
-    });
-
-    //Event Button force refresh
-    $('#eventBtn').click(function() {
-      location.reload();
-    });
-
-    //My kids button force refresh
-    $('#myKidsBtn').click(function() {
-      location.reload();
-    });
+    // //Home Button force refresh
+    // $('#homeBtn').click(function() {
+    //   location.reload();
+    // });
+    //
+    // //Event Button force refresh
+    // $('#eventBtn').click(function() {
+    //   location.reload();
+    // });
+    //
+    // //My kids button force refresh
+    // $('#myKidsBtn').click(function() {
+    //   location.reload();
+    // });
 
 
     // Log Out
@@ -1273,6 +1273,6 @@ Parse.initialize("rSMFx7NCERf7fOIu7UBDFhrVWQBNXQJLGkzGu0ML", "YNVYJv0m0llTc3tpH3
 
     };//end of App.updateUser function
 
-
+    App.updateUser();
 
 }());

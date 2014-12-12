@@ -406,6 +406,28 @@ body {
       }
     }//end .MessageList
 
+    //sending message styling
+    .Message {
+
+      h4 {
+        font-family: $Lifesaver;
+        color: white;
+        margin-bottom: 7px;
+      }
+
+      .messageForm{
+        color: black;
+      }
+
+        #sendMsg {
+          background-color: $burnt;
+          font-size: 18px;
+        }
+
+
+
+    }
+
   }//end updateInfo
 }//end sidebar
 
