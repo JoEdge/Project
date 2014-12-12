@@ -148,7 +148,7 @@
             </div>
               <h5><%= firstName %> <%= lastName %> </h5>
                 <strong>Date of Birth</strong>
-                <li><%= birthdate %></li>
+                <li><%=  moment(birthdate).format("MMMM Do, YYYY") %></li>
                 <strong>Address</strong>
                 <li><%= address1 %></li>
                 <li><%= address2 %></li>
@@ -235,7 +235,7 @@
         <li class="showEvent" id="<%= objectId %>">
           <h5><%= eventName %></h5>
           <strong>Date</strong>
-          <p><%= eventDate %></p>
+          <p><%=  moment(eventDate).format("MMMM Do, YYYY") %></p>
           <strong>Location</strong>
           <li><%= location %></li>
           <li><%= location2 %></li>
@@ -261,7 +261,7 @@
           <li class="soloEvent" id="<%= objectId %>">
             <h4><%= eventName %></h4>
             <strong>Date</strong>
-            <p><%= eventDate %></p>
+            <p><%=  moment(eventDate).format("MMMM Do, YYYY") %></p>
             <strong>Location</strong>
             <li><%= location %></li>
             <li><%= location2 %></li>

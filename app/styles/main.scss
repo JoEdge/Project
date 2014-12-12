@@ -112,7 +112,7 @@ body {
     }
 
     .sliding-menu-content {
-      @include position(fixed, 125px auto 0px 0px);
+      @include position(fixed, 140px auto 0px 0px);
       @include size(230px 100%);
       @include transform(translateX(-400px));
       @include transition(all .25s linear);
