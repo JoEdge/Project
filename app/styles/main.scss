@@ -406,6 +406,37 @@ body {
       }
     }//end .MessageList
 
+    //recieved message styling
+    .Message {
+      background-color: transparent;
+
+      .chat {
+        margin-bottom: 10px;
+        background-color: white;
+        color: grey;
+
+        h4{
+          font-family: $Lifesaver;
+          border: 1px solid white;
+          color: white;
+          background-color:HSLA(18, 96%, 63%, 1);
+          margin-bottom: 7px;
+        }
+
+        #sendMsg {
+          min-width:50px;
+          text-align: center;
+          font-size:12px;
+          word-wrap:break-word;
+          margin-top: 5px;
+          margin-left: 73%;
+          margin-bottom: 3px;
+          padding-left: 3px;
+          padding-right: 3px;
+        }
+      }
+    }//end .MessageList
+
   }//end updateInfo
 }//end sidebar
 
