@@ -392,50 +392,48 @@ body {
           margin-bottom: 7px;
         }
 
+        h5{
+          font-family: $Lifesaver;
+          color: black;
+        }
+
         #hideMsg {
           min-width:50px;
           text-align: center;
-          font-size:12px;
+          font-size:16px;
           word-wrap:break-word;
           margin-top: 5px;
           margin-left: 73%;
           margin-bottom: 3px;
           padding-left: 3px;
           padding-right: 3px;
+          background-color: $burnt;
         }
       }
     }//end .MessageList
 
-    //recieved message styling
+    //sending message styling
     .Message {
-      background-color: transparent;
 
-      .chat {
-        margin-bottom: 10px;
-        background-color: white;
-        color: grey;
+      h4 {
+        font-family: $Lifesaver;
+        color: white;
+        margin-bottom: 7px;
+      }
 
-        h4{
-          font-family: $Lifesaver;
-          border: 1px solid white;
-          color: white;
-          background-color:HSLA(18, 96%, 63%, 1);
-          margin-bottom: 7px;
-        }
+      .messageForm{
+        color: black;
+      }
 
         #sendMsg {
-          min-width:50px;
-          text-align: center;
-          font-size:12px;
-          word-wrap:break-word;
-          margin-top: 5px;
-          margin-left: 73%;
-          margin-bottom: 3px;
-          padding-left: 3px;
-          padding-right: 3px;
+          background-color: $burnt;
+          font-size: 18px;
         }
-      }
-    }//end .MessageList
+
+
+
+    }
+
 
   }//end updateInfo
 }//end sidebar
