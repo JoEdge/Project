@@ -178,12 +178,7 @@ $( document ).ready(function(){
       var password = $('#newpassword').val();
       var ckpassword = $('#confirmpword').val();
       var email = $('#uEmail').val();
-      // var firstName = $('#ufirstName').val();
-      // var lastName = $('#ulastName').val();
-      // var address1 = $('#uAddress1').val();
-      // var address2 = $('#uAddress2').val();
-      // var phone = $('#uPhone').val();
-      // var image = $('#uimage').val();
+
       console.log(username);
 
       //Check if passwords match and add new user if true
@@ -193,13 +188,7 @@ $( document ).ready(function(){
         user.set('username', username);
         user.set('password', password);
         user.set('email', email);
-        // user.set('firstName', firstName);
-        // user.set('lastName', lastName);
-        // user.set('address1', address1);
-        // user.set('address2', address2);
-        // user.set('password', password);
-        // user.set('phone', phone);
-        // user.set('image', image);
+
         console.log(username);
 
         user.signUp (null, {
@@ -209,6 +198,8 @@ $( document ).ready(function(){
             alert("Error Signup");
           }
         });
+
+        console.log("sign up")
 
         Parse.User.logIn(username, password, {
             success: function(user){
@@ -988,7 +979,7 @@ $( document ).ready(function(){
 
     events: {
 
-    // 'click #hideMsg' : 'deleteMessage',
+     'click #hideMsg' : 'deleteMessage',
 
     },
 
@@ -1039,16 +1030,18 @@ $( document ).ready(function(){
 
     },
 
-    // deleteMessage: function (e) {
-    //   e.preventDefault();
-    //
-    //   // Remove Message
-    //   //this.options.s.destroy();
+     deleteMessage: function (e) {
+       e.preventDefault();
+
+       console.log("JAJAJAJA");
+       console.log(this.options);
+      // Remove Message
+      //this.options.s.destroy();
     //
     //   // Return to home page
     //   App.router.navigate('', {trigger: true});
 
-  //  },
+    },
 
   });
 
@@ -1198,7 +1191,8 @@ Parse.initialize("rSMFx7NCERf7fOIu7UBDFhrVWQBNXQJLGkzGu0ML", "YNVYJv0m0llTc3tpH3
             App.router = new App.Routers.approuter();
 
             Parse.history.start();
-            // App.updateUser();
+
+            App.updateUser();
 
           })
         })
@@ -1220,23 +1214,6 @@ Parse.initialize("rSMFx7NCERf7fOIu7UBDFhrVWQBNXQJLGkzGu0ML", "YNVYJv0m0llTc3tpH3
         e.preventDefault();
       });
     });
-
-
-    // //Home Button force refresh
-    // $('#homeBtn').click(function() {
-    //   location.reload();
-    // });
-    //
-    // //Event Button force refresh
-    // $('#eventBtn').click(function() {
-    //   location.reload();
-    // });
-    //
-    // //My kids button force refresh
-    // $('#myKidsBtn').click(function() {
-    //   location.reload();
-    // });
-
 
     // Log Out
     $('#logOut').on('click', function (e) {
@@ -1261,7 +1238,7 @@ Parse.initialize("rSMFx7NCERf7fOIu7UBDFhrVWQBNXQJLGkzGu0ML", "YNVYJv0m0llTc3tpH3
         $('#eventBtn').hide();
         $('#myKidsBtn').hide();
         $('#homeBtn').hide();
-        App.router.navigate('start', {trigger: true});
+        
       } else {
         currUsr = 'Welcome Back ' + App.user.attributes.username;
         $('#logOut').text('Log Out');
