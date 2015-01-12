@@ -24,7 +24,8 @@ Parse.initialize("rSMFx7NCERf7fOIu7UBDFhrVWQBNXQJLGkzGu0ML", "YNVYJv0m0llTc3tpH3
             App.router = new App.Routers.approuter();
 
             Parse.history.start();
-            // App.updateUser();
+
+            App.updateUser();
 
           })
         })
@@ -46,23 +47,6 @@ Parse.initialize("rSMFx7NCERf7fOIu7UBDFhrVWQBNXQJLGkzGu0ML", "YNVYJv0m0llTc3tpH3
         e.preventDefault();
       });
     });
-
-
-    // //Home Button force refresh
-    // $('#homeBtn').click(function() {
-    //   location.reload();
-    // });
-    //
-    // //Event Button force refresh
-    // $('#eventBtn').click(function() {
-    //   location.reload();
-    // });
-    //
-    // //My kids button force refresh
-    // $('#myKidsBtn').click(function() {
-    //   location.reload();
-    // });
-
 
     // Log Out
     $('#logOut').on('click', function (e) {
@@ -87,7 +71,7 @@ Parse.initialize("rSMFx7NCERf7fOIu7UBDFhrVWQBNXQJLGkzGu0ML", "YNVYJv0m0llTc3tpH3
         $('#eventBtn').hide();
         $('#myKidsBtn').hide();
         $('#homeBtn').hide();
-        App.router.navigate('start', {trigger: true});
+        
       } else {
         currUsr = 'Welcome Back ' + App.user.attributes.username;
         $('#logOut').text('Log Out');

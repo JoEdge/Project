@@ -28,12 +28,7 @@
       var password = $('#newpassword').val();
       var ckpassword = $('#confirmpword').val();
       var email = $('#uEmail').val();
-      // var firstName = $('#ufirstName').val();
-      // var lastName = $('#ulastName').val();
-      // var address1 = $('#uAddress1').val();
-      // var address2 = $('#uAddress2').val();
-      // var phone = $('#uPhone').val();
-      // var image = $('#uimage').val();
+
       console.log(username);
 
       //Check if passwords match and add new user if true
@@ -43,13 +38,7 @@
         user.set('username', username);
         user.set('password', password);
         user.set('email', email);
-        // user.set('firstName', firstName);
-        // user.set('lastName', lastName);
-        // user.set('address1', address1);
-        // user.set('address2', address2);
-        // user.set('password', password);
-        // user.set('phone', phone);
-        // user.set('image', image);
+
         console.log(username);
 
         user.signUp (null, {
@@ -59,6 +48,8 @@
             alert("Error Signup");
           }
         });
+
+        console.log("sign up")
 
         Parse.User.logIn(username, password, {
             success: function(user){
